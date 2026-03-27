@@ -1,0 +1,2803 @@
+================================================================================
+DOSSYR
+Product Requirements Document v5.0
+
+The Verified Hiring Intelligence Layer
+
+March 2026
+Definitive Combined Edition — Series A Ready
+================================================================================
+
+CONFIDENTIAL — Do Not Distribute Without Authorization
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+  1.  Executive Summary
+  2.  Market Context and Pain Points
+  3.  Product Vision and Positioning
+  4.  Core Product Architecture
+  5.  User Personas
+  6.  Candidate Experience and Features
+  7.  Employer Experience and Features
+  8.  Immediate Value Stack
+  9.  Post-Hire Intelligence Loop
+  10. Fairness and Compliance Architecture
+  11. Technology Stack and AI Systems
+  12. Go-To-Market Strategy
+  13. Product Discipline Framework
+  14. Phase Gates and Milestones
+  15. Financial Model
+  16. Competitive Positioning
+  17. VC Narrative and Moat Analysis
+  18. Risk Mitigation
+  19. 90-Day Action Plan
+  20. Glossary
+
+================================================================================
+
+================================================================================
+# SECTION 1: EXECUTIVE SUMMARY
+================================================================================
+
+## Overview
+
+Dossyr is the verified hiring intelligence platform that replaces resume screening
+with AI-powered work simulations, compressing hiring timelines from 40+ days to 5-7
+days while generating employer-specific predictive models that improve with every
+completed hire cycle. The platform operates on a two-layer assessment architecture:
+the ARISE Engine for rapid knowledge and behavioral assessment, and the WSE (Work
+Simulation Engine) for realistic AI-orchestrated job simulations. Together, these two
+engines produce the Dossyr Full Verified Profile — a tamper-evident, portable
+credential candidates own permanently and employers use to make higher-confidence,
+faster hiring decisions.
+
+Dossyr is not a quiz tool, a video interview platform, or a resume parser. It is
+verified work evidence at the moment of hire — the first platform to make skills
+verification as fast, portable, and trustworthy as a credit score.
+
+-------------------------------------------------------------------------------
+
+## The Problem — For Employers
+
+Hiring is broken, and the cost of that brokenness is quantifiable.
+
+**Resume-to-Reality Gap**: 51% of employers cannot meaningfully verify the skills
+candidates claim on their resumes. The result is a structurally unreliable signal
+at the top of every hiring funnel. Employers make six-figure decisions based on
+self-reported keywords.
+
+**Bad Hire Cost**: The average bad hire at the mid-level costs $850,000 when
+accounting for salary, benefits, management time, re-recruitment, onboarding, and
+productivity loss. For senior hires, this figure exceeds $1.2M. Most companies
+accept this as a cost of doing business because they have no reliable alternative.
+
+**40-Day Pipelines**: The median time-to-fill for a knowledge worker role is 42 days.
+During those 42 days, the best candidates — who are in active demand — accept other
+offers. Speed is a quality problem, not just a cost problem.
+
+**ATS Filtering Failures**: Applicant Tracking Systems eliminate 88% of candidates
+before a human reviews their application. A significant fraction of those eliminated
+candidates are qualified. The filter optimizes for resume keyword density, not
+demonstrated capability.
+
+**Fragmented Tools**: The average employer uses 3-5 separate platforms across the
+hiring process: an ATS, a scheduling tool, a background check provider, a technical
+assessment platform, and a reference check tool. None of these systems share data.
+None produce a unified candidate signal. Every platform creates its own siloed record
+with no learning across the process.
+
+**No Standardized Evaluation**: Interview quality varies dramatically by interviewer.
+The same candidate receives wildly different assessments depending on who conducts the
+interview, what time of day it occurs, and what mood the interviewer is in. There is
+no objective baseline.
+
+-------------------------------------------------------------------------------
+
+## The Problem — For Candidates
+
+**Resume Commoditization**: The resume reduces a human career to a keyword-optimized
+document. Candidates with non-traditional backgrounds, career transitions, or
+international experience are structurally disadvantaged before a single human reviews
+their application.
+
+**ATS Black Holes**: 75% of candidates are rejected by automated systems before any
+human sees their application. They receive no feedback, no explanation, and no
+actionable guidance. They simply disappear into the void.
+
+**Assessment Fatigue Without Portable Value**: Candidates complete 4-6 hours of
+assessment work across multiple employers — coding challenges, take-home projects,
+personality surveys — none of which produces any credential they can reuse or
+reference. The work is disposable.
+
+**Ghosting After Investment**: Candidates invest significant time in multi-stage
+processes and receive no response. This is not a courtesy failure — it is a structural
+problem. There is no mechanism for employers to honor their side of the implicit
+agreement when a candidate invests time.
+
+**No Proof of Skills**: A candidate who is genuinely excellent at their job has no
+way to prove it beyond their resume and references — both of which are easily
+fabricated and difficult to verify. The best candidate and the best resume writer are
+indistinguishable to the current system.
+
+**No Salary Transparency**: Candidates spend weeks in processes before discovering
+the role's compensation range. Pay transparency laws are spreading, but enforcement
+is inconsistent and self-reported ranges are frequently misleading.
+
+-------------------------------------------------------------------------------
+
+## The Solution
+
+Dossyr delivers verified hiring intelligence through three integrated layers:
+
+**Layer 1 — ARISE (Adaptive Real-time Intelligence Scoring Engine)**: An 8-10 minute
+adaptive assessment generating a 5-dimension DMCS score. Every candidate path is
+unique. The system self-calibrates using Elo-based item difficulty tracking and
+Thompson Sampling adaptive routing. Candidates experience this as a "Quick Verify"
+that delivers immediate career intelligence — salary benchmarking, percentile ranking,
+strongest dimension narrative — in under 60 seconds after completion.
+
+**Layer 2 — WSE (Work Simulation Engine)**: A 15-18 minute AI-orchestrated work
+simulation placing candidates inside a realistic professional environment with an AI
+Director, AI Crew members, and adaptive work tasks. No quiz, no algorithm puzzles.
+Real work. The WSE scores six behavioral dimensions invisibly while candidates simply
+do the job.
+
+**Layer 3 — RLWO (Reinforcement Learning Weight Optimizer)**: An employer-specific
+learning engine that improves hiring predictions with every completed hire cycle.
+After 20-30 cycles, each employer account has a proprietary weight profile tuned to
+their specific performance outcomes. This creates deep switching costs and a
+compounding competitive moat.
+
+-------------------------------------------------------------------------------
+
+## Key Differentiators
+
+- **One Simulation Replaces Four Hiring Stages**: The WSE produces signal equivalent
+  to a phone screen, technical assessment, behavioral interview, and work sample test —
+  in 18 minutes.
+
+- **48-Hour Shortlist**: Employers move from role posting to verified candidate
+  shortlist in under 48 hours.
+
+- **Verified Credentials Candidates Own Permanently**: The Prooffile is tamper-evident,
+  portable, and API-verifiable. Candidates carry it across every job search forever.
+
+- **RLWO Switching Costs**: After 20-30 hire cycles, the RLWO weight profile is tuned
+  to that employer's specific performance data. Leaving Dossyr means abandoning a
+  calibrated predictive model that took years to build.
+
+- **Predictive Validity Study**: Dossyr is targeting r >= 0.35 correlation between
+  DMCS scores and 90-day performance ratings — competitive with the best validated
+  assessments in the industry and well above the r ~0.15-0.20 typical of unstructured
+  interviews.
+
+- **First Score Instant Mirror**: Candidates receive their first career intelligence
+  report in under 60 seconds after completing Tier 1.
+
+- **Structured Interest Signals Require Salary Transparency**: Employers cannot send
+  a candidate a Signal without declaring compensation range. Pay transparency is
+  enforced by architecture, not policy.
+
+- **Zero Resume Architecture**: Candidates onboard with email, name, and skill domain
+  tags. No resume upload. No LinkedIn scrape. The platform builds verified identity
+  from demonstrated performance, not claimed history.
+
+- **Three-Tier Assessment, Every Tier Delivers Standalone Value**: Tier 1 (ARISE only)
+  delivers career intelligence. Tier 2 (WSE) delivers full behavioral scoring and
+  Prooffile activation. Tier 3 (90-day post-hire) delivers the most powerful
+  credential in the system — Verified Performer.
+
+- **"No Blacklist" Guarantee**: Dossyr never blacklists candidates. Every candidate
+  can retake, improve, and grow. Best score is displayed. Trajectory is visible.
+
+- **Additive, Not Gatekeeping**: Dossyr is the express lane, not the tollbooth.
+  Candidates continue using all other job search channels. Prooffile adds competitive
+  advantage without locking anyone out.
+
+-------------------------------------------------------------------------------
+
+## Business Model Summary
+
+**Candidates**: Free. Always.
+
+**Employer Tiers**:
+
+| Tier         | Price             | Description                              |
+|--------------|-------------------|------------------------------------------|
+| Pilot        | Free / LOI        | 3 active roles, 50 assessments/mo        |
+| Starter      | $299/month        | 5 roles, 150 assessments/mo              |
+| Professional | $599/month        | 15 roles, 500 assessments/mo, RLWO       |
+| Enterprise   | $4,999/month base | Unlimited, white-label, custom WSE       |
+
+**Add-On Revenue Streams**:
+- Background check integration: $15-25 per check
+- Talent intelligence reports: $499-999 per report
+- Custom WSE scenario development: $2,500-8,000 per scenario
+- Predictive validity licensing: enterprise contract
+- Internal bench strength analysis: $1,999/month add-on
+- Success fees (contingency): 8-12% of first-year salary
+
+**Revenue Ramp (MRR)**:
+
+| Month | MRR Target |
+|-------|------------|
+| 1     | $1,500     |
+| 3     | $5,000     |
+| 6     | $12,500    |
+| 9     | $28,000    |
+| 12    | $45,000    |
+
+Path to $540K ARR by Month 12, with Series A raise targeted at $3-5M based on
+demonstrated product-market fit metrics at the 6-month gate.
+
+================================================================================
+
+================================================================================
+# SECTION 2: MARKET CONTEXT AND PAIN POINTS
+================================================================================
+
+## Market Signals
+
+The hiring intelligence market is at an inflection point. Multiple converging forces
+create both the need and the commercial readiness for a platform like Dossyr.
+
+**Skills-Based Hiring Adoption**: 76% of employers now report that demonstrated skill
+proficiency is more important than educational pedigree or employer brand in candidate
+evaluation. This represents a fundamental shift in hiring philosophy that existing
+tools have not yet operationalized.
+
+**ATS Market Size**: The Applicant Tracking System market exceeds $3 billion annually
+and is growing at 6.7% CAGR. Yet satisfaction rates among buyers remain low — 88% of
+CEOs report not getting the value they expected from HR technology investments.
+
+**HCM Market Trajectory**: The Human Capital Management software market is projected
+to reach $70.1 billion by 2028. Assessment and intelligence tools represent one of
+the fastest-growing segments within HCM as employers seek to move beyond record-keeping
+toward active decision support.
+
+**Assessment Budget Expansion**: 96% of HR leaders report maintaining or growing their
+assessment and hiring technology budgets in 2025-2026, despite broader economic
+uncertainty. Hiring quality is being treated as a strategic priority.
+
+**Pay Transparency Momentum**: Pay transparency laws now cover 40%+ of the U.S.
+workforce and are expanding rapidly. California, Colorado, New York, Washington, and
+Illinois all mandate salary range disclosure. Employers who build transparency into
+their process architecture gain structural compliance advantages.
+
+**Global Talent Management**: The global talent management market exceeded $16 billion
+in 2025, with skills assessment and workforce analytics representing the highest-growth
+sub-segments.
+
+**The Verification Gap**: Despite all this investment in HR technology, there is still
+no widely adopted standard for verifying professional skills at the point of hire. The
+market has produced record-keeping tools and scheduling tools but has not solved the
+fundamental problem: how do you know a candidate can actually do the job?
+
+-------------------------------------------------------------------------------
+
+## Employer Pain Points — Priority Ranked
+
+### HIGH SEVERITY
+
+**Pain Point 1 — Resume-to-Reality Gap / Skills Fraud**
+
+*Impact*: 51% of employers report they cannot effectively verify skills listed on
+resumes. Skills fraud — candidates claiming expertise they do not have — is endemic
+and undetectable with current tools. The result is a structurally corrupt signal at
+the top of every hiring funnel.
+
+*Quantified Consequence*: Organizations that hire based primarily on resume signals
+report 2.3x higher rates of early attrition and 1.8x higher bad hire rates compared
+to organizations using validated assessments.
+
+*Dossyr Response*: The WSE makes skills fraud structurally impossible. There is no
+"resume" to fabricate. Candidates are evaluated on what they actually do in a
+realistic work simulation — not what they claim. The DMCS score is computed from
+observed behavior, not self-reported history. The CIQ (Consistency and Integrity
+Quotient) dimension actively detects and flags inconsistent performance patterns
+that suggest external assistance or fabricated performance.
+
+---
+
+**Pain Point 2 — High Cost of Bad Hires**
+
+*Impact*: The average bad hire at the mid-level costs $850,000 when accounting for
+direct costs (salary, benefits, recruiting fees) and indirect costs (management time,
+team productivity loss, culture impact, re-recruitment, re-onboarding). For senior
+leadership roles, total bad hire cost routinely exceeds $1.2M-$2.5M.
+
+*Quantified Consequence*: A 500-person company making 40-60 hires per year with a
+25% bad hire rate generates approximately $2.1M in annual bad hire cost. This is
+not a rounding error — it is a material budget line.
+
+*Dossyr Response*: The RLWO engine optimizes hiring weight profiles against 90-day
+performance outcomes. After 20-30 hire cycles, the system has demonstrated 75-85%
+accuracy in predicting which candidates will become high performers within 90 days.
+The ROI Calculator provides employers with a personalized projection of annual bad
+hire cost reduction based on their actual hiring volume and current bad hire rate.
+
+---
+
+**Pain Point 3 — Slow, Bloated Pipelines**
+
+*Impact*: The median time-to-fill for knowledge worker roles is 42 days. During those
+42 days, the best candidates — who are actively interviewing — accept competing offers.
+Speed is a quality problem. Slow pipelines do not just cost time; they cost the
+best candidates.
+
+*Quantified Consequence*: For a $150K/year role, a 42-day vacancy costs approximately
+$17,500 in lost productivity. For a team of 5 open roles, that is $87,500 in vacancy
+cost before a single hire is made.
+
+*Dossyr Response*: Dossyr compresses time-to-shortlist to under 48 hours. The
+WSE produces a ranked shortlist of verified candidates the same day assessments are
+completed. There is no scheduling, no phone screen coordination, no waiting for
+recruiter availability. The pipeline collapses from six stages to three: signal,
+assess, decide.
+
+### MEDIUM SEVERITY
+
+**Pain Point 4 — Recruiter Administrative Overload**
+
+*Impact*: The average recruiter spends 52% of their time on administrative tasks:
+resume screening, scheduling, status updates, rejection communications, and data
+entry. Less than 15% of recruiter time is spent on high-value work — candidate
+evaluation, relationship building, and strategic sourcing.
+
+*Dossyr Response*: Automated status updates, AI-generated candidate summaries,
+one-click scheduling integration, and bulk communications eliminate the majority
+of recruiter administrative burden. Recruiters use Dossyr's shortlist to go
+directly to final-stage evaluation with pre-verified candidates.
+
+---
+
+**Pain Point 5 — Candidate Ghosting (by Employers)**
+
+*Impact*: 77% of candidates report being ghosted by employers after investing
+significant time in multi-stage processes. Ghosting destroys employer brand, reduces
+future application rates, and generates negative employer review content on platforms
+like Glassdoor and LinkedIn.
+
+*Dossyr Response*: Employers who send a Signal commit to a response timeline.
+The HQS (Hiring Quality Score) penalizes employers who ghost candidates after
+Signal acceptance. HQS is visible to candidates and affects employer search
+visibility on the platform. Ghosting has a quantifiable cost.
+
+---
+
+**Pain Point 6 — ATS Filtering Strong Candidates**
+
+*Impact*: 88% of employers acknowledge their ATS filtering eliminates qualified
+candidates. Keyword-optimized filtering systematically disadvantages candidates with
+non-traditional backgrounds, international experience, or skills-first career paths.
+
+*Dossyr Response*: The Signal Layer allows employers to directly assess any candidate
+from any source — including candidates who would never survive ATS filtering. Employers
+can invite candidates directly to the Dossyr platform. Zero Resume Architecture means
+the filter is performance, not keywords.
+
+---
+
+**Pain Point 7 — Lack of Standardized Evaluation**
+
+*Impact*: Interview quality varies dramatically by interviewer, time of day, cultural
+affinity, and random interviewer mood. Two interviewers evaluating the same candidate
+reach different conclusions 61% of the time when using unstructured interviews.
+
+*Dossyr Response*: The DMCS provides a standardized, objective baseline for every
+candidate. Every employer sees the same six-dimension scorecard. Interviewers use
+Dossyr data to calibrate their evaluation — anchoring on verified evidence rather
+than subjective impressions.
+
+---
+
+**Pain Point 8 — Overwhelming Application Volume**
+
+*Impact*: A single job posting on a major platform generates 200-500 applications on
+average. Recruiters cannot meaningfully evaluate this volume. Volume screening
+prioritizes resume format and keyword density over candidate quality.
+
+*Dossyr Response*: The Dossyr Discovery Pool surfaces verified candidates ranked by
+DMCS — the employer sees a curated pool of assessed candidates before posting the
+role publicly. The employer's shortlist is already assembled before the first résumé
+arrives.
+
+-------------------------------------------------------------------------------
+
+## Candidate Pain Points
+
+**Resume Commoditization**
+
+*Pain*: The resume collapses a career into a two-page keyword document. Candidates
+with non-traditional backgrounds, bootcamp experience, international credentials, or
+career transitions are systematically penalized regardless of actual capability.
+
+*Dossyr Response*: Zero Resume Architecture. Candidates are onboarded with name,
+email, and skill domain tags. Their Dossyr identity is built entirely from
+demonstrated performance. The Prooffile is their resume replacement — and it is
+verified.
+
+---
+
+**ATS Black Holes**
+
+*Pain*: 75% of candidates are rejected by automated systems before a human reviews
+their application. They receive no feedback, no explanation, and no path forward.
+The implicit investment of a job application — research, customization, cover
+letter — produces nothing.
+
+*Dossyr Response*: Every candidate who completes a Dossyr assessment receives
+the First Score Mirror — immediate career intelligence including percentile rank,
+salary benchmark, dimension analysis, and actionable improvement guidance. The
+assessment is never wasted. It always produces portable value.
+
+---
+
+**Assessment Fatigue / No Portable Value**
+
+*Pain*: The average job seeker completes 4-6 hours of assessment work across their
+job search — coding challenges, take-home projects, personality surveys — none of
+which produces any reusable credential. Each employer starts from zero.
+
+*Dossyr Response*: One Dossyr simulation produces a Prooffile that travels with the
+candidate forever. Complete it once, use it everywhere. The simulation is universal
+— not role-specific — so the verified credential is portable across every opportunity.
+
+---
+
+**Ghosting After Investment**
+
+*Pain*: Candidates invest significant time and emotional energy in multi-stage
+processes and then receive no response. The power asymmetry is absolute — the
+employer has zero accountability for candidate time.
+
+*Dossyr Response*: Anti-Ghost Protection enforces employer response commitments.
+Employer HQS scores are visible to candidates before they accept a Signal. The
+platform makes ghosting a reputational and visibility cost, not a free option.
+
+---
+
+**No Proof of Skills**
+
+*Pain*: A genuinely excellent candidate has no way to prove capability beyond their
+resume and references — both of which are unverifiable and easily fabricated. The
+best candidate and the best resume writer are indistinguishable.
+
+*Dossyr Response*: The Prooffile provides tamper-evident, API-verifiable proof of
+demonstrated capability. Employers can verify any Prooffile independently. The
+credential is cryptographically linked to the assessment session and cannot be
+transferred, altered, or fabricated.
+
+---
+
+**No Salary Transparency**
+
+*Pain*: Candidates spend weeks navigating multi-stage processes before discovering
+whether the role's compensation range is competitive. The information asymmetry
+is total and intentional.
+
+*Dossyr Response*: Structured Interest Signals require employers to declare
+compensation range before the Signal is sent. Candidates see salary transparency
+before they accept any employer engagement. Pay transparency is enforced by
+platform architecture — not dependent on employer goodwill.
+
+================================================================================
+
+================================================================================
+# SECTION 3: PRODUCT VISION AND POSITIONING
+================================================================================
+
+## Vision
+
+The global standard for verified professional identity — skills proven through real
+work, not claimed on paper.
+
+Every professional in the world deserves a credential that accurately represents what
+they can do. Every employer deserves a hiring signal they can trust. Dossyr makes
+both possible.
+
+## Mission
+
+Replace the resume with a living, work-verified professional identity that candidates
+own forever and that improves with every performance data point.
+
+-------------------------------------------------------------------------------
+
+## One-Line Positioning
+
+"Dossyr is the verified hiring intelligence layer that replaces resume screening,
+compresses time-to-hire from 40 days to 5, and gives every candidate portable proof
+of what they can actually do."
+
+-------------------------------------------------------------------------------
+
+## Unique Value Propositions
+
+| UVP                          | What It Means                                                          | Who Benefits           |
+|------------------------------|------------------------------------------------------------------------|------------------------|
+| WSE Work Simulation          | Real AI-orchestrated professional scenarios, not quizzes               | Candidates + Employers |
+| ARISE Quick Verify           | 8-10 min adaptive assessment, immediate career intelligence            | Candidates             |
+| Two-Layer Verified Score     | ARISE + WSE together produce the most validated signal in hiring       | Employers              |
+| Zero Resume Architecture     | Identity built from demonstrated performance, not self-reported history| Candidates             |
+| Prooffile                    | Tamper-evident, portable, API-verifiable verified credential           | Candidates             |
+| RLWO Predictive Engine       | Employer-specific weight optimization from real hire outcomes          | Employers              |
+| First Score Instant Mirror   | Career intelligence in <60 seconds after Tier 1                        | Candidates             |
+| Structured Interest Signal   | Employer engagement requires salary transparency declaration           | Candidates             |
+| HQS Accountability           | Employer reputation score with real platform consequences              | Candidates             |
+| Fairness by Architecture     | Demographic-blind scoring, structural bias safeguards built in         | Candidates             |
+| Three-Tier Assessment        | Every tier delivers standalone value — no wasted effort                | Candidates             |
+| No Blacklist Guarantee       | Retake, improve, grow — Dossyr never closes the door                   | Candidates             |
+| Additive, Not Gatekeeping    | Express lane, not tollbooth — all other job search channels still open | Candidates             |
+
+-------------------------------------------------------------------------------
+
+## What Dossyr Is
+
+**A verified performance layer**: Dossyr produces evidence of what candidates can
+actually do — not claims about what they have done. Every score is grounded in
+observed behavior during a standardized assessment.
+
+**A stage eliminator**: One Dossyr simulation produces the signal equivalent of a
+phone screen, technical assessment, behavioral interview, and work sample test.
+Employers collapse four stages to one signal.
+
+**A learning system**: The RLWO engine means Dossyr gets smarter with every hire.
+The platform's predictions improve over time, compounding value for employers who
+stay and compounding switching costs for those who consider leaving.
+
+**A portable credential platform**: The Prooffile is not an employer-specific badge —
+it is a universal, portable credential that travels with the candidate across every
+job search for their entire career.
+
+**Verification infrastructure**: Dossyr is not just a platform for job seekers. It
+is infrastructure for the hiring ecosystem. Employers, background check providers,
+educational institutions, and professional communities can verify Prooffile credentials
+via API without accessing any private candidate data.
+
+-------------------------------------------------------------------------------
+
+## What Dossyr Is Not
+
+**Not a staffing agency**: Dossyr does not place candidates or manage employment
+relationships. It provides the intelligence layer that makes placement faster and
+more accurate.
+
+**Not an ATS replacement**: Dossyr integrates with existing ATS platforms. Employers
+do not replace their ATS — they add Dossyr as the verification and intelligence layer
+at the top of their funnel.
+
+**Not a job board**: Dossyr does not aggregate job listings. It creates verified
+candidate profiles and connects them with employers through the Signal system.
+
+**Not one-size-fits-all**: Every WSE simulation is role-relevant. The DMCS weight
+profiles are customized by role archetype. The RLWO engine personalizes further for
+each employer account.
+
+**Not LinkedIn, not a quiz tool, not a video interview platform**: Dossyr does not
+ask candidates to list their connections, answer multiple-choice questions, or record
+themselves on camera. Candidates work. The platform observes. That is the distinction.
+
+-------------------------------------------------------------------------------
+
+## The Moat
+
+Dossyr's competitive moat is a data network effect that deepens with scale.
+
+Every hire generates proprietary outcome data — 90-day performance ratings, manager
+assessments, voluntary retention indicators — that flows back into the RLWO engine
+and improves future predictions. This creates a compounding advantage that is
+impossible to replicate without the historical data.
+
+**The moat mechanics**:
+
+1. **Hire 1-10**: Dossyr uses generic industry weight profiles with proxy reward
+   signals. Predictions are useful but not employer-specific.
+
+2. **Hire 11-30**: The RLWO engine begins adjusting weights based on actual performance
+   data from that employer's hires. Predictions visibly improve. Employers can see
+   the system learning.
+
+3. **Hire 31+**: The employer account has a proprietary weight profile tuned to their
+   specific culture, role requirements, and performance standards. Accuracy reaches
+   75-85%. At this stage, leaving Dossyr means abandoning a tuned predictive engine
+   that took years to build.
+
+The moat compounds at both the individual employer level (RLWO personalization) and
+the platform level (cross-employer transfer learning improves the baseline for new
+accounts). New entrants face a data gap they cannot bridge without years of real hire
+outcome data.
+
+-------------------------------------------------------------------------------
+
+## Product Identity Lock
+
+Every product decision at Dossyr passes a single test:
+
+**"Does this make our work simulations better, more trusted, or more widely used?"**
+
+If the answer is no, the feature does not ship.
+
+This is not a guideline — it is a product constitution. Features that add complexity
+without strengthening the core simulation capability, that dilute the verified work
+evidence positioning, or that create surface area without improving signal quality
+are rejected. The product identity lock exists to prevent Dossyr from becoming
+another feature-bloated HR platform trying to do everything for everyone.
+
+Dossyr does one thing better than anyone: verified work simulations for hiring.
+
+-------------------------------------------------------------------------------
+
+## "Additive, Not Gatekeeping" Positioning
+
+Dossyr is designed as an additive layer, not a replacement that locks candidates
+into a proprietary ecosystem.
+
+Candidates who complete a Dossyr simulation continue to apply through all other
+channels. They use job boards, LinkedIn, direct applications, recruiter relationships,
+and employee referrals exactly as before. The Prooffile simply adds a verified
+performance credential that travels alongside their other application materials.
+
+Employers who adopt Dossyr continue to use their existing ATS, their current
+interview processes, and their established sourcing channels. Dossyr adds a
+verification and intelligence layer at the top of the funnel without requiring
+wholesale process replacement.
+
+This "express lane" positioning is a deliberate strategic choice:
+
+1. **Reduces candidate resistance**: Candidates are more willing to invest 18 minutes
+   in a simulation when they know it produces a permanent, portable credential —
+   not disposable work for a single employer.
+
+2. **Reduces employer adoption friction**: Employers can add Dossyr to one role,
+   one team, or one pipeline without replacing their entire hiring infrastructure.
+
+3. **Accelerates network effects**: The more candidates build Prooffiles, the more
+   valuable the Discovery Pool becomes for employers. Additive adoption scales
+   faster than replacement adoption.
+
+================================================================================
+
+================================================================================
+# SECTION 4: CORE PRODUCT ARCHITECTURE
+================================================================================
+
+## Three-Tier Assessment Architecture
+
+Dossyr's assessment architecture is designed on the principle that every interaction
+must deliver standalone value. No candidate should feel they have wasted time,
+regardless of how far they progress through the tiers.
+
+### Tier 1 — "Quick Verify" (ARISE Only)
+
+**Duration**: 8-10 minutes
+**Dimensions Active**: TAI, CVS, CIQ (core adaptive dimensions)
+**BQS**: Lightweight proxy from embedded scenario (3-5 behavioral signals)
+**LAM**: Active — within-session improvement tracking enabled
+**Output**: First Score Instant Mirror with career intelligence in <60 seconds
+**Standalone Value**: Yes — percentile rank, salary benchmark, dimension narrative,
+  employer search visibility, Passive Talent Mode activation
+**Target Completion Rate**: 70% or greater of all Tier 1 starts
+
+The Quick Verify is the entry point for every candidate. It is positioned as career
+intelligence — a free, immediate assessment of where you stand in your professional
+domain — not as a job application gatekeeping tool.
+
+### Tier 2 — "Full Verify" (WSE Simulation)
+
+**Duration**: 15-18 minutes additional (following Tier 1)
+**Triggered By**: Employer Signal to candidate, candidate voluntary election,
+  or CFS threshold qualification
+**Dimensions Active**: Full 6-dimension WSE behavioral scoring (TEQ, CP, DRS, SA,
+  PR, IS)
+**Output**: Full DMCS + WSE scorecard, Prooffile activation, highlight clips,
+  updated salary benchmark
+**Target Completion Rate**: 65% or greater of triggered Tier 2 sessions
+
+### Tier 3 — "Verified Performer" (90-Day Post-Hire Confirmation)
+
+**Triggered By**: Employer confirmation of successful performance at 90-day mark
+**Output**: Verified Performer badge (most powerful credential in the Dossyr system)
+**Requirements**: Candidate must have an active Prooffile, employer must confirm
+  performance through structured 90-day check-in
+**Standalone Value**: The Verified Performer badge signals that a third party
+  (the employer) has independently confirmed the DMCS prediction was accurate.
+  This is the gold-standard credential.
+
+### Conversion Funnel Mathematics
+
+| Stage                           | Count | Conversion Rate |
+|---------------------------------|-------|-----------------|
+| Cold Traffic                    | 1,000 | —               |
+| Sign-Up                         | 150   | 15%             |
+| Tier 1 Start                    | 120   | 80% of signups  |
+| Tier 1 Complete                 | 84    | 70% of starts   |
+| Tier 2 Triggered                | 34    | 40% of Tier 1   |
+| Tier 2 Complete                 | 22    | 65% of triggers |
+
+Note: 84 partial profiles (Tier 1 complete, WSE pending) are visible to employers
+in the Discovery Pool with a "Simulation Pending" indicator. Employers can still
+send Signals to Tier 1 candidates — the Signal itself triggers Tier 2 completion
+at a significantly higher rate (78% Signal-triggered Tier 2 completion vs. 40%
+voluntary Tier 2 completion).
+
+-------------------------------------------------------------------------------
+
+## ARISE Engine — Adaptive Real-time Intelligence Scoring Engine
+
+ARISE is the engine behind the "Quick Verify" candidate experience. It produces a
+5-dimension DMCS score through an adaptive item sequence that is unique for every
+candidate. ARISE is designed to deliver maximum diagnostic signal in minimum time,
+using Elo-based item calibration and Thompson Sampling adaptive routing.
+
+**From the candidate's perspective**: A short, intelligent career assessment that
+immediately tells them where they stand.
+
+**From Dossyr's perspective**: A cost optimization layer that generates high-quality
+diagnostic signal before triggering the more computationally expensive WSE. ARISE
+reduces per-session LLM costs by 60-70% by filtering and routing candidates before
+the full simulation activates. This architecture is invisible to employers — they
+see only that candidates complete "a work simulation" and receive "a dossier."
+
+### Dimension 1 — TAI (Technical Accuracy Index)
+
+TAI measures domain knowledge accuracy with difficulty-weighted scoring. It is the
+primary signal for roles where technical depth is a key performance predictor.
+
+**Formula**:
+
+    TAI = Σ(cᵢ × dᵢᵅ) / Σ(dᵢᵅ)
+
+Where:
+  cᵢ ∈ {0, 1}   = correctness of response to item i
+  dᵢ             = calibrated item difficulty (Elo-derived, normalized 0-1)
+  α               = 1.5 (difficulty sensitivity exponent — harder items weight more)
+
+**Output Range**: [0, 1], converted to percentile within domain cohort
+**Interpretation**: A TAI of 0.85 indicates the candidate answered 85% of
+  difficulty-weighted items correctly, accounting for the higher weight of harder items.
+
+---
+
+### Dimension 2 — CVS (Cognitive Velocity Score)
+
+CVS captures relative response speed compared to cohort medians, adjusted for item
+difficulty. CVS is NOT a "faster is better" measure — it reflects relative efficiency.
+Unusually fast responses trigger integrity probes.
+
+**Formula**:
+
+    vᵢ = (Tᵢ / tᵢ) × dᵢ
+    CVS = tanh(mean(vᵢ)) × 100
+
+Where:
+  Tᵢ = cohort median response time for item i
+  tᵢ = candidate's actual response time for item i
+  dᵢ = calibrated item difficulty
+
+**Output Range**: [0, 100]
+
+**Integrity Flag**: If tᵢ < (0.15 × Tᵢ) for any item, an integrity probe is
+  automatically inserted. Implausibly fast responses (impossible to read + respond
+  in the time recorded) trigger CIQ investigation sequence.
+
+**"Deep Thinker" Handling**: Candidates with high TAI and BQS but lower CVS are
+  flagged as "careful, deliberate analysts" — a positive signal for analytical roles.
+  CVS weighting is reduced for non-time-critical role archetypes.
+
+---
+
+### Dimension 3 — BQS (Behavioral Quality Score)
+
+BQS captures behavioral disposition signals through three sub-components:
+Decision Orientation (DO), Collaborative Navigation Style (CNS), and Proactivity
+Quotient (PQ). In Tier 1 (ARISE only), BQS is populated from a lightweight embedded
+scenario (3-5 minutes). Full WSE activation in Tier 2 enables Phase 2+ BQS scoring.
+
+**Sub-Component Weights**:
+  DO (Decision Orientation): 50%
+  CNS (Collaborative Navigation Style): 30%
+  PQ (Proactivity Quotient): 20%
+
+**Formula**:
+
+    BQS = 100 × sigmoid(w_DO × DO + w_CNS × CNS + w_PQ × PQ - β)
+
+Where:
+  w_DO = 0.5, w_CNS = 0.3, w_PQ = 0.2
+  DO, CNS, PQ ∈ [0, 1] (normalized sub-scores)
+  β = bias term calibrated to centering BQS at 50 for median cohort performance
+
+**Phase 1 (Tier 1 only)**: Lightweight ARISE-embedded scenario provides initial BQS
+  proxy with approximately 60% of full WSE diagnostic precision.
+**Phase 2+ (Tier 2 activated)**: Full WSE provides complete behavioral observation
+  across all three sub-components with full precision.
+
+---
+
+### Dimension 4 — CIQ (Consistency and Integrity Quotient)
+
+CIQ is the platform's structural integrity safeguard. It detects behavioral patterns
+that suggest external assistance, inconsistent performance, or fabricated results.
+CIQ runs continuously throughout the ARISE session.
+
+**Three Probe Types**:
+
+1. **Cross-Item Semantic Consistency**: Evaluates whether responses to conceptually
+   related items are semantically coherent. Threshold: r >= 0.65 within-domain
+   semantic similarity. Items with flagged inconsistency trigger r < 0.65 probe.
+
+2. **Temporal Pattern Normality**: Evaluates whether the candidate's response time
+   distribution follows expected human cognitive patterns. Algorithms detect bulk
+   copy-paste, impossibly fast transitions, and non-human timing signatures.
+
+3. **Difficulty-Sequence Likelihood Ratio**: Evaluates whether the candidate's
+   pattern of correct/incorrect responses is consistent with genuine knowledge
+   variation or suggests external assistance at specific difficulty levels.
+
+**Formula**:
+
+    CIQ = 100 × (1 - Σ(Fᵢ × sᵢ) / S_max)
+
+Where:
+  Fᵢ = flag indicator for probe type i (0 = no flag, 1 = flag triggered)
+  sᵢ = severity weight for flag type i (minor=0.1, moderate=0.3, severe=0.6)
+  S_max = maximum possible severity sum (normalization constant)
+
+**Output**: Zero flags = CIQ of 100. Each flag reduces CIQ proportionally to
+  severity. CIQ below 40 triggers a mandatory review and candidate notification.
+
+---
+
+### Dimension 5 — LAM (Learning Agility Marker)
+
+LAM measures within-session improvement — the candidate's ability to integrate
+micro-feedback and improve performance in real time. It is uniquely available only
+within the Dossyr assessment framework and is a differentiating signal for roles
+where learning speed is a key performance predictor.
+
+**Mechanism**: After 30-second micro-feedback touchpoints embedded in the ARISE
+  session, LAM measures TAI improvement across the feedback boundary.
+
+**Formula**:
+
+    LAM = 100 × sigmoid((TAI_post - TAI_pre) / σ_cohort - β)
+
+Where:
+  TAI_post = TAI score after micro-feedback touchpoint
+  TAI_pre  = TAI score before micro-feedback touchpoint
+  σ_cohort = standard deviation of TAI improvement deltas for the domain cohort
+  β        = centering bias (typically 0.5)
+
+**Ceiling Bonus**: Candidates who achieve near-perfect performance on the first
+  module receive a ceiling bonus that prevents LAM from artificially penalizing
+  top performers who have no room to improve within-session.
+
+---
+
+### DMCS Composite Formula
+
+The DMCS (Dossyr Multi-Criterion Score) combines the five ARISE dimensions into a
+single composite score using role-archetype-specific weight profiles.
+
+**General Formula**:
+
+    DMCS = Σ(wᵢ × fᵢ(Sᵢ))
+
+Where:
+  wᵢ    = dimension weight for role archetype i
+  Sᵢ    = raw dimension score
+  fᵢ(·) = dimension-specific normalization function
+
+**Normalization Functions by Dimension**:
+
+| Dimension | Normalization Function                    | Rationale                              |
+|-----------|-------------------------------------------|----------------------------------------|
+| TAI       | Log-compressed sigmoid                    | Compress extremes, amplify mid-range   |
+| CVS       | tanh                                      | Natural saturation at speed extremes   |
+| BQS       | Raw sigmoid                               | Linear-ish in behavioral midrange      |
+| CIQ       | Linear (pass-through)                     | Direct penalty — no compression        |
+| LAM       | Sigmoid centered at zero-delta            | Zero improvement = 50th percentile     |
+
+---
+
+### Default DMCS Weight Profiles by Role Archetype
+
+| Role Archetype        | TAI | CVS | BQS | CIQ | LAM |
+|-----------------------|-----|-----|-----|-----|-----|
+| AI Engineer           | 40% | 10% | 20% | 15% | 15% |
+| AI Product Manager    | 20% |  5% | 40% | 15% | 20% |
+| Software Engineer     | 40% | 15% | 15% | 15% | 15% |
+| Data / Analytics      | 40% | 10% | 15% | 20% | 15% |
+| Sales / BD            | 15% | 15% | 45% | 10% | 15% |
+| Customer Success      | 15% | 10% | 50% | 10% | 15% |
+| Operations / PM       | 25% | 10% | 30% | 15% | 20% |
+| Executive / Leadership| 10% |  5% | 45% | 10% | 30% |
+
+Note: CVS weights are intentionally reduced across all archetypes to prevent
+speed-biased scoring. Speed is not a proxy for quality. The "Deep Thinker" adjustment
+further reduces CVS weight when TAI and BQS are both high.
+
+---
+
+### Elo-Based Item Calibration
+
+ARISE uses an Elo rating system to continuously calibrate item difficulty. Every
+time a candidate responds to an item, both the candidate's ability estimate and the
+item's difficulty estimate are updated.
+
+**Rating Update Rule**:
+
+    E_cand = 1 / (1 + 10^((R_item - R_cand) / 400))
+    R_item_new = R_item + K × (S_item - E_cand)
+
+Where:
+  E_cand     = expected probability of correct response (candidate vs. item)
+  R_item     = current item Elo rating
+  R_cand     = current candidate Elo rating
+  K          = update constant (K=32 for new items, K=8 for calibrated items)
+  S_item     = 1 if candidate answered correctly, 0 if incorrectly
+
+**Convergence**: Items converge to stable difficulty estimates after approximately
+  10 candidate responses. New items are introduced with K=32 (high update sensitivity)
+  and graduated to K=8 (stable rating) once they have received 10+ calibrated responses.
+
+---
+
+### Thompson Sampling Adaptive Routing
+
+ARISE uses Thompson Sampling to select the next item for each candidate in real time.
+This maximizes information gain per item while maintaining the target assessment
+duration of 8-10 minutes.
+
+**Routing Speed**: Less than 20ms per item selection decision
+**Method**: Beta-Bernoulli Thompson Sampling over item difficulty distribution,
+  constrained by role-archetype content domain requirements
+
+**Trigger Conditions for Special Routing**:
+
+| Trigger Condition                          | Routing Action                              |
+|--------------------------------------------|---------------------------------------------|
+| TAI > 0.85 on foundational items           | Skip remaining foundational items           |
+| CIQ integrity flags > 2                    | Insert integrity probe sequence             |
+| BQS variance > 0.4 across sub-items        | Trigger additional behavioral probe         |
+| LAM delta > +1.5 sigma within session      | Unlock accelerator track (advanced items)   |
+
+---
+
+### ARISE Positioning Notes
+
+**Candidate-Facing**: "Quick Verify" — a short, intelligent career assessment that
+  tells you where you stand and what you're worth in your market.
+
+**Platform-Internal**: The ARISE engine is a cost optimization and diagnostic routing
+  layer. By generating high-quality signal in 8-10 minutes, ARISE enables Dossyr to
+  decide whether to activate the computationally expensive WSE for a given candidate.
+  This architecture reduces per-session LLM costs by 60-70%.
+
+**Employer-Facing**: Employers do not see the ARISE/WSE architecture distinction.
+  They see only that candidates "take a work simulation" and they receive "a complete
+  verified dossier." The two-layer architecture is a platform implementation detail,
+  not an employer-facing concept.
+
+-------------------------------------------------------------------------------
+
+## RLWO — Reinforcement Learning Weight Optimizer
+
+RLWO is the engine that makes Dossyr smarter with every completed hire cycle. It
+operates at the employer-account level, learning which DMCS dimension weights best
+predict successful performance for that specific employer's culture, role requirements,
+and performance standards.
+
+### Algorithm
+
+RLWO uses a REINFORCE policy gradient algorithm operating at the employer-account level.
+
+**Reward Signal**: 90-day performance ratings provided by employer managers
+  through the Post-Hire Intelligence Loop.
+**Policy**: DMCS dimension weight profile (θ) for the employer account
+**Objective**: Maximize expected 90-day performance rating across all hires
+**Convergence**: Meaningful weight personalization begins at hire 15-20;
+  statistical significance achieved at approximately 20-30 hire cycles.
+
+### Phase 1 — Proxy Reward Layer
+
+During the first 10-20 hires for a new employer account, real 90-day performance
+data is insufficient to train the RLWO model. Phase 1 uses three proxy reward signals
+that correlate with eventual performance outcomes:
+
+1. **Offer Acceptance Rate**: Candidates who accept offers signal sufficient candidate
+   quality and employer fit (proxy for mutual match quality).
+2. **Interview-to-Offer Conversion**: High conversion rates suggest DMCS screening
+   is surfacing genuinely strong candidates.
+3. **"Would Hire Again" Binary**: Hiring managers complete a 5-second binary assessment
+   at Day 30 — "Would you hire this person again?" This simple signal has r=0.71
+   correlation with 90-day formal performance ratings.
+
+Proxy reward signals are deprecated as real 90-day data reaches statistical
+significance. The proxy layer provides approximately a 10-month head start on RLWO
+training compared to waiting for real performance data.
+
+### Switching Cost Mechanics
+
+After 20-30 completed hire cycles, the RLWO weight profile for an employer account
+is proprietary — it reflects that employer's actual performance data, not industry
+defaults. Leaving Dossyr means abandoning a calibrated predictive engine that took
+years to build. The switching cost is not contractual — it is informational. No
+other platform has that employer's performance data.
+
+### RLWO Maturity Phases
+
+| Phase       | Hire Count | Behavior                                        | Accuracy Target      |
+|-------------|------------|-------------------------------------------------|----------------------|
+| Baseline    | 1-10       | Generic industry weights + proxy reward layer   | ~60% (industry avg)  |
+| Learning    | 11-30      | Weight adjustment begins, visible improvement   | 65-75% by hire 20    |
+| Maturity    | 31+        | Proprietary profile, structural switching cost  | 75-85%               |
+
+### Cross-Employer Transfer Learning
+
+RLWO also trains a global baseline model from anonymized, aggregated data across all
+employer accounts. This global model:
+1. Bootstraps new employer accounts with better-than-generic starting weights
+2. Accelerates individual account learning by 30-40% compared to training from scratch
+3. Improves with every employer that joins the platform
+
+The global model is the platform-level moat. Individual account models are the
+employer-level moat. Both compound with scale.
+
+-------------------------------------------------------------------------------
+
+## DMCS Composite — Six-Dimension Framework (WSE-Enhanced)
+
+When WSE (Tier 2) is activated, the DMCS expands to include all six full dimensions.
+The five ARISE dimensions are retained and augmented by the WSE behavioral data.
+
+**Six Dimensions**:
+1. **PR (Problem Resolution)**: Structured problem decomposition, solution quality,
+   adaptation to constraint changes. Score: 0-100, percentile within domain cohort.
+2. **TC (Technical / Domain Competence)**: Role-specific technical accuracy under
+   realistic conditions (from WSE + TAI). Score: 0-100.
+3. **SA (Stakeholder Adaptability)**: Communication style adaptation across different
+   personas, clarity under ambiguity, collaborative responsiveness. Score: 0-100.
+4. **DV (Decision Velocity)**: Quality of decisions under time and information pressure,
+   not raw speed. Score: 0-100.
+5. **LAM (Learning Agility Marker)**: Within-session improvement after feedback
+   (ARISE-derived, enhanced by WSE response patterns). Score: 0-100.
+6. **EX (Execution Consistency)**: Reliability of follow-through, task completion
+   quality, attention to deliverable standards. Score: 0-100.
+
+**Percentile Calibration**: Each dimension score is converted to a percentile rank
+  within the domain cohort. Minimum cohort size required: 300 candidates.
+  Below 300, raw scores are reported with a calibration pending indicator.
+
+-------------------------------------------------------------------------------
+
+## WSE — Work Simulation Engine
+
+WSE is the centerpiece of the Dossyr product experience. It is a 15-18 minute
+AI-orchestrated work simulation that places candidates inside a realistic professional
+environment. There are no quizzes, no algorithm puzzles, no abstract tests. The WSE
+presents candidates with real professional work and observes how they do it.
+
+### Design Principles
+
+**The Monday Morning Test**: Every WSE scenario must pass the test: "Could this
+  realistically happen on a Monday morning at a real company in this role?" Algorithm
+  puzzles that no professional ever encounters in their actual job are rejected.
+  Trivia-style knowledge checks are rejected. Artificial game mechanics are rejected.
+  If it would not happen in a real professional context, it does not ship in the WSE.
+
+**Scenario-Driven Time Pressure, NOT Clock-Driven**: There is no visible countdown
+  timer in the WSE. Time pressure emerges from scenario mechanics — the Director needs
+  a deliverable by end of day, a client is waiting for a response, a system is down.
+  The urgency feels real because the context makes it real. The soft cap is 18 minutes;
+  the hard cap is 22 minutes, with a natural scenario conclusion triggered at that point.
+
+**Speed Is NOT a WSE Scoring Dimension**: Quality, reasoning, and communication are
+  scored. Raw completion speed is explicitly not. The platform does not reward typing
+  fast or clicking quickly.
+
+**WSE Transparency Layer**: After simulation completion, candidates receive a
+  difficulty progression disclosure — a visual indicator showing which phases of
+  the simulation were Standard difficulty, Advanced difficulty, and Stretch difficulty.
+  This helps candidates understand their performance in context.
+
+**Employer-Validated Scenario Relevance**: Employers review and validate scenario
+  relevance before activation. Scenarios that do not match actual job requirements
+  do not go live. This feedback loop ensures WSE content remains grounded in real work.
+
+**Public Scenario Previews**: Candidates can review a scenario summary before
+  committing to start. No candidate is surprised by what the simulation contains.
+
+---
+
+### Layer 1: Scenario Shell
+
+The Scenario Shell defines the context in which the simulation takes place. Every
+WSE session has a fully realized professional environment.
+
+**Components**:
+- **Company Archetype**: Defined industry, stage, team size, and culture context
+  (e.g., "Series B healthcare SaaS, 45-person team, growing fast, some process debt")
+- **AI Director Persona**: The candidate's simulated manager — consistent persona,
+  realistic communication style, defined priorities and pressure points
+- **AI Crew Composition**: Two or three AI team members with distinct personalities
+  and working styles
+- **Core Task Brief**: The primary deliverable the candidate must produce or the
+  problem they must resolve
+- **Constraint Set**: Time, resource, stakeholder, and information constraints that
+  make the scenario realistic
+
+**Generation Source**: Scenarios are generated from two sources:
+  1. Conversational Role Builder — employer defines role requirements and the platform
+     generates a matched scenario
+  2. Simulation Library — curated scenario templates organized by role archetype,
+     validated by domain experts, and continuously updated based on employer feedback
+
+---
+
+### Layer 2: Adaptive Task Engine
+
+The Adaptive Task Engine makes the WSE a living problem rather than a static exercise.
+The simulation evolves in real time based on candidate behavior.
+
+**Routing Speed**: Task branch decisions in less than 20ms
+**Method**: Thompson Sampling over behavioral-response outcome probabilities
+
+**Behavior-Response Table**:
+
+| Candidate Behavior                  | Simulation Response                                          |
+|-------------------------------------|--------------------------------------------------------------|
+| Efficient, quality solve            | AI Director escalates scope or complexity                    |
+| Clarifying questions asked          | AI Crew provides higher-quality context and depth            |
+| Struggling or confused              | AI Crew surfaces organic information that helps              |
+| Error made in deliverable           | Downstream consequence appears naturally in scenario         |
+| Exceptional early performance       | Advanced scope unlocked — stretch challenge introduced       |
+
+---
+
+### Layer 3: Interaction Modalities
+
+The WSE uses multiple interaction channels to capture the full range of professional
+communication and execution behaviors.
+
+**Async Written Communication**: Slack-style messaging interface for communication
+  with AI Director and AI Crew. Scored for precision, tone, and professional clarity.
+
+**Live Task Execution Workspace**: Depending on role archetype:
+  - Software Engineering: Sandboxed code IDE
+  - Product / Strategy: Specification canvas and structured document editor
+  - Analytics / Data: Notebook interface with sample dataset
+  - Operations: Process design workspace
+
+**Voice Response Moments**: 60-second voice response prompts for communication-heavy
+  roles. Scored by AI for structure, clarity, and stakeholder awareness.
+
+**Trade-Off Decision Branches**: Binary or ternary decision points requiring the
+  candidate to choose between competing priorities, resource allocations, or approaches.
+  Scored for decision quality and reasoning articulation.
+
+---
+
+### Layer 4: WSE Behavioral Scoring — Six Dimensions
+
+All six scoring dimensions operate simultaneously and invisibly throughout the
+simulation. Candidates are never told what is being scored.
+
+**Dimension 1 — TEQ (Task Execution Quality)**
+  Measurement: Rubric-based evaluation of deliverable quality + semantic similarity
+  scoring against expert-validated exemplar responses.
+  LLM Role: GPT-4o-class model for semantic comparison against rubric anchors.
+  Output: 0-100
+
+**Dimension 2 — CP (Communication Precision)**
+  Measurement: NLP analysis of all written communications using BERT/RoBERTa-class
+  models. Scores for: information density, precision of request, professional register,
+  stakeholder-appropriate framing, clarity under pressure.
+  Output: 0-100
+
+**Dimension 3 — DRS (Decision Reasoning Score)**
+  Measurement: Structured evaluation of decision choices at branch points, compared
+  against expert benchmark decision profiles for the scenario archetype.
+  Dimensions: decision quality, reasoning articulation, consideration of trade-offs,
+  confidence calibration.
+  Output: 0-100
+
+**Dimension 4 — SA (Stakeholder Adaptability)**
+  Measurement: Behavioral delta analysis — how does the candidate's communication
+  style, detail level, and framing shift when interacting with different AI personas?
+  High SA = meaningful, appropriate adaptation. Low SA = uniform approach regardless
+  of stakeholder type.
+  Output: 0-100
+
+**Dimension 5 — PR (Pressure Response)**
+  Measurement: Quality trajectory analysis — how does the candidate's output quality
+  change as the simulation introduces escalating pressure (scope changes, competing
+  priorities, ambiguity increases)? PR measures resilience, not raw performance.
+  Output: 0-100
+
+**Dimension 6 — IS (Initiative Signal)**
+  Measurement: Detection of unprompted proactive actions — identifying risks before
+  they are surfaced, offering help before being asked, flagging potential issues the
+  scenario does not require them to notice. IS captures above-and-beyond behavior
+  that predicts leadership potential.
+  Output: 0-100
+
+---
+
+### AI Director Specifications
+
+The AI Director is the candidate's simulated manager for the duration of the
+simulation. The Director must be realistic, consistent, and human-feeling.
+
+**Behavioral Requirements**:
+- Consistent persona across all interactions within the session
+- Reactive, not scripted — responds to candidate behavior, not following a fixed script
+- Realistic limitations — sometimes vague, sometimes unavailable, occasionally wrong
+- Never adversarial — the Director is not trying to trick the candidate; they have
+  realistic professional pressures and communication styles
+- Mid-session feedback at 1-2 natural points — brief, in-character acknowledgment
+  of candidate progress that mirrors real management feedback
+
+**Prohibited Behaviors**:
+- Providing direct answers that eliminate the core challenge
+- Being unrealistically perfect or omniscient
+- Communicating in ways no real professional would (system-prompt-style instructions,
+  game-mechanic language, artificial difficulty signals)
+
+---
+
+### AI Crew Specifications
+
+The AI Crew consists of two or three personas who interact with the candidate
+throughout the simulation. Each persona has a defined personality, communication
+style, and role in the scenario.
+
+**Standard Crew Archetypes**:
+
+*The Product Manager (or equivalent functional peer)*: Optimistic, enthusiastic,
+  sometimes changes requirements mid-task (because real PMs do). Provides business
+  context and stakeholder pressure.
+
+*The Skeptical Technical Peer*: Questions the candidate's approach, raises edge cases,
+  challenges assumptions. Not hostile — genuinely rigorous. Represents the type of
+  productive challenge every professional encounters.
+
+*The Junior Teammate*: Needs guidance, asks clarifying questions, sometimes provides
+  partially relevant information that requires synthesis. Tests the candidate's ability
+  to communicate clearly with someone less experienced.
+
+---
+
+### Employer Simulation Preview
+
+Employers experience the exact simulation their candidates will receive before
+activating it for any role.
+
+**Layer 1 — 3-Minute Guided Walkthrough**: Platform-narrated tour of the scenario
+  context, scoring framework, and what the simulation measures.
+
+**Layer 2 — Full Simulation Experience**: The employer completes the full 18-minute
+  simulation themselves. They experience the AI Director, the Crew, the task, and the
+  adaptive branches.
+
+**Layer 3 — Full Customization and Iteration**: Employer edits scenario parameters,
+  adjusts difficulty targets, modifies crew personas, and previews score impacts
+  before activation.
+
+This preview process ensures employer confidence before candidate exposure and
+produces employer-validated scenario relevance feedback that improves the WSE library.
+
+---
+
+### Signal Density Comparison
+
+| Attribute              | Traditional 1-Hour Interview     | WSE 18-Minute Simulation             |
+|------------------------|----------------------------------|--------------------------------------|
+| Scored Time            | 15-20 min (active assessment)    | 18 min (100% of session scored)      |
+| Scoring Dimensions     | Subjective, variable by reviewer | 6 standardized behavioral dimensions |
+| Cross-Candidate Compare| No — interviewer-dependent       | Yes — same rubric, every candidate   |
+| Reviewable             | No — memory fades, notes vary    | Yes — full session transcript + logs |
+| Auditable              | No                               | Yes — full audit trail available     |
+| Predictive Validity    | r ≈ 0.15-0.20 (unstructured)     | Target r ≈ 0.35 (validated model)    |
+| Bias Risk              | High — interviewer affinity bias | Low — demographic-blind by design    |
+| Candidate Time         | 60-90 min including logistics    | 18 min, on-demand, no scheduling     |
+
+================================================================================
+
+================================================================================
+# SECTION 5: USER PERSONAS
+================================================================================
+
+## Candidate Personas
+
+### PRIMARY CANDIDATE PERSONA — Priya
+
+**Name**: Priya Nair
+**Role**: Mid-Career AI Engineer
+**Experience**: 4 years
+**Location**: Philadelphia, PA
+**Status**: H-1B visa holder (visa sponsorship is a critical job requirement)
+**Education**: Computer Science degree from Tier 2 institution in India, Master's
+  from state university in the U.S.
+
+**Professional Reality**: Priya is genuinely excellent at her job. Her GitHub has
+  substantive ML contributions. Her current employer's NLP pipeline runs largely on
+  code she wrote. But her resume — two pages, standard format, academic credentials
+  from non-brand-name institutions — does not reflect her actual capability. She is
+  systematically filtered out of opportunities at brand-name employers before any
+  human sees her work.
+
+**Pain Points**:
+- ATS systems eliminate her at the keyword matching stage — "wrong school," "not
+  enough brand-name employer experience"
+- Her H-1B status makes it impossible to apply to roles without knowing upfront
+  whether the employer sponsors visas — she wastes weeks before discovering they do not
+- She cannot prove her skills through credentials that traditional hiring values
+- She has completed 6+ take-home coding assessments in the past year, none of which
+  produced any reusable evidence of her capability
+
+**Goals**:
+- A portable, verified proof of her engineering capability that travels across every
+  application
+- Upfront visibility into which employers sponsor visas — no wasted time
+- Recognition of actual performance, not institutional pedigree
+
+**Dossyr Value**:
+- One WSE simulation produces a Prooffile that demonstrates her AI/ML capability in
+  a realistic professional context — no resume required
+- Verified Performer badge (earned at first job through Dossyr) becomes her strongest
+  credential
+- Employers who send her a Signal must declare visa sponsorship status upfront —
+  architectural enforcement of information she needs before investing time
+- She can be shortlisted at multiple companies simultaneously without redoing the
+  assessment for each one
+
+---
+
+### SECONDARY CANDIDATE PERSONA — Marcus
+
+**Name**: Marcus Webb
+**Role**: Senior-to-Staff Software Engineer (career transition from physical retail
+  management, self-taught, bootcamp-adjacent)
+**Experience**: 3 years of engineering experience, 8 years of prior career in retail
+  management
+**Location**: Atlanta, GA
+**Education**: No CS degree — intensive self-study, one 12-week bootcamp, two years
+  of night-school coursework
+
+**Professional Reality**: Marcus can build. He ships features, debugs production
+  issues, and mentors junior engineers. His code quality is high. But every "Senior
+  Engineer" job posting requires a CS degree or 5+ years of "traditional" experience.
+  He does not clear the automated filters. He gets callbacks primarily at small
+  startups that are desperate enough to interview non-traditional candidates.
+
+**Pain Points**:
+- Screened out entirely by degree requirements and experience year minimums
+- "Senior Engineer" title at a small startup does not translate to "Senior Engineer"
+  recognition at a larger company
+- His non-traditional background is always the first thing that needs to be explained
+  and justified in interviews — before his actual work is ever discussed
+- No way to signal "I am genuinely senior-level" to companies that do not know him
+
+**Goals**:
+- Prove capability regardless of background
+- Break into a role at a company that would not normally interview him
+- Demonstrate performance at the senior level through actual work, not credentials
+
+**Dossyr Value**:
+- DMCS shows Marcus at 72nd percentile for his role archetype — above the median for
+  traditional candidates in the same evaluation pool
+- Career Switcher Career Context Tag frames his trajectory positively — explicitly
+  recognized as a strength, not a liability
+- Market Pulse Dashboard shows him exactly where the market is for his verified
+  skill level — eliminating the information asymmetry that comes with non-traditional
+  career paths
+- Learning Pathways tied to his gap dimensions provide a structured path to 80th+
+  percentile — with credits that accelerate Prooffile visibility
+
+---
+
+### TERTIARY CANDIDATE PERSONA — Elena
+
+**Name**: Elena Vasiliev
+**Role**: Senior Product Leader
+**Experience**: 12 years of product management and leadership
+**Location**: San Francisco, CA (hybrid flexibility required)
+**Status**: Passively looking — employed, selective, not desperate
+
+**Professional Reality**: Elena has a strong track record. She has launched three
+  products that generated meaningful revenue. She has built and led product teams of
+  10+. She gets recruiter messages daily. But she is burned out by the actual hiring
+  process — six rounds, two months, multiple take-home projects, only to receive an
+  offer 20% below her current compensation. She is not looking for more opportunities.
+  She is looking for a better way to identify the right opportunity quickly.
+
+**Pain Points**:
+- Multi-stage processes that consume 10-20 hours of her time for roles that turn out
+  to be poor fits
+- No way to know upfront whether an employer's culture, compensation, and expectations
+  actually match her requirements
+- Take-home projects that feel exploitative — substantial unpaid work for roles
+  that may not be genuine opportunities
+- The same set of "tell me about a time when..." questions at every company
+
+**Goals**:
+- Efficient signal — invest 90 minutes total in a process that surfaces 3-5
+  genuinely right opportunities
+- Transparency about compensation, culture, and expectations before committing time
+- Recognition of her track record without having to perform for every employer
+  from scratch
+
+**Dossyr Value**:
+- Complete one WSE simulation, get shortlisted at multiple companies simultaneously
+  without repeating the process
+- Prooffile is built from verified performance — her 12 years of demonstrated
+  leadership translated into objective DMCS scores
+- Employer Signals must declare compensation range before reaching her — she knows
+  the number before she accepts the conversation
+- Shortlisted at 5 companies in 48 hours — not because she applied to 50 jobs,
+  but because her verified profile surfaced in employer Discovery Pool searches
+
+-------------------------------------------------------------------------------
+
+## Employer Personas
+
+### PRIMARY EMPLOYER PERSONA — Sarah
+
+**Name**: Sarah Chen
+**Title**: Head of Engineering
+**Company**: Series B SaaS startup, 30-person engineering team
+**Hiring Volume**: 5 engineers per quarter (20 per year)
+**Recruiter Support**: None — Sarah and one technical lead manage all hiring
+
+**Professional Reality**: Sarah is a builder who has been pulled into hiring. She
+  is not a recruiter. She does not have a systematic process. She screens resumes
+  while waiting for builds to complete. She schedules phone screens during lunch.
+  She loses good candidates to faster companies because her process is slow and
+  unstructured. She knows her team's quality depends on the next five hires and
+  she has no reliable way to evaluate candidates quickly.
+
+**Pain Points**:
+- Drowning in resumes she does not have the bandwidth to properly evaluate
+- Configuration complexity — she tried one assessment tool and spent 4 hours
+  setting it up before giving up
+- Losing candidates to companies with faster processes
+- No ability to compare candidates objectively — every phone screen is different
+
+**Goals**:
+- Hire faster without quality loss
+- Spend less than 2 hours per hire on screening
+- Make confident decisions with objective data
+
+**Dossyr Value**:
+- Layer 1 Zero-Config: Active in 30 seconds. Sarah posts a role, selects "Software
+  Engineer" archetype, and Dossyr activates a validated simulation immediately.
+  No configuration required.
+- 48-Hour Shortlist: Sarah sees a ranked list of verified candidates the next morning,
+  ranked by DMCS with AI-generated summaries. She spends 20 minutes reviewing the
+  shortlist instead of 3 hours screening resumes.
+- Objective Comparison: Every candidate is evaluated on the same rubric. Sarah
+  can directly compare "Candidate A was in the 78th percentile for backend
+  architecture; Candidate B was in the 65th" without contextualizing different
+  phone screen conversations.
+
+---
+
+### SECONDARY EMPLOYER PERSONA — David
+
+**Name**: David Kim
+**Title**: Director of Talent Acquisition
+**Company**: 500-person SaaS company, post-Series C
+**Team**: 3 recruiters, David as TA Director
+**Hiring Volume**: 40-60 hires per year
+**Current Pain**: 25% bad hire rate, generating approximately $2.1M in annual
+  bad hire cost (calculated: 12 bad hires × $175K average replacement cost)
+
+**Professional Reality**: David has data. He knows his bad hire rate. He knows his
+  time-to-fill (currently 38 days). He knows what it costs. He has tried three
+  assessment platforms in the past two years — each sold him a dashboard, none
+  improved his bad hire rate. His CFO is skeptical of HR technology investments.
+  David needs to prove ROI to get budget approved, and then deliver on the promise.
+
+**Pain Points**:
+- 25% bad hire rate with no data-driven way to improve it
+- Previous assessment tools that provided scores but no learning
+- Difficulty proving ROI to a CFO who has seen failed HR tech investments before
+- Three recruiters spending too much time on administrative tasks, not enough on
+  strategic sourcing
+
+**Goals**:
+- Reduce bad hire rate from 25% to below 15% within 12 months
+- Prove concrete, quantifiable ROI to CFO
+- Make RLWO a proprietary asset that justifies continued investment
+
+**Dossyr Value**:
+- ROI Calculator: David inputs his numbers (500 employees, 50 hires/year, 25% bad
+  hire rate, $150K average role salary) and the calculator outputs: "Dossyr is
+  projected to save $899,000 annually in bad hire costs within 18 months" — a number
+  he can bring to his CFO with methodology attached.
+- Hiring Accuracy Dashboard: Real-time comparison of DMCS predictions vs. 90-day
+  performance ratings. David can show the CFO the system getting smarter over time.
+- RLWO as Proprietary Asset: By hire 30, David's account has a proprietary weight
+  profile. This is a sunk-cost asset that justifies the subscription — and makes
+  cancellation a strategic mistake, not just an inconvenience.
+
+---
+
+### TERTIARY EMPLOYER PERSONA — Jessica
+
+**Name**: Jessica Torres
+**Title**: Chief Human Resources Officer (CHRO)
+**Company**: Enterprise, 2,000+ employees, publicly traded
+**Initiatives**: Active DEI program, skills-first hiring initiative, 3-year workforce
+  transformation roadmap
+**Reporting To**: CEO, sits on executive committee
+
+**Professional Reality**: Jessica is navigating two simultaneous mandates. The CEO
+  wants faster, better hiring. The Board wants measurable DEI progress. Her current
+  ATS filters out non-traditional candidates and has no mechanism for demographic
+  parity analysis. Her existing assessment tools do not integrate with each other.
+  She needs a solution that works across all business units and produces data she
+  can defend in a board presentation.
+
+**Pain Points**:
+- ATS filters non-traditional candidates (bootcamp grads, career changers, candidates
+  without traditional credentials) before any human review
+- No standardized evaluation framework across business units — each BU does it
+  differently
+- No reliable demographic parity data — she cannot demonstrate equity without data
+- Board-level DEI commitments with no measurable progress metrics
+
+**Goals**:
+- Measurable improvement in diversity of shortlists and final hires
+- Standardized evaluation framework that works across all BUs
+- Data she can defend publicly — audit trail, adverse impact analysis, methodology
+
+**Dossyr Value**:
+- Demographic-blind DMCS scoring — no name, photo, age, or demographic data
+  in the scoring pipeline
+- Cohort Analytics with demographic parity reporting — Jessica can see shortlist
+  composition and adverse impact analysis at every stage of the funnel
+- Bench Strength analysis across all BUs — consistent data on internal talent
+  that enables data-driven promotion decisions
+- Enterprise compliance dashboard with full audit trail, adverse impact reports,
+  and downloadable documentation for board reporting
+
+---
+
+## Additional Perspectives
+
+### The Recruiter (Daily Platform User)
+
+The recruiter is not the decision-maker — they are the daily power user. Their
+experience determines whether Dossyr is adopted in practice or used minimally
+despite executive sponsorship.
+
+**Primary Needs**:
+- Automatic candidate status updates (no manual tracking)
+- One-click scheduling integration with existing calendar tools
+- Bulk communication templates with personalization
+- Quick candidate summaries — key data points in 30 seconds
+
+**Dossyr Design Response**: Recruiter workflow is a first-class design concern. Every
+  recruiter-facing interaction is designed for speed and clarity. Auto-status updates
+  eliminate the most time-consuming administrative task. AI-generated candidate
+  summaries enable rapid triage.
+
+### The Hiring Manager (Decision-Maker Who Didn't Buy the Tool)
+
+The hiring manager participates in hiring decisions but was not involved in the
+Dossyr purchasing decision. They may be skeptical of new tools.
+
+**Primary Needs**:
+- Rapid decision support — key data in 90 seconds without platform training
+- Quick View mode — DMCS summary, strongest dimension, and simulation highlight
+  clips visible without logging in
+- Interview calibration — "here is where to probe based on the simulation data"
+
+**Dossyr Design Response**: The Quick View dossier is designed for zero-training
+  consumption. Highlight clips are curated by the AI and selected by candidates —
+  60-90 second samples of the most revealing simulation moments. The platform
+  generates 3-5 targeted interview questions based on the candidate's specific
+  DMCS gaps.
+
+### The CFO (Budget Approver)
+
+The CFO does not care about feature lists. They care about ROI, LTV:CAC ratios,
+and risk.
+
+**Primary Needs**:
+- Clear quantification of cost reduction (bad hire cost, time savings)
+- LTV:CAC ratio and payback period
+- Risk of investment (what if it does not work?)
+
+**Dossyr Design Response**: The ROI Calculator is built for CFO-level consumption.
+  It outputs bad hire cost reduction, time savings (in hours and dollars), and
+  platform cost — with all assumptions visible and adjustable. The Hiring Accuracy
+  Dashboard shows prediction accuracy over time, de-risking the investment.
+
+================================================================================
+
+================================================================================
+# SECTION 6: CANDIDATE EXPERIENCE AND FEATURES
+================================================================================
+
+## Three-Tier Onboarding Flow
+
+### Step 1 — Sign-Up (90 Seconds, Zero Resume Architecture)
+
+The candidate creates a Dossyr account with:
+- Email address (or LinkedIn SSO — email only, no profile data scraped)
+- First and last name
+- 1-3 skill domain tags (selected from a curated taxonomy: Software Engineering,
+  Data & Analytics, Product Management, Sales, Customer Success, Operations,
+  Marketing, Design, Finance, Executive Leadership)
+
+No resume upload. No LinkedIn profile import. No cover letter. No portfolio link
+required. The sign-up process is complete in 90 seconds and intentionally excludes
+all credential-based information that enables pedigree bias.
+
+The Zero Resume Architecture is both a product principle and a marketing statement.
+Dossyr's homepage headline is "No resume required." This frames the platform as
+fundamentally different from the beginning.
+
+### Step 2 — Tier 1 Quick Verify (8-10 Minutes)
+
+Immediately following sign-up, the candidate begins their ARISE assessment. The
+experience is presented as "Quick Verify" — career intelligence, not a job test.
+
+**Active ARISE Dimensions**: TAI, CVS, CIQ (fully active)
+**BQS**: Lightweight 3-5 behavioral signal proxy from embedded scenario
+**LAM**: Active throughout session
+
+The session flow:
+- Domain calibration items (2-3 items, low difficulty, establish baseline)
+- Thompson Sampling adaptive routing activates
+- Mid-session micro-feedback touchpoint (30 seconds)
+- LAM delta measured
+- Final calibration items
+- CIQ continuous monitoring throughout
+
+### Step 3 — First Score Instant Mirror (<60 Seconds)
+
+Within 60 seconds of completing Tier 1, the candidate receives their First Score Mirror:
+- Overall DMCS percentile rank (e.g., "73rd percentile among verified professionals
+  in Software Engineering")
+- Salary range benchmark based on DMCS level, domain, and metro area (e.g.,
+  "Verified professionals at your level in Philadelphia earn $118,000-$142,000")
+- Strongest dimension identified with narrative (e.g., "Your Technical Accuracy Index
+  places you in the 81st percentile — you demonstrate strong domain knowledge under
+  adaptive difficulty conditions")
+- Primary growth opportunity with narrative (e.g., "Your Learning Agility Marker is
+  at the 44th percentile — there is meaningful opportunity to improve your response
+  to in-session feedback")
+- Demand signal (e.g., "Professionals at your verified level average 4.2 employer
+  signals per 30 days in your metro area")
+- Cohort comparison indicators (vs. bootcamp graduates, vs. 3-5 year experience
+  cohort, vs. senior cohort)
+
+### Step 4 — Passive Talent Mode Activated
+
+Following First Score Mirror, Passive Talent Mode is automatically activated. The
+candidate's Tier 1 profile becomes visible in the Employer Discovery Pool with a
+"Simulation Pending" indicator. Employers can see:
+- Domain + DMCS Tier 1 scores (TAI, CVS, CIQ)
+- Salary expectation (from candidate-provided preference or benchmark estimate)
+- Metro area and remote/hybrid preference
+- Career Context Tag (auto-derived)
+- "Simulation Pending" — Tier 2 not yet completed
+
+Candidates can opt out of Passive Talent Mode at any time.
+
+### Step 5 — Tier 2 Full Verify (WSE, 15-18 Minutes)
+
+Tier 2 is triggered by one of three events:
+1. **Employer Signal**: An employer sends the candidate a Signal (interest expression)
+   — this automatically prompts Tier 2 completion with 78% completion rate
+2. **Candidate Election**: The candidate voluntarily chooses to complete the WSE
+   for career intelligence or Prooffile activation
+3. **CFS Threshold**: When the candidate's Career Fitness Score reaches a threshold
+   that unlocks additional platform features, Tier 2 completion is encouraged
+
+The WSE experience is presented as "Full Verify" — a realistic professional
+simulation that builds the complete verified Prooffile.
+
+### Step 6 — Results and Prooffile Activation
+
+Following Tier 2 completion:
+- Full 6-dimension DMCS + WSE scorecard
+- Prooffile officially activated and publicly accessible (at URL with privacy controls)
+- Highlight clips generated and queued for candidate review and curation
+- Updated salary benchmark with WSE performance data incorporated
+- Per-dimension improvement guidance
+- Learning Pathways unlocked for gap dimensions
+- Verified Skills badge earned
+
+-------------------------------------------------------------------------------
+
+## Enhanced First Score Mirror
+
+### After Tier 1
+
+- **Percentile Ranks**: Overall and per active dimension (TAI, CVS, CIQ)
+- **Salary Range**: Based on verified professionals at the same DMCS level in the
+  same domain and metro area. Updated quarterly from platform data.
+- **Strongest Dimension Narrative**: One sentence identifying the candidate's standout
+  dimension and what it means in professional context.
+- **Growth Opportunity Narrative**: One sentence identifying the highest-impact
+  improvement opportunity.
+- **Demand Signal**: "X employer searches per 30 days at your level" — makes the
+  market real and motivating.
+- **Cohort Comparisons**: How does the candidate compare to:
+  - Bootcamp graduates in the same domain
+  - 3-5 year experienced candidates
+  - Senior-level candidates
+  These comparisons provide context without ranking the candidate against all users.
+
+### After Tier 2
+
+- **Full 6-Dimension WSE Scorecard**: All dimensions with percentile ranks and
+  narrative interpretation.
+- **Highlight Clips**: AI-generated clips of 3-5 most revealing simulation moments.
+  Candidate reviews and selects which clips to include in their public Prooffile.
+- **Updated Salary Range**: Incorporates WSE behavioral data into the benchmark.
+  Candidates with high BQS and SA scores often see higher ranges.
+- **Per-Dimension Improvement Guidance**: Specific, actionable recommendations for
+  each dimension below the 50th percentile.
+- **Prooffile Activated**: Live public profile with Verified Skills badge.
+- **Time Saved Counter**: "You just saved yourself 4-6 hours of application processes
+  at 8 companies that would have screened you with the same assessment work."
+
+-------------------------------------------------------------------------------
+
+## Prooffile — Candidate's Verified Identity
+
+The Prooffile is the candidate's permanent, portable, verified professional credential.
+It is not an employer-specific artifact — it belongs to the candidate and travels
+with them throughout their career.
+
+### Public View (Visible to Employers and Verified External Parties)
+
+- **Domain + DMCS Scores**: Overall DMCS composite and per-dimension percentile
+  rankings with visual radar chart
+- **WSE Scorecard**: Full 6-dimension WSE results with visual representation
+- **Verified Badges**: Sequential tier badges:
+  - Verified Skills (Tier 1 complete)
+  - Verified Performer (Tier 2 complete, WSE-backed)
+  - Verified Hire (hired through Dossyr — employer confirmed)
+  - Verified Performer Elite (90-day post-hire employer confirmation)
+- **Highlight Clips**: Candidate-curated 60-90 second simulation excerpts
+- **AI-Narrated Summary**: Platform-generated narrative summary of the candidate's
+  verified profile, written in third person as a professional summary
+- **Anonymous Employer Endorsements**: Post-hire employers can submit anonymous
+  endorsements that appear on the Prooffile without identifying the employer
+- **Skill Domain Badges**: Visual indicators for verified domain competencies
+- **Assessment History**: Number of sessions, date of most recent assessment,
+  trajectory indicator (improving/stable/pending)
+- **CIQ Track Record**: "X sessions, zero integrity flags" — public proof of
+  consistent assessment integrity
+
+### Private View (Visible Only to Candidate)
+
+- **Full Session Transcript and Log**: Complete record of every ARISE item, WSE
+  interaction, and scoring event
+- **Salary Benchmark**: Detailed breakdown of market compensation data for the
+  candidate's verified profile
+- **Growth Plan**: Personalized roadmap for improving DMCS scores in gap dimensions
+- **Career Trajectory Forecast**: Platform-generated projection of score improvement
+  potential based on current trajectory and domain benchmarks
+
+### Career Context Tags (Platform-Derived, Not Self-Reported)
+
+Career Context Tags are assigned automatically by the platform based on verified
+performance data and declared context. They are never self-reported — the platform
+derives them from evidence.
+
+| Tag                    | Derivation Criteria                                                      |
+|------------------------|--------------------------------------------------------------------------|
+| Emerging Talent        | CFS 0-199; early in career, building foundational skills                 |
+| Career Transitioner    | Demonstrated domain change + verified strength in new domain             |
+| Proven Performer       | CFS 400+, Verified Hire or Verified Performer badge earned               |
+| Domain Expert          | TAI > 85th percentile, CFS 600+                                          |
+| Versatile Leader       | BQS > 80th, LAM > 75th, SA > 80th, CFS 600+                             |
+
+### Experience Bands
+
+Experience Bands are declared by the candidate during onboarding and validated
+against platform performance data. Candidates who declare a higher experience band
+than their performance supports receive an "Experience Band Calibration" prompt.
+
+| Band          | Typical Years of Experience | Validation Method                        |
+|---------------|-----------------------------|------------------------------------------|
+| Early Career  | 0-2 years                   | CFS <300 typical; benchmarked to cohort  |
+| Mid-Career    | 3-7 years                   | CFS 300-599; validated against domain    |
+| Senior        | 8-14 years                  | CFS 500-799; validated against cohort    |
+| Executive     | 15+ years                   | CFS 700+; leadership dimension required  |
+
+-------------------------------------------------------------------------------
+
+## Retake Policy and No Blacklist Guarantee
+
+### Retake Policy
+
+- **Cooldown Period**: 30 days between ARISE retakes; 60 days between WSE retakes
+- **Maximum Retakes**: 4 per 12-month period
+- **Score Display**: Best score displayed prominently on Prooffile
+- **Trajectory Display**: All attempts visible (date and percentile, not raw scores)
+  so employers can see improvement over time
+- **Employer Visibility**: Employers see best score, number of attempts, and trajectory
+  direction. They do not see scores from individual earlier attempts.
+
+### No Blacklist Guarantee
+
+"Dossyr never blacklists."
+
+This is an unconditional, public-facing commitment. No candidate is permanently
+excluded from the platform, from employer searches, or from assessment retakes.
+A low score today is a growth opportunity, not a permanent judgment. The platform
+is designed to help candidates improve, not to sort them into "hirable" and
+"never hirable" bins.
+
+This guarantee is not just ethical — it is strategic. The candidate flywheel depends
+on candidates trusting that engaging with Dossyr cannot harm them. If candidates fear
+a low score will permanently damage their job search, engagement rates collapse.
+The No Blacklist Guarantee is what makes the Zero Resume Architecture safe for
+candidates to participate in.
+
+-------------------------------------------------------------------------------
+
+## Progressive Score Visibility
+
+Score visibility is graduated based on absolute performance level, balancing
+employer access with candidate protection at the lower end.
+
+| Score Range      | Employer Visibility                                                          |
+|------------------|------------------------------------------------------------------------------|
+| 50th percentile+ | Full visibility — surfaced in all relevant employer searches                  |
+| 30th-49th        | Visible but not proactively surfaced — appears if employer lowers threshold   |
+| Below 30th       | Visible only to the candidate, with improvement guidance                     |
+
+This architecture is consistent with the No Blacklist Guarantee: even candidates
+below the 30th percentile are not blacklisted — they simply are not proactively
+surfaced until their scores improve. The platform actively helps them improve.
+
+-------------------------------------------------------------------------------
+
+## "Deep Thinker" Signal
+
+When a candidate demonstrates high TAI (>75th percentile) and high BQS (>70th
+percentile) combined with lower-than-average CVS (below 40th percentile), the
+platform generates a "Deep Thinker" positive framing rather than penalizing the
+slower response speed.
+
+The candidate's First Score Mirror notes: "Your assessment pattern suggests a
+deliberate, analytical approach — you take the time to arrive at high-quality
+answers rather than optimizing for speed. This profile is highly valued in roles
+that require careful, consequential decision-making."
+
+Employers see a "Deliberate Analyst" Career Context Tag indicator, signaling that
+the lower CVS reflects thinking style rather than capability gap.
+
+-------------------------------------------------------------------------------
+
+## Five-Layer Candidate Value Architecture
+
+| Layer | Value                     | Timeline  | Description                                           |
+|-------|---------------------------|-----------|-------------------------------------------------------|
+| 1     | Immediate Career Intel    | Day 1     | First Score Mirror — percentile, salary, narrative    |
+| 2     | Time Saved Counter        | Ongoing   | Running total of hours saved vs. traditional process  |
+| 3     | Prooffile Portfolio       | Day 1-18  | Portable verified credential replacing resume         |
+| 4     | Guaranteed Min. Visibility| Month 1   | 5+ employer searches in 30 days guaranteed or refund  |
+| 5     | Candidate Community       | Phase 2+  | Peer cohorts, study groups, referral network          |
+
+---
+
+## Work Performance Radar
+
+The Work Performance Radar is a hexagonal visual chart displaying all six DMCS
+dimensions simultaneously. Candidates see their own radar overlaid against:
+- Domain cohort average
+- Top 25th percentile for their role archetype
+- Their own previous assessment (trajectory indicator)
+
+NLG (Natural Language Generation) narratives accompany the radar, translating
+each dimension score into plain-language professional insight.
+
+---
+
+## Career Fitness Score (CFS)
+
+The CFS is the single composite score that represents the candidate's overall
+verified professional standing on the Dossyr platform. It is calculated from
+DMCS scores, badge history, trajectory, and engagement.
+
+| CFS Range  | Level        | Platform Privileges                                      |
+|------------|--------------|----------------------------------------------------------|
+| 0-199      | Unverified   | Basic profile, Tier 1 required                           |
+| 200-399    | Emerging     | Passive Talent Mode, employer discovery                  |
+| 400-599    | Established  | Full Discovery Pool, priority surfacing                  |
+| 600-799    | Distinguished| Featured placement, Talent Intelligence inclusion        |
+| 800-1000   | Elite        | Top 5% placement, recruiter direct outreach enabled      |
+
+---
+
+## Market Pulse Dashboard
+
+The Market Pulse Dashboard is an always-on career intelligence feed for every
+candidate. It shows:
+- Trending skills in the candidate's domain (weighted by employer search activity
+  in the past 30 days)
+- Average DMCS scores for recently shortlisted candidates in the candidate's domain
+  and metro
+- Average compensation ranges by role level and location
+- Signal activity — how many employer signals are being sent to candidates at
+  the candidate's score level
+
+---
+
+## Personalized Learning Pathways
+
+For each DMCS dimension below the 50th percentile, Dossyr generates a Personalized
+Learning Pathway:
+- 3-5 specific, actionable skill development activities
+- Estimated score improvement if pathway is completed
+- Curated external resources (free and paid)
+- 20 Learning Credits per completed pathway activity
+- Learning Credits contribute to CFS (20 credits = +5 CFS points)
+
+---
+
+## Role Fit Pre-Check
+
+Before committing to a WSE simulation for a specific role, candidates can complete
+a 5-minute Role Fit Pre-Check:
+- Domain match confirmation
+- Salary range alignment check
+- Location / remote preference check
+- Visa / work authorization match check
+
+This prevents candidates from investing 18 minutes in a simulation for a role
+that does not match their basic requirements.
+
+---
+
+## Anti-Ghost Protection
+
+Employers who send a Signal to a candidate commit to a response timeline:
+- If employer sends Signal: 5-day response commitment
+- If employer accepts candidate Signal Acceptance: 10-day next-step commitment
+- If employer does not respond within commitment: HQS penalty applied
+
+Candidates can see the employer's HQS score before accepting a Signal, allowing
+them to calibrate their investment in the process based on the employer's
+historical follow-through record.
+
+================================================================================
+
+================================================================================
+# SECTION 7: EMPLOYER EXPERIENCE AND FEATURES
+================================================================================
+
+## Progressive Trust Model
+
+Dossyr's employer-candidate interaction is structured around a four-stage Progressive
+Trust Model. Privacy and PII disclosure are graduated — neither party is exposed to
+more information than the stage requires. This architecture reduces candidate risk,
+improves employer signal quality, and makes both parties more likely to engage.
+
+### Stage 1 — Discovery (Scores Only, No PII)
+
+The employer sees the candidate's DMCS scorecard, domain, Career Context Tag,
+Experience Band, and salary expectation range. No name, no photo, no location beyond
+metro area, no identifying information.
+
+*Rationale*: Employers make shortlisting decisions based on verified capability, not
+superficial identity signals. Removing PII at the discovery stage structurally reduces
+bias and improves shortlist quality.
+
+### Stage 2 — Signal Sent (Full Dossier, Still No Name or Photo)
+
+When the employer sends a Signal to the candidate, they gain access to the full
+verified dossier: DMCS scorecard with dimension narratives, WSE scorecard if complete,
+highlight clips, AI-generated summary, simulation interaction log (select moments),
+background check status if ordered, and communication history. Name and photo still
+not disclosed.
+
+*Rationale*: The employer has expressed genuine interest (a Signal carries commitment
+obligations and HQS risk). They receive full performance data to confirm the interest.
+Name and photo are withheld until the candidate accepts the Signal — ensuring
+candidates are not passed on for identity-based reasons after the employer has seen
+their verified data.
+
+### Stage 3 — Signal Accepted (Names Revealed, Communication Opens)
+
+When the candidate accepts the employer's Signal, both parties' identifying information
+is shared. The employer sees name, photo, and full contact information. The candidate
+sees the employer's name, hiring manager, role title, compensation range, and stated
+timeline. Direct communication opens via the Dossyr messaging layer.
+
+*Rationale*: Both parties have committed to the interaction. Mutual disclosure at
+this stage is appropriate and expected.
+
+### Stage 4 — Post-Interview (Optional Additional Sharing)
+
+Following the interview stage, employers and candidates can optionally share additional
+materials: reference contacts, portfolio links, technical exercise results, additional
+background information. All sharing is candidate-controlled.
+
+*Rationale*: The platform facilitates completion of the hiring process without
+mandating what additional information flows. Candidates retain control of
+supplementary materials.
+
+---
+
+## Employer Signal Card
+
+The Employer Signal Card is the structured format through which employers express
+interest in a candidate. Completing a Signal Card is a commitment, not a casual
+browse action. The Signal Card requires:
+
+| Field                        | Required | Notes                                                  |
+|------------------------------|----------|--------------------------------------------------------|
+| Role Title                   | Yes      | Specific title, not "opportunity"                      |
+| Compensation Range           | Yes      | Min-max annual, cannot be "competitive" or "TBD"       |
+| Employment Type              | Yes      | Full-time / Part-time / Contract / Consulting          |
+| Location / Remote Policy     | Yes      | On-site / Hybrid / Fully Remote                        |
+| Visa Sponsorship Status      | Yes      | Sponsors / Does Not Sponsor / Case-by-Case             |
+| Interview Stage Commitment   | Yes      | Number of stages, estimated total candidate time       |
+| Response Commitment          | Yes      | Days until initial response guaranteed                 |
+| Hiring Manager               | Yes      | Disclosed after Signal accepted                        |
+| Team Context                 | Optional | Brief description of team, stage, reporting structure  |
+| Role-Specific DMCS Threshold | Yes      | Minimum DMCS percentile for Signal delivery            |
+
+The Signal Card's mandatory compensation range field is the mechanism through which
+Dossyr enforces pay transparency. Employers who refuse to declare a range cannot send
+Signals. This is enforced by the platform, not by policy guidance.
+
+---
+
+## Candidate Dossier
+
+The Candidate Dossier is what employers see when they access a candidate's full
+profile after sending a Signal.
+
+**Components**:
+- **AI-Generated Summary**: 3-5 sentence narrative summary of the candidate's verified
+  profile, synthesized from DMCS data and simulation observations
+- **Highlight Clips**: 3-5 simulation excerpts (60-90 seconds each) curated by AI
+  and selected by the candidate. Employers view these in the dossier.
+- **DMCS Scorecard**: Full dimension breakdown with percentile ranks and narratives
+- **WSE Scorecard**: 6-dimension behavioral scorecard if Tier 2 is complete
+- **Interaction Log Summary**: AI-summarized key moments from the WSE simulation —
+  notable decisions, communication patterns, pressure response moments
+- **Background Check Status**: Ordered / Pending / Clear / Under Review
+- **Communication History**: All Signal-layer messages between employer and candidate
+- **Assessment History**: Date, tier, and score trajectory (not individual item data)
+- **CIQ Track Record**: Session count and integrity flag history
+
+---
+
+## Signal Layer — TAM Expansion
+
+The Signal Layer enables employers to verify any candidate from any sourcing channel
+— not just candidates already in the Dossyr Discovery Pool.
+
+**Use Case**: An employer finds a strong candidate on LinkedIn or through a referral.
+  The candidate does not have a Dossyr profile. The employer invites the candidate
+  directly to complete a Dossyr simulation for that specific role.
+
+**Process**:
+1. Employer generates a personalized Dossyr assessment link for the role
+2. Candidate clicks link, creates account, completes Tier 1 and (optionally) Tier 2
+3. Employer receives verified dossier within 24 hours
+
+This architecture expands Dossyr's total addressable market beyond the Discovery Pool
+to encompass every candidate any employer considers through any channel. It also
+accelerates candidate acquisition — employer invitations convert at 73% (vs. 15%
+cold traffic conversion from direct candidate acquisition channels).
+
+---
+
+## Multi-Stakeholder Collaboration Layer
+
+Hiring decisions typically involve 3-5 stakeholders: the recruiter, the hiring
+manager, one or two technical reviewers, and an executive. Dossyr's collaboration
+layer enables all stakeholders to contribute to the decision with visibility into
+the same verified data.
+
+**Features**:
+- **Shared Dossier**: All team members with access see the same candidate dossier
+- **Inline Comments**: Timestamped comments tied to specific simulation moments
+  or DMCS dimensions
+- **Thumbs Up / Thumbs Down**: Structured stakeholder signals with optional
+  comment requirement
+- **Quick View Mode**: A non-login-required view accessible via shared link —
+  shows DMCS summary, highlight clips, and AI summary without requiring the
+  stakeholder to create a Dossyr account
+
+---
+
+## Employer Simulation Preview
+
+Before activating any simulation for candidates, employers experience the full
+simulation themselves. This three-layer preview process ensures employer confidence
+and generates scenario validation feedback.
+
+- **Layer 1 (3-min walkthrough)**: Platform-narrated overview of the scenario,
+  scoring framework, and what the simulation measures
+- **Layer 2 (Full simulation)**: Employer completes the full 18-minute simulation
+  as if they were a candidate
+- **Layer 3 (Full customization)**: Employer edits scenario parameters, adjusts
+  difficulty, modifies crew personas, previews score impacts
+
+---
+
+## White-Label Employer-Mandated Flow
+
+Enterprise-tier employers can deploy Dossyr as a white-label branded experience
+embedded directly in their own career site and application flow.
+
+**Specifications**:
+- Full employer branding (logo, colors, fonts, messaging)
+- Custom employer welcome message from hiring manager
+- Branded completion confirmation
+- ATS integration for automated applicant tracking
+- Target completion rate: 75-85% (employer-mandated context drives higher completion
+  than organic platform engagement)
+
+---
+
+## "Add First, Replace Later" Adoption Curve
+
+Dossyr's adoption strategy is designed as a three-stage progression:
+
+**Stage 1 — Additive**: Dossyr runs alongside existing processes. Employers use it
+  for one role or team. Resume screening continues. Dossyr adds a verification layer.
+
+**Stage 2 — Replacement**: Employers replace resume screening with Dossyr for the
+  roles where it has demonstrated accuracy. Traditional phone screens are replaced
+  by Dossyr shortlists.
+
+**Stage 3 — Standard**: Dossyr becomes the default first step for all hiring.
+  Zero Resume Architecture is the organizational standard. The ATS receives Dossyr
+  outputs rather than resume keyword scores.
+
+This progression reduces adoption friction (no wholesale process replacement required)
+while creating a natural path to deeper dependency.
+
+---
+
+## Side-by-Side Comparison Dashboard
+
+The Side-by-Side Comparison Dashboard shows employers the correlation between
+Dossyr DMCS predictions and their own interview ratings over time.
+
+**Data Points**:
+- DMCS predicted performance percentile vs. interviewer rating
+- DMCS predicted performance vs. 30-day manager assessment
+- DMCS predicted performance vs. 90-day formal performance rating
+- Correlation coefficient (r) with 95% confidence interval
+- RLWO accuracy improvement trajectory (by hire number)
+
+This dashboard is the primary ROI proof mechanism for employer retention and renewal.
+Employers who see their RLWO model improving over time have concrete data justifying
+continued investment.
+
+---
+
+## Role Configuration — Three-Layer System
+
+Dossyr supports three levels of role configuration complexity, enabling adoption
+across the full range of employer sophistication.
+
+**Layer 1 — Zero-Config (30 Seconds)**:
+Employer selects role archetype from a dropdown. Dossyr activates a validated,
+expert-designed simulation for that archetype immediately. No other configuration
+required. Active in 30 seconds.
+
+*Target User*: Small employer without dedicated recruiter. Head of Engineering at
+  Series B startup (persona: Sarah).
+
+**Layer 2 — Guided Configuration (10-15 Minutes)**:
+Platform walks employer through a Conversational Role Builder — structured questions
+about role requirements, team context, key performance indicators, and deal-breaker
+skills. Platform generates a customized simulation based on responses.
+
+*Target User*: TA Director or Recruiter with defined role requirements (persona: David).
+
+**Layer 3 — Expert Configuration (Full Customization)**:
+Full access to simulation parameters: scenario shell editing, crew persona
+customization, difficulty calibration, custom rubric creation, DMCS weight
+profile adjustment. Requires employer preview completion before activation.
+
+*Target User*: Enterprise CHRO or Talent Operations team (persona: Jessica).
+
+---
+
+## Employer Profile Requirements
+
+Every employer who activates a simulation must complete an employer profile:
+
+| Field                         | Purpose                                              |
+|-------------------------------|------------------------------------------------------|
+| Company Stage                 | Calibrates scenario complexity and culture context   |
+| Funding / Revenue Range       | Sets appropriate compensation benchmarks             |
+| Team Size                     | Calibrates collaboration expectations in WSE         |
+| Growth Rate                   | Informs pace and pressure calibration                |
+| Role Context                  | Specifies reporting structure, team dynamics         |
+| Hiring Process                | Declares number of stages, expected candidate time   |
+| Visa Sponsorship Policy       | Surfaced to candidates before Signal                 |
+| DEI Commitments               | Enables appropriate cohort analytics setup           |
+
+---
+
+## Onboarding + Bad Hire ROI Calculator
+
+The ROI Calculator is a self-serve tool available within the employer onboarding flow.
+It is designed to be completed in 60 seconds and produces a personalized ROI projection.
+
+**Inputs**:
+- Company size (employees)
+- Annual hiring volume (hires per year)
+- Current bad hire rate (estimated %)
+- Average role salary ($)
+- Current time-to-fill (days)
+
+**Outputs**:
+- Estimated annual bad hire cost (current)
+- Projected bad hire cost reduction with Dossyr
+- Estimated time savings (hours per hire, hours per year)
+- Time savings dollar value (at loaded recruiter cost)
+- Platform cost (at recommended tier)
+- Net annual ROI
+- Payback period (months)
+
+Sample output for David (persona):
+- Current bad hire cost: $2,100,000/year (50 hires × 25% bad hire rate × $168K avg cost)
+- Projected reduction: $1,050,000 (50% improvement at maturity)
+- Time savings: 1,800 hours/year at $85/hour loaded cost = $153,000
+- Platform cost (Professional tier): $7,188/year
+- Net annual ROI: $1,195,812
+- Payback period: 3.2 months
+
+---
+
+## Pricing and Packaging
+
+| Tier         | Price             | Active Roles    | Assessments/mo | Key Features                               |
+|--------------|-------------------|-----------------|----------------|--------------------------------------------|
+| Pilot        | Free / LOI        | 3               | 50             | Zero-config, basic dossier, Discovery Pool |
+| Starter      | $299/month        | 5               | 150            | Guided config, full dossier, HQS           |
+| Professional | $599/month        | 15              | 500            | Expert config, RLWO, Analytics             |
+| Enterprise   | $4,999/month base | Unlimited        | Unlimited      | White-label, SSO, API, custom WSE, SLA     |
+
+**Add-On Revenue Streams**:
+
+| Add-On                        | Price                  | Available Tiers           |
+|-------------------------------|------------------------|---------------------------|
+| Background Check Integration  | $15-25 per check       | All                        |
+| Talent Intelligence Reports   | $499-999 per report    | Professional, Enterprise   |
+| Custom WSE Scenario Development| $2,500-8,000 per scenario| Enterprise                |
+| Predictive Validity Licensing | Custom enterprise      | Enterprise                 |
+| Internal Bench Strength       | $1,999/month           | Professional, Enterprise   |
+| Success Fees                  | 8-12% first-year salary| Optional, all tiers        |
+
+**Value Reframing by Tier**:
+- Pilot: "Try one role, see what verified looks like"
+- Starter: "Replace your phone screen for the cost of two recruiter hours per month"
+- Professional: "$599/month vs. $850,000 bad hire cost — this is insurance"
+- Enterprise: "Your RLWO model is a proprietary asset. $4,999/month for a tuned
+  predictive hiring engine."
+
+---
+
+## Core Employer Dashboards
+
+### Bench Strength Dashboard
+- Internal employee DMCS tracking (for employers who extend Dossyr to internal
+  assessment use)
+- Skill gap identification by team and department
+- Succession planning data — who is the internal "best verified performer"
+
+### Hiring Accuracy Dashboard
+- DMCS prediction vs. actual performance correlation over time
+- RLWO model accuracy improvement trajectory
+- Bad hire rate trend (before/after Dossyr)
+- Time-to-fill trend
+
+### Cohort Analytics Dashboard
+- Shortlist demographic composition (race, gender, age band — aggregate, not individual)
+- Adverse impact analysis at each funnel stage
+- DMCS score distribution by demographic group (bias monitoring)
+- Comparison to industry benchmarks
+
+---
+
+## HQS — Hiring Quality Score
+
+The HQS is the employer's reputation metric on the Dossyr platform. It measures
+how well the employer honors their obligations to candidates.
+
+**Scoring Criteria**:
+
+| Criterion                            | Score Impact       |
+|--------------------------------------|--------------------|
+| Response within committed timeline   | +10 per instance   |
+| Response after committed timeline    | -15 per instance   |
+| Ghosting after Signal acceptance     | -30 per instance   |
+| "Would Signal again" positive rating | +8 per rating      |
+| Candidate complaint filed            | -25 per complaint  |
+| Complaint resolved                   | +10 restoration    |
+
+**HQS Visibility**:
+- Score (0-100) visible to all candidates before Signal acceptance
+- Score < 70: Warning indicator shown to candidates
+- Score < 50: Employer profile demotion in search results
+
+**HQS Search Demotion**:
+- Employers with HQS below 50 appear lower in Discovery Pool recommendations
+- Employers with HQS below 30 cannot send new Signals until score is restored
+  through platform-guided remediation process
+
+---
+
+## Employer Compliance Dashboard
+
+The Compliance Dashboard enables enterprise employers to maintain audit readiness
+for EEOC, OFCCP, and applicable state employment law requirements.
+
+**Features**:
+- Complete audit logs of all Signal activity (who was assessed, when, outcomes)
+- Adverse impact analysis at every funnel stage (selection rates by demographic group)
+- DMCS score distribution analysis for disparate impact detection
+- Downloadable compliance reports in standard regulatory format
+- Quarterly red-team methodology disclosure
+- 14-day candidate appeals process documentation
+
+================================================================================
+
+================================================================================
+# SECTION 8: IMMEDIATE VALUE STACK
+================================================================================
+
+## Five-Layer Value Architecture with Timeline
+
+The Immediate Value Stack addresses the core adoption challenge for any new hiring
+platform: employers need value before the learning machine reaches maturity, and
+candidates need value before they have a verified hire. Every layer is designed to
+deliver standalone, tangible value from the moment of activation.
+
+---
+
+### Layer 1 — Time Savings (Day 1)
+
+**What It Delivers**: 36 hours saved per filled role. Quantifiable on the first
+hire, with no dependency on RLWO maturity.
+
+**The Math**:
+
+| Traditional Process Step            | Hours Spent        | Dossyr Replacement     | Hours Saved |
+|--------------------------------------|--------------------|------------------------|-------------|
+| Resume screening (200 applications) | 10 hours           | Automated shortlist    | 10 hours    |
+| Phone screen scheduling              | 3 hours            | Eliminated             | 3 hours     |
+| Phone screens (10 candidates × 30m) | 5 hours            | Shortlist review       | 4 hours     |
+| Technical assessment coordination   | 4 hours            | Eliminated             | 4 hours     |
+| Technical assessment review         | 8 hours            | DMCS scorecard review  | 6 hours     |
+| Status update communications        | 4 hours            | Automated              | 4 hours     |
+| Debrief coordination                 | 3 hours            | Async collaboration    | 2.5 hours   |
+| **Total**                            | **37 hours**       |                        | **33.5 hrs**|
+
+**30:1 ROI Math**: At a loaded recruiter + hiring manager cost of $85/hour, 36 hours
+  saved = $3,060 per role. Starter tier costs $299/month. At 3 hires per month,
+  the time savings alone generate a 30:1+ ROI on the subscription cost.
+
+---
+
+### Layer 2 — Quality Signal (Day 1)
+
+**What It Delivers**: Objective, standardized candidate rankings from the first
+assessment session. No RLWO maturity required.
+
+Even without employer-specific learning, the DMCS provides:
+- Standardized percentile ranking against a domain cohort
+- Multi-dimension behavioral profile (not a single pass/fail score)
+- Verified credential (not self-reported)
+- Bias-reduced signal (demographic-blind scoring)
+
+A hiring manager who has never used Dossyr before can look at a shortlist of five
+candidates ranked by DMCS and make a better-calibrated decision than they would from
+reviewing five resumes. This value is immediate and requires no learning curve.
+
+---
+
+### Layer 3 — Collaboration Infrastructure (Day 1)
+
+**What It Delivers**: Shared, structured hiring decision workspace from first session.
+
+Traditional hiring decisions are made across email threads, Slack channels, and
+verbal debriefs — none of which are documented, structured, or auditable. Dossyr's
+collaboration layer provides:
+- Shared candidate dossier accessible to all stakeholders
+- Structured thumbs up/down with required comment
+- Timestamped comment history tied to specific simulation moments
+- Decision audit trail for compliance documentation
+
+This infrastructure value is independent of RLWO maturity and available from the
+first candidate assessment.
+
+---
+
+### Layer 4 — Market Intelligence (Month 3+)
+
+**What It Delivers**: Proprietary talent market data generated from platform activity.
+
+After 3 months of operation, Dossyr generates employer-facing market intelligence:
+- Average DMCS percentile for candidates applying to similar roles in the same market
+- Salary benchmarks calibrated to verified skill levels (not self-reported)
+- Supply/demand indicators for specific skill domains in metro areas
+- Competitor talent flow indicators (aggregated, anonymized)
+
+This intelligence is unavailable from any other source — it is generated from actual
+verified performance data, not survey-based self-reporting.
+
+---
+
+### Layer 5 — RLWO Predictive Advantage (Month 6+)
+
+**What It Delivers**: Employer-specific predictive hiring model with demonstrated
+accuracy improvement.
+
+By month 6-8, an employer with consistent hiring volume (5+ hires per month) begins
+to see meaningful RLWO weight personalization. The Hiring Accuracy Dashboard shows
+the correlation between DMCS predictions and actual 90-day performance ratings.
+
+At Month 6:
+- Prediction accuracy: 65-70% (above industry average of ~60%)
+- RLWO model has incorporated 20-30 actual hire outcomes
+- Accuracy trend is visibly positive — employers can see the system learning
+
+At Month 12:
+- Prediction accuracy: 75-85% target
+- Proprietary weight profile is established
+- Switching cost is now structural — the model is the asset
+
+---
+
+## Layer Timeline Summary
+
+| Layer                         | Active From | Key Metric                          | Dependency        |
+|-------------------------------|-------------|-------------------------------------|-------------------|
+| Time Savings                  | Day 1       | 36 hours saved per role             | None              |
+| Quality Signal                | Day 1       | Standardized DMCS shortlist         | None              |
+| Collaboration Infrastructure  | Day 1       | Shared dossier, audit trail         | None              |
+| Market Intelligence           | Month 3+    | Verified salary benchmarks          | Candidate volume  |
+| RLWO Predictive Advantage     | Month 6+    | 75-85% hire accuracy target         | Hire cycle volume |
+
+================================================================================
+
+================================================================================
+# SECTION 9: POST-HIRE INTELLIGENCE LOOP
+================================================================================
+
+## Overview
+
+The Post-Hire Intelligence Loop is the mechanism through which Dossyr closes the
+feedback cycle between hiring predictions and actual performance outcomes. It is
+what makes the RLWO engine learn. Without the loop, Dossyr is a good assessment
+platform. With the loop, it becomes a predictive hiring engine that compounds
+in accuracy over time.
+
+---
+
+## Phase 0-1 — Minimum Viable Loop (6 Touchpoints, 2 Weeks Engineering)
+
+The MVP loop is deliberately lightweight — six data collection touchpoints that
+generate sufficient signal for RLWO training without creating employer administrative
+burden. Total engineering investment: approximately 2 weeks.
+
+### Touchpoint 1 — Day 0: Hire Confirmation
+
+**Trigger**: Employer marks candidate as "Hired" in the Dossyr dashboard
+**Data Collected**: Hire date, role, compensation accepted, hiring manager ID
+**RLWO Input**: Signals which DMCS profile was chosen — baseline for prediction
+**Candidate Action**: Receives Verified Hire badge notification
+
+### Touchpoint 2 — Day 30: Employer Check-In
+
+**Trigger**: Automated email to hiring manager at Day 30 post-hire
+**Format**: 3-question survey, estimated 90 seconds to complete
+**Questions**:
+  1. "Is [Candidate Name] performing at, above, or below your expectations so far?"
+     (3-point scale: below/at/above)
+  2. "Would you hire this person again based on what you've seen?"
+     (Binary: yes/no)
+  3. "What has surprised you most — positively or negatively?" (Optional, 50-word max)
+
+**RLWO Input**: Proxy reward signal (primary input before Day 90 data)
+**Response Rate Target**: 65%+ (short, mobile-friendly, personalized subject line)
+
+### Touchpoint 3 — Day 30: Candidate Check-In
+
+**Trigger**: Automated notification to candidate at Day 30 post-hire
+**Format**: 2-question survey via Dossyr mobile notification
+**Questions**:
+  1. "How well does the role match what you expected?" (5-point scale)
+  2. "How would you rate your first 30 days?" (5-point scale)
+
+**Platform Value**: Candidate-reported satisfaction data enriches match quality
+  modeling. High DMCS candidates who report poor role matches indicate scenario
+  calibration issues.
+
+### Touchpoint 4 — Day 90: Employer Performance Outcome
+
+**Trigger**: Automated email to hiring manager at Day 90 post-hire
+**Format**: 5-question structured performance assessment, estimated 3 minutes
+**Dimensions Scored** (mirrors WSE dimensions):
+  1. Task execution quality (1-5)
+  2. Communication effectiveness (1-5)
+  3. Decision quality under pressure (1-5)
+  4. Stakeholder relationship quality (1-5)
+  5. Learning speed (1-5)
+
+**RLWO Input**: Primary reward signal. This is the gold-standard outcome data that
+  trains the RLWO model. Each response directly updates the employer's weight profile.
+**Response Rate Target**: 55%+ (higher friction than Day 30, but higher value)
+
+### Touchpoint 5 — Verified Performer Badge
+
+**Trigger**: Employer completes Day 90 outcome survey AND ratings indicate
+  meets-or-exceeds performance (average ≥ 3.5/5.0)
+**Platform Action**: Candidate receives Verified Performer badge on Prooffile
+**Candidate Notification**: "Congratulations — your employer has confirmed your
+  performance as a Verified Performer. This is the most powerful credential in
+  the Dossyr system."
+
+### Touchpoint 6 — Prediction Report
+
+**Trigger**: Day 90 data collection complete
+**Recipient**: Hiring Manager / TA Director
+**Contents**:
+  - Side-by-side comparison: DMCS prediction vs. actual 90-day performance
+  - Which dimensions were most predictive for this hire
+  - How this hire's data has updated the employer's RLWO model
+  - Projected accuracy improvement for the next hire
+
+---
+
+## Phase 2+ — Full Intelligence Loop
+
+Phase 2+ extends the loop with additional data points, higher-frequency signals,
+and richer behavioral data collection.
+
+**Passive Signal Collection**: With candidate opt-in, the platform collects passive
+  performance indicators through integrations — project management tool activity
+  (not content), communication frequency patterns, peer recognition indicators.
+
+**Day 60 Lightweight Check-In**: A single-question pulse at Day 60 ("Still on
+  track?") that supplements the Day 90 structured assessment.
+
+**Learning Credits for Candidates**: Candidates who complete Day 30 and Day 90
+  check-ins receive 50 Learning Credits each (contributing to CFS score improvement).
+
+**Outcome Dispute Process**: Candidates who believe their Verified Performer assessment
+  was inaccurate can file a structured dispute. A human review is conducted within
+  14 days. Disputed outcomes are flagged as "Under Review" on the Prooffile during
+  the review period.
+
+**Privacy Controls**: All post-hire performance data is used only for RLWO training
+  within the hiring employer's account. It is not shared with other employers, not
+  visible on the candidate's public Prooffile as raw data, and is anonymized before
+  any cross-employer training.
+
+**Score Degradation Policy**: Dossyr scores have a 24-month active window. After
+  24 months without retake activity, scores are marked as "Assessed [Date] — Consider
+  Refreshing" with a visible retake prompt. This policy maintains score currency
+  without penalizing candidates.
+
+---
+
+## Response Rate Strategy
+
+Low response rates from employers and candidates undermine the RLWO training data
+quality. The following tactics are deployed to maximize response rates:
+
+| Tactic                                | Target Audience  | Expected Lift |
+|---------------------------------------|------------------|---------------|
+| Mobile-first, 90-second completion    | Employer          | +15%          |
+| Personalized subject lines            | Employer          | +12%          |
+| Manager digest (not individual email) | Employer          | +8%           |
+| Candidate app notification (not email)| Candidate         | +20%          |
+| Learning Credits incentive            | Candidate         | +18%          |
+| Verified Performer badge preview      | Candidate         | +25%          |
+| HQS impact reminder to employers      | Employer          | +10%          |
+
+**Response Rate Targets**:
+- Day 30 Employer: 65%
+- Day 30 Candidate: 70%
+- Day 90 Employer: 55%
+- Day 90 Candidate: 60%
+
+---
+
+## Loop Gating Mechanics
+
+Not all employer accounts access all loop features simultaneously. Loop access
+is gated by account tier and hire volume:
+
+| Feature                              | Gate                                    |
+|--------------------------------------|-----------------------------------------|
+| Day 0 Hire Confirmation              | All tiers, immediate                    |
+| Day 30 Employer Check-In             | All tiers, immediate                    |
+| Day 90 Performance Assessment        | Starter+, activated after hire 1        |
+| Verified Performer Badge             | All tiers (candidate receives directly) |
+| RLWO Weight Updates                  | Professional+, after hire 10            |
+| Prediction Report                    | Professional+                           |
+| Passive Signal Collection            | Enterprise + candidate opt-in           |
+| Full Phase 2+ Loop                   | Enterprise                              |
+
+================================================================================
+
+================================================================================
+# SECTION 10: FAIRNESS AND COMPLIANCE ARCHITECTURE
+================================================================================
+
+## Four-Layer Framework
+
+Fairness is not a feature added after the fact — it is built into the architecture
+of every system that generates or uses candidate scores. Dossyr's Fairness and
+Compliance Architecture operates across four layers with defined budgets, measurable
+thresholds, and enforceable consequences.
+
+---
+
+### Layer 1 — Pre-Launch Audit ($15,000-$30,000)
+
+Before any employer account activates and before any candidate assessment goes live,
+Dossyr commissions an independent third-party bias audit of the ARISE and WSE scoring
+frameworks.
+
+**Audit Scope**:
+- Statistical analysis of DMCS score distributions across demographic groups
+  (race/ethnicity, gender, age band, national origin, educational background)
+- Adverse impact analysis at standard 4/5ths rule threshold
+- Review of LLM prompt templates for embedded cultural or linguistic bias
+- Assessment of item difficulty calibration for culturally specific knowledge
+- Evaluation of BQS and SA scoring rubrics for cross-cultural behavioral assumptions
+- Review of scenario shell content for cultural and contextual universality
+
+**Audit Standards**:
+- EEOC Uniform Guidelines on Employee Selection Procedures (1978)
+- Society for Industrial and Organizational Psychology (SIOP) Principles
+- APA Standards for Educational and Psychological Testing
+- EU AI Act requirements for high-risk AI systems in employment contexts
+
+**Deliverable**: Signed third-party audit report with specific findings, required
+  remediations, and recommended monitoring thresholds.
+
+**Timeline**: Required before candidate 1 is assessed. Not negotiable.
+
+---
+
+### Layer 2 — Real-Time Bias Monitoring (Automated Dashboards)
+
+Following launch, automated real-time monitoring tracks score distributions and
+selection rates continuously across all candidate cohorts.
+
+**Alert Thresholds** (trigger immediate review):
+
+| Metric                                      | Alert Threshold                        |
+|---------------------------------------------|----------------------------------------|
+| DMCS score mean difference by gender        | > 0.3 standard deviations             |
+| DMCS score mean difference by race/ethnicity| > 0.3 standard deviations             |
+| Selection rate disparity (4/5ths rule)      | Selection rate < 80% of highest group |
+| WSE completion rate disparity               | > 15% difference between cohorts      |
+| CIQ flag rate disparity                     | > 2x flag rate between cohorts         |
+
+When any alert threshold is triggered, the relevant scoring system is flagged for
+human review. Automated alerts are sent to Dossyr's compliance team and the employer's
+designated compliance contact. Assessment results for the affected cohort are placed
+in "Under Review" status until cleared.
+
+**Dashboard Visibility**: Employers with Professional+ subscriptions have direct
+  access to real-time bias monitoring dashboards for their specific candidate pool.
+  Enterprise subscribers receive quarterly bias review reports prepared by Dossyr's
+  compliance team.
+
+---
+
+### Layer 3 — Structural Safeguards (Architectural, Not Policy)
+
+The most reliable bias safeguards are those built into the system architecture —
+not dependent on user compliance or policy guidance.
+
+**Demographic-Blind Scoring Pipeline**: At no point in the ARISE or WSE scoring
+  pipeline does the model receive, process, or weight any demographic information.
+  Name, photo, age, gender, race, national origin, and educational institution are
+  explicitly excluded from all scoring inputs.
+
+**Feature Sanitization**: ARISE item content is filtered for culturally specific
+  knowledge that would disadvantage candidates from specific cultural backgrounds.
+  Items requiring country-specific regulatory knowledge, specific cultural idioms,
+  or background only achievable through elite educational access are rejected.
+
+**LLM Constraints**: All LLM interactions in the WSE operate under explicit prompt
+  constraints prohibiting the generation of content that evaluates candidates based
+  on cultural idiom familiarity, accent detection (voice moments), or response style
+  patterns associated with specific demographic groups. Regular red-team testing
+  validates constraint effectiveness.
+
+**Multi-Standard Calibration**: ARISE item difficulty calibration is performed
+  separately for multiple demographic cohorts to detect items with disproportionate
+  difficulty for specific groups (differential item functioning analysis). Items with
+  significant DIF are removed from production scoring.
+
+**Non-Native Speaker Adjustment**: Candidates who self-identify as non-native English
+  speakers activate an accommodation that adjusts CVS time benchmarks to account for
+  documented response time differences in L2 language processing. This adjustment
+  preserves speed measurement validity while removing linguistically-driven CVS
+  disadvantage.
+
+**ADA Accommodation Framework**: Candidates who self-identify as having a disability
+  that affects assessment performance can request accommodations:
+  - Extended time (1.5x or 2x)
+  - Screen reader compatibility
+  - Alternative response formats
+  - Human-moderated voice moment replacement
+
+  Accommodation requests are processed within 24 hours and do not require medical
+  documentation for standard accommodations. Accommodation status does not affect
+  Prooffile display or employer visibility.
+
+---
+
+### Layer 4 — Transparency and Accountability
+
+**Published Methodology**: Dossyr publishes a plain-language methodology document
+  describing how DMCS scores are calculated, what each dimension measures, and what
+  the platform does and does not claim about predictive validity. This document is
+  publicly accessible, not paywalled.
+
+**Candidate Explanations**: Every candidate who completes an assessment receives a
+  plain-language explanation of their scores — what was measured, how each dimension
+  was calculated, and specifically what drove their score on each dimension.
+  Candidates are never told "the AI decided." They receive substantive explanation.
+
+**Employer Compliance Dashboard**: Enterprise employers have access to a full
+  compliance dashboard including adverse impact analysis, audit logs of all
+  assessment activity, and downloadable regulatory reports.
+
+**Quarterly Red-Team Testing**: Dossyr conducts quarterly adversarial testing of
+  all LLM-based scoring components to identify and remediate emergent bias patterns
+  that may develop as models update.
+
+**Annual Independent Audit**: An independent third-party audit of the full scoring
+  framework is conducted annually. Results are shared with enterprise customers and
+  published in summary form publicly.
+
+**14-Day Appeals Process**: Candidates who believe their assessment was unfair or
+  inaccurate can file a structured appeal. A human reviewer examines the session log
+  and scoring audit trail within 14 days. Documented errors result in score
+  recalculation. Undocumented concerns result in a written explanation.
+
+---
+
+## Total Fairness & Compliance Investment — Year 1
+
+| Item                                   | Estimated Cost    |
+|----------------------------------------|-------------------|
+| Pre-launch third-party audit           | $15,000-$30,000   |
+| Quarterly red-team testing (3 rounds)  | $8,000-$15,000    |
+| Annual independent audit               | $12,000-$20,000   |
+| Legal review (EEOC, OFCCP, EU AI Act)  | $8,000-$12,000    |
+| Internal compliance tooling            | $2,000-$5,000     |
+| **Total Year 1**                       | **$45,000-$82,000**|
+
+This investment is not optional — it is a competitive requirement. Enterprise
+customers require audited fairness documentation. Regulatory scrutiny of AI-based
+hiring tools is accelerating. The cost of a fairness audit is trivial compared to
+the cost of a discrimination lawsuit or regulatory action.
+
+================================================================================
+
