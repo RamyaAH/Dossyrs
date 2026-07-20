@@ -1,30 +1,15 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { requireEmployerSeat } from "@/lib/auth/guards";
 
 export default async function EmployerDashboard() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/employer/login");
-  }
-
-  const { data: seat } = await supabase
-    .from("employer_seats")
-    .select("display_name, seat_type, employer_id, employers(company_name)")
-    .eq("user_id", user.id)
-    .single();
+  const { seat } = await requireEmployerSeat();
 
   return (
     <main style={{ padding: 40 }}>
       <h1 style={{ fontSize: 24, fontWeight: 600 }}>
-        Welcome, {seat?.display_name ?? "there"}
+        Welcome, {seat.display_name}
       </h1>
       <p style={{ color: "#666", marginTop: 8 }}>
-        {/* @ts-expect-error - employers is a joined object, not an array, at runtime */}
-        {seat?.employers?.company_name} · {seat?.seat_type} seat
+        {seat.employers?.company_name} · {seat.seat_type} seat
       </p>
       <p style={{ color: "#666", marginTop: 8 }}>
         This is a placeholder — the real employer dashboard (Roles, Discovery,

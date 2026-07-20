@@ -33,15 +33,19 @@ export default function EmployerSignup() {
       return;
     }
 
-    // Step 2: create the employer account (the company)
-    const { data: employer, error: employerError } = await supabase
+    // Step 2: create the employer account (the company).
+    // The id is generated client-side and inserted explicitly, rather than
+    // relying on `.select().single()` to read the row back after insert:
+    // the only SELECT policy on `employers` requires a matching
+    // `employer_seats` row, which doesn't exist until step 3 below, so
+    // RETURNING the just-inserted row would always be blocked by RLS.
+    const employerId = crypto.randomUUID();
+    const { error: employerError } = await supabase
       .from("employers")
-      .insert({ company_name: companyName })
-      .select()
-      .single();
+      .insert({ id: employerId, company_name: companyName });
 
-    if (employerError || !employer) {
-      setError(employerError?.message ?? "Could not create employer account.");
+    if (employerError) {
+      setError(employerError.message);
       setLoading(false);
       return;
     }
@@ -50,7 +54,7 @@ export default function EmployerSignup() {
     // Every other seat type gets added later by this admin (PRD 7D.8).
     const { error: seatError } = await supabase.from("employer_seats").insert({
       user_id: authData.user.id,
-      employer_id: employer.id,
+      employer_id: employerId,
       seat_type: "admin",
       display_name: displayName,
       email,
