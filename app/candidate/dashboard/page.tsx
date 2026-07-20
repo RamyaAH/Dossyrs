@@ -43,14 +43,14 @@ export default async function CandidateDashboard() {
       {session?.status === "completed" && (
         <div className="card mt-6 flex flex-col gap-3">
           <h2 className="text-sm font-semibold text-ink">Your Prooffile is ready</h2>
-          <dl className="text-sm text-muted">
-            <div className="flex gap-2">
-              <dt>Assessment ID</dt>
+          <dl className="flex flex-col gap-1.5 text-sm">
+            <div className="flex items-center gap-2">
+              <dt className="label-mono">Assessment ID</dt>
               <dd className="font-mono text-ink">{session.assessment_id}</dd>
             </div>
             {session.completed_at && (
-              <div className="flex gap-2">
-                <dt>Completed</dt>
+              <div className="flex items-center gap-2">
+                <dt className="label-mono">Completed</dt>
                 <dd className="text-ink">{new Date(session.completed_at).toLocaleDateString()}</dd>
               </div>
             )}

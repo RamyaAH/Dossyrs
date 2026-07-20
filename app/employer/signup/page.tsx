@@ -70,14 +70,14 @@ export default function EmployerSignup() {
   }
 
   return (
-    <main style={styles.main}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h1 style={styles.heading}>Create your employer account</h1>
+    <main className="flex min-h-screen items-center justify-center bg-surface px-6">
+      <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-4">
+        <h1 className="mb-1 text-2xl text-ink">Create your employer account</h1>
 
-        <label style={styles.label}>
+        <label className="flex flex-col gap-1.5 text-sm text-ink">
           Company name
           <input
-            style={styles.input}
+            className="input"
             type="text"
             required
             value={companyName}
@@ -85,10 +85,10 @@ export default function EmployerSignup() {
           />
         </label>
 
-        <label style={styles.label}>
+        <label className="flex flex-col gap-1.5 text-sm text-ink">
           Your name
           <input
-            style={styles.input}
+            className="input"
             type="text"
             required
             value={displayName}
@@ -96,10 +96,10 @@ export default function EmployerSignup() {
           />
         </label>
 
-        <label style={styles.label}>
+        <label className="flex flex-col gap-1.5 text-sm text-ink">
           Work email
           <input
-            style={styles.input}
+            className="input"
             type="email"
             required
             value={email}
@@ -107,10 +107,10 @@ export default function EmployerSignup() {
           />
         </label>
 
-        <label style={styles.label}>
+        <label className="flex flex-col gap-1.5 text-sm text-ink">
           Password
           <input
-            style={styles.input}
+            className="input"
             type="password"
             required
             minLength={8}
@@ -119,53 +119,19 @@ export default function EmployerSignup() {
           />
         </label>
 
-        {error && <p style={styles.error}>{error}</p>}
+        {error && <p className="text-sm text-danger">{error}</p>}
 
-        <button style={styles.button} type="submit" disabled={loading}>
+        <button className="btn-primary mt-2" type="submit" disabled={loading}>
           {loading ? "Creating account…" : "Create account"}
         </button>
 
-        <p style={styles.footerText}>
-          Already have an account? <Link href="/employer/login">Log in</Link>
+        <p className="mt-2 text-center text-sm text-muted">
+          Already have an account?{" "}
+          <Link href="/employer/login" className="font-medium text-brand hover:underline">
+            Log in
+          </Link>
         </p>
       </form>
     </main>
   );
 }
-
-const styles: Record<string, React.CSSProperties> = {
-  main: {
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 24,
-  },
-  form: {
-    width: "100%",
-    maxWidth: 360,
-    display: "flex",
-    flexDirection: "column",
-    gap: 14,
-  },
-  heading: { fontSize: 22, fontWeight: 600, marginBottom: 8 },
-  label: { display: "flex", flexDirection: "column", gap: 6, fontSize: 14 },
-  input: {
-    padding: "10px 12px",
-    borderRadius: 8,
-    border: "1px solid #ddd",
-    fontSize: 15,
-  },
-  button: {
-    marginTop: 8,
-    padding: "12px 16px",
-    borderRadius: 8,
-    border: "none",
-    background: "#111",
-    color: "#fff",
-    fontSize: 15,
-    cursor: "pointer",
-  },
-  error: { color: "#c0392b", fontSize: 13 },
-  footerText: { fontSize: 13, textAlign: "center", marginTop: 8 },
-};

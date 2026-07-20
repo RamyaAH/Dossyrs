@@ -15,15 +15,17 @@ export function IdentityHeader({
   return (
     <div className="card flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h2 className="text-lg font-semibold text-ink">{displayName}</h2>
+        <span className="label-mono mb-1 inline-flex items-center gap-1.5">
+          <span className="dot bg-brand" />
+          Verified
+        </span>
+        <h2 className="text-2xl text-ink">{displayName}</h2>
         <p className="text-sm text-muted">
           {domainLabel(domain)} · {tierLabel(tier)}
         </p>
       </div>
       {completedAt && (
-        <p className="text-xs text-muted">
-          Assessed {new Date(completedAt).toLocaleDateString()}
-        </p>
+        <p className="label-mono">Assessed {new Date(completedAt).toLocaleDateString()}</p>
       )}
     </div>
   );

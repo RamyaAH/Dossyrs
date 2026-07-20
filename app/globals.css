@@ -3,51 +3,84 @@
 @tailwind utilities;
 
 :root {
-  --color-ink: #14161a;
-  --color-surface: #ffffff;
-  --color-surface-raised: #f6f7f9;
-  --color-border: #e2e4e9;
-  --color-muted: #6b7280;
+  /* Warm parchment base, not stark white/gray - the whole point is that
+     this doesn't read as a default AI-generated SaaS palette. */
+  --color-ink: #221b14;
+  --color-surface: #faf6ee;
+  --color-surface-raised: #fffdf9;
+  --color-border: #e7dfce;
+  --color-muted: #7a7062;
 
-  --color-brand: #2846c7;
-  --color-brand-dark: #1c3496;
-  --color-brand-bg: #eef1fc;
+  /* Brand = deep forest green: verification/trust, not generic indigo. */
+  --color-brand: #1f4d3a;
+  --color-brand-dark: #163726;
+  --color-brand-bg: #e7f0e7;
 
-  --color-accent: #b4530f;
-  --color-accent-dark: #8a3e0a;
-  --color-accent-bg: #fdf1e7;
+  /* Accent = terracotta: warmth, secondary emphasis, CTAs. */
+  --color-accent: #c1502e;
+  --color-accent-dark: #96391e;
+  --color-accent-bg: #fbeae1;
 
-  --color-success: #146c43;
-  --color-success-bg: #e8f5ee;
+  --color-success: #2f6b4f;
+  --color-success-bg: #e6f1ea;
 
-  --color-warn: #92610b;
-  --color-warn-bg: #fdf3dd;
+  --color-warn: #a6740a;
+  --color-warn-bg: #fbf1dc;
 
-  --color-danger: #b3261e;
-  --color-danger-bg: #fbeaea;
+  --color-danger: #a23b2e;
+  --color-danger-bg: #fbeae6;
 }
 
 body {
   color: var(--color-ink);
   background: var(--color-surface);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  /* Applies everywhere, including pages still using inline styles for
+     other properties - font-family isn't set inline there, so this still
+     wins without needing to touch those files. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-md border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-surface-raised disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-full border border-border bg-surface-raised px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-surface disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .input {
+    @apply rounded-lg border border-border bg-surface-raised px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-muted focus:border-brand;
   }
 
   .card {
-    @apply rounded-lg border border-border bg-surface p-6;
+    @apply rounded-2xl border border-border bg-surface-raised p-6 shadow-[0_1px_2px_rgba(34,27,20,0.04)];
+  }
+
+  /* Uppercase, tracked, monospace micro-label for technical/verified
+     metadata (Assessment ID, section headers on the Assessment Card,
+     version tags) - the visual signature that ties Dossyr's "verified
+     record" concept to the UI itself. */
+  .label-mono {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted;
+  }
+
+  .dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
   }
 
   .band-pill {
-    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold;
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
   }
 
   .band-pill-developing {

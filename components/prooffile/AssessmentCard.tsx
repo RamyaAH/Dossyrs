@@ -54,54 +54,57 @@ export function AssessmentCard({
   const ciq = ciqStatus === "clean" || ciqStatus === "review" ? (ciqStatus as CiqStatus) : null;
 
   return (
-    <div className="card flex flex-col gap-4">
-      <h2 className="text-sm font-semibold text-ink">Assessment card</h2>
+    <div className="card flex flex-col gap-5">
+      <span className="label-mono">Assessment card</span>
 
-      <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
+      <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">
         <div>
-          <dt className="text-xs text-muted">Domain</dt>
+          <dt className="label-mono mb-1">Domain</dt>
           <dd className="text-ink">{domainLabel(domain)}</dd>
         </div>
         <div>
-          <dt className="text-xs text-muted">Tier</dt>
+          <dt className="label-mono mb-1">Tier</dt>
           <dd className="text-ink">{tierLabel(tier)}</dd>
         </div>
         <div>
-          <dt className="text-xs text-muted">Completed</dt>
+          <dt className="label-mono mb-1">Completed</dt>
           <dd className="text-ink">
             {completedAt ? new Date(completedAt).toLocaleDateString() : "—"}
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-muted">Duration</dt>
+          <dt className="label-mono mb-1">Duration</dt>
           <dd className="text-ink">{formatDuration(durationSeconds)}</dd>
         </div>
         <div>
-          <dt className="text-xs text-muted">Integrity status (CIQ)</dt>
+          <dt className="label-mono mb-1">Integrity (CIQ)</dt>
           <dd>
             {ciq ? (
-              <span className={CIQ_PILL_CLASS[ciq]}>{CIQ_LABELS[ciq]}</span>
+              <span className={CIQ_PILL_CLASS[ciq]}>
+                <span className="dot bg-current" />
+                {CIQ_LABELS[ciq]}
+              </span>
             ) : (
               <span className="text-ink">—</span>
             )}
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-muted">Assessment ID</dt>
+          <dt className="label-mono mb-1">Assessment ID</dt>
           <dd className="font-mono text-xs text-ink">{assessmentId}</dd>
         </div>
       </dl>
 
+      <div className="h-px bg-border" />
+
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
-          Scenario coverage
-        </h3>
-        <ul className="grid grid-cols-1 gap-1 text-sm sm:grid-cols-2">
+        <h3 className="label-mono mb-3">Scenario coverage</h3>
+        <ul className="grid grid-cols-1 gap-1.5 text-sm sm:grid-cols-2">
           {Object.entries(SCENARIO_FAMILY_LABELS).map(([key, label]) => (
             <li key={key} className="flex items-center gap-2 text-ink">
-              <span className={coveredFamilies.has(key) ? "text-success" : "text-muted"}>
-                {coveredFamilies.has(key) ? "✓" : "—"}
-              </span>
+              <span
+                className={`dot ${coveredFamilies.has(key) ? "bg-success" : "bg-border"}`}
+              />
               {label}
             </li>
           ))}
@@ -109,9 +112,7 @@ export function AssessmentCard({
       </div>
 
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
-          Dimensions covered
-        </h3>
+        <h3 className="label-mono mb-3">Dimensions covered</h3>
         <ul className="flex flex-wrap gap-2 text-xs">
           {Object.entries(DIMENSION_LABELS).map(([key, label]) => (
             <li
@@ -128,7 +129,7 @@ export function AssessmentCard({
         </ul>
       </div>
 
-      <p className="text-xs text-muted">
+      <p className="label-mono">
         WSE {wseVersion} · DMCS {dmcsVersion}
       </p>
     </div>

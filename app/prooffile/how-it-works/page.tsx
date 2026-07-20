@@ -9,10 +9,10 @@ export default function HowItWorksPage() {
       <Link href="/" className="text-sm text-brand hover:underline">
         ← Back
       </Link>
-      <h1 className="mt-4 text-2xl font-semibold text-ink">How is this verified?</h1>
+      <h1 className="mt-4 text-3xl text-ink">How is this verified?</h1>
 
       <section className="mt-8 flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="label-mono">
           What the assessment is
         </h2>
         <p className="text-sm leading-relaxed text-ink">
@@ -24,7 +24,7 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="mt-6 flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="label-mono">
           What DMCS measures
         </h2>
         <p className="text-sm leading-relaxed text-ink">
@@ -37,7 +37,7 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="mt-6 flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="label-mono">
           What CIQ checks — and what it doesn&apos;t
         </h2>
         <p className="text-sm leading-relaxed text-ink">
@@ -53,7 +53,7 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="mt-6 flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="label-mono">
           What this version does not include
         </h2>
         <p className="text-sm leading-relaxed text-ink">
@@ -65,7 +65,7 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="mt-6 flex flex-col gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="label-mono">
           Assessment ID and your control
         </h2>
         <p className="text-sm leading-relaxed text-ink">

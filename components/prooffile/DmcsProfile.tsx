@@ -15,17 +15,21 @@ export function DmcsProfile({
 }) {
   return (
     <div className="card flex flex-col gap-4">
-      <h2 className="text-sm font-semibold text-ink">Capability profile (DMCS)</h2>
+      <span className="label-mono">Capability profile</span>
+      <h2 className="text-lg text-ink">DMCS</h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {scores.map((s) => (
           <div
             key={s.dimension}
-            className="flex items-center justify-between rounded-md border border-border p-3"
+            className="flex items-center justify-between rounded-xl border border-border bg-surface p-3.5"
           >
             <span className="text-sm text-ink">
               {DIMENSION_LABELS[s.dimension as Dimension] ?? s.dimension}
             </span>
-            <span className={BAND_PILL_CLASS[s.band as Band] ?? "band-pill"}>{s.band}</span>
+            <span className={BAND_PILL_CLASS[s.band as Band] ?? "band-pill"}>
+              <span className="dot bg-current" />
+              {s.band}
+            </span>
           </div>
         ))}
       </div>

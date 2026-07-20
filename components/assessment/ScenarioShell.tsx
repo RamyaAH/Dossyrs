@@ -18,11 +18,14 @@ export function ScenarioShell({
       <header className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-6 py-4">
         <div className="flex items-center gap-3">
           {severityLabel && (
-            <span className="band-pill bg-danger-bg text-danger">{severityLabel}</span>
+            <span className="band-pill bg-danger-bg text-danger">
+              <span className="dot bg-current" />
+              {severityLabel}
+            </span>
           )}
-          <h1 className="text-lg font-semibold text-ink">{title}</h1>
+          <h1 className="text-lg text-ink">{title}</h1>
         </div>
-        <div className="flex items-center gap-4 text-sm text-muted">
+        <div className="label-mono flex items-center gap-4">
           <span>{progressLabel}</span>
           <span className="tabular-nums">{elapsedFormatted}</span>
         </div>
