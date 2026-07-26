@@ -46,6 +46,13 @@ export const DEBUG_INCIDENT_DIFF = {
   ],
 };
 
+// Full post-regression file content, for the editable code tab. The
+// candidate edits forward from this broken state rather than a blank file.
+export const DEBUG_INCIDENT_EDITOR_STARTING_SOURCE = `class OrderDbPoolConfig:
+    pool_size = 12  # reduce DB compute cost per infra review
+    timeout_seconds = 30
+`;
+
 export const DEBUG_INCIDENT_ARCHITECTURE_NOTES = [
   "OrderSync API accepts order submissions from all clients through a shared DB connection pool (order-db).",
   "Most clients (acme-goods, nova-supply, ...) submit one order per call and release the connection almost immediately.",
@@ -53,26 +60,57 @@ export const DEBUG_INCIDENT_ARCHITECTURE_NOTES = [
   "This morning's deploy reduced the shared pool size from 50 to 12 connections as a cost optimization.",
 ];
 
+export interface Persona {
+  id: string;
+  name: string;
+  role: string;
+  personality: string;
+}
+
+// Static, pre-authored character context — no LLM involved. Named/titled
+// so the persona rail and chat thread can show who's actually in the
+// incident, instead of a generic "On-call bot" label.
+export const DEBUG_INCIDENT_PERSONAS: Persona[] = [
+  {
+    id: "oncall-bot",
+    name: "On-call bot",
+    role: "Automated paging",
+    personality: "Terse, factual, no fluff.",
+  },
+  {
+    id: "support",
+    name: "Priya",
+    role: "Enterprise Support Lead",
+    personality: "Customer-first — translates impact into business terms.",
+  },
+  {
+    id: "platform",
+    name: "Dev",
+    role: "Platform Engineer",
+    personality: "Owns the regression, gives precise technical context.",
+  },
+];
+
 export interface DebugIncidentUpdate {
-  from: string;
+  personaId: string;
   text: string;
 }
 
 export const DEBUG_INCIDENT_UPDATES: DebugIncidentUpdate[] = [
   {
-    from: "On-call bot",
+    personaId: "oncall-bot",
     text: "SEV-2 declared. Meridian Retail reporting failed order submissions since ~09:14. Other clients green.",
   },
   {
-    from: "Support",
+    personaId: "support",
     text: "Meridian's integration submits orders in batches of 50-200 per call, unlike our other clients who submit one at a time.",
   },
   {
-    from: "Platform team",
+    personaId: "platform",
     text: "Heads up — this morning's deploy reduced the order-db connection pool size from 50 to 12 (config/db_pool_config.py), as a cost optimization.",
   },
   {
-    from: "On-call bot",
+    personaId: "oncall-bot",
     text: "Meridian's failure rate is climbing — now affecting roughly 40% of their batch submissions.",
   },
 ];

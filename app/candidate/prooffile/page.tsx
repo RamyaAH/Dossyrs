@@ -3,10 +3,17 @@ import { requireCandidate } from "@/lib/auth/guards";
 import { IdentityHeader } from "@/components/prooffile/IdentityHeader";
 import { DmcsProfile } from "@/components/prooffile/DmcsProfile";
 import { AssessmentCard } from "@/components/prooffile/AssessmentCard";
+import { ResumeLinks } from "@/components/prooffile/ResumeLinks";
 import { CopyPublicLink } from "./CopyPublicLink";
 
 export default async function MyProoffilePage() {
   const { supabase, candidate } = await requireCandidate();
+
+  const { data: candidateLinks } = await supabase
+    .from("candidates")
+    .select("resume_url, portfolio_url")
+    .eq("id", candidate.id)
+    .single();
 
   const { data: session } = await supabase
     .from("wse_sessions")
@@ -51,6 +58,10 @@ export default async function MyProoffilePage() {
           wseVersion={session.wse_version}
           dmcsVersion={session.dmcs_version}
           assessmentId={session.assessment_id}
+        />
+        <ResumeLinks
+          resumeUrl={candidateLinks?.resume_url ?? null}
+          portfolioUrl={candidateLinks?.portfolio_url ?? null}
         />
       </div>
     </main>

@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { IdentityHeader } from "@/components/prooffile/IdentityHeader";
 import { DmcsProfile } from "@/components/prooffile/DmcsProfile";
 import { AssessmentCard } from "@/components/prooffile/AssessmentCard";
+import { ResumeLinks } from "@/components/prooffile/ResumeLinks";
 
 export default async function PublicProoffilePage({
   params,
@@ -25,7 +26,7 @@ export default async function PublicProoffilePage({
   const [{ data: candidate }, { data: dmcsScores }, { data: ciq }] = await Promise.all([
     supabase
       .from("public_candidate_identity")
-      .select("display_name")
+      .select("display_name, resume_url, portfolio_url")
       .eq("id", session.candidate_id)
       .maybeSingle(),
     supabase.from("dmcs_scores").select("dimension, band").eq("session_id", session.id),
@@ -52,6 +53,10 @@ export default async function PublicProoffilePage({
           wseVersion={session.wse_version}
           dmcsVersion={session.dmcs_version}
           assessmentId={session.assessment_id}
+        />
+        <ResumeLinks
+          resumeUrl={candidate?.resume_url ?? null}
+          portfolioUrl={candidate?.portfolio_url ?? null}
         />
       </div>
     </main>

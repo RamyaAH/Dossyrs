@@ -15,4 +15,5 @@ export interface DebugIncidentPayload {
   rootCause: string;
   fix: string;
   validationPlan: string;
+  codeEdit: { finalSource: string };
 }

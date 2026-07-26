@@ -80,3 +80,14 @@ export async function requireEmployerSeat() {
 
   return { supabase, user, seat };
 }
+
+// Access model for now: any authenticated employer seat, gated only by
+// knowing the specific session's assessment ID - the same trust model the
+// public Prooffile link already uses, just behind an employer-login wall
+// too. There's no "employer X may view candidate Y" relationship yet
+// (Pipeline/Discovery isn't built). Kept as its own function, taking the
+// session id, so tightening this to a real relationship check later is a
+// single-function change rather than touching every call site.
+export async function requireEmployerAccessToSession(_sessionId: string) {
+  return requireEmployerSeat();
+}

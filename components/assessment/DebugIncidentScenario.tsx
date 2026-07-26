@@ -3,8 +3,11 @@
 import { useMemo, useState } from "react";
 import { ScenarioShell } from "./ScenarioShell";
 import { EvidencePane } from "./EvidencePane";
-import { ChatThread } from "./ChatThread";
+import { PersonaChatThread } from "./PersonaChatThread";
 import { FreeTextField } from "./FreeTextField";
+import { CodeEditorPane } from "./CodeEditorPane";
+import { DeliverablesChecklist } from "./DeliverablesChecklist";
+import { SessionRail } from "./SessionRail";
 import { useAssessmentTimer } from "@/hooks/useAssessmentTimer";
 import { useFieldInputTracking } from "@/hooks/useFieldInputTracking";
 import {
@@ -12,7 +15,9 @@ import {
   DEBUG_INCIDENT_ARCHITECTURE_NOTES,
   DEBUG_INCIDENT_BRIEFING,
   DEBUG_INCIDENT_DIFF,
+  DEBUG_INCIDENT_EDITOR_STARTING_SOURCE,
   DEBUG_INCIDENT_LOG_LINES,
+  DEBUG_INCIDENT_PERSONAS,
   DEBUG_INCIDENT_UPDATES,
 } from "@/lib/wse/scenarios/debug-incident/content";
 import type {
@@ -73,6 +78,7 @@ export function DebugIncidentScenario({
   const [rootCause, setRootCause] = useState("");
   const [fix, setFix] = useState("");
   const [validationPlan, setValidationPlan] = useState("");
+  const [codeEditSource, setCodeEditSource] = useState(DEBUG_INCIDENT_EDITOR_STARTING_SOURCE);
   const [submitting, setSubmitting] = useState(false);
 
   const hasMoreUpdates = revealedCount < DEBUG_INCIDENT_UPDATES.length;
@@ -92,6 +98,15 @@ export function DebugIncidentScenario({
     if (checkpoint2 === null) {
       setCheckpoint2(choice);
       setCheckpoint2ViewedBefore(revealedCount - 1);
+      // checkpoint2 is effectively decided the moment it auto-defaults, not
+      // just when explicitly changed later - without this event, a
+      // candidate who never revises their choice never gets a
+      // "checkpoint2" action_choice event at all, which silently drops
+      // PR/LAM/SA from anything reading the event log (e.g. the employer
+      // scoring replay). If handleCheckpoint2Change fires later, that
+      // records a second, later-timestamped event, which is what
+      // buildReplaySequence's max-timestamp logic is designed to prefer.
+      recordEvent({ type: "action_choice", field: "checkpoint2", value: choice, t: Date.now() });
     }
   }
 
@@ -162,8 +177,19 @@ export function DebugIncidentScenario({
           </ul>
         ),
       },
+      {
+        id: "editor",
+        label: "Fix it",
+        content: (
+          <CodeEditorPane
+            value={DEBUG_INCIDENT_EDITOR_STARTING_SOURCE}
+            onChange={setCodeEditSource}
+            recordEvent={recordEvent}
+          />
+        ),
+      },
     ],
-    []
+    [recordEvent]
   );
 
   const canSubmit =
@@ -187,6 +213,7 @@ export function DebugIncidentScenario({
       rootCause,
       fix,
       validationPlan,
+      codeEdit: { finalSource: codeEditSource },
     };
     await onSubmit(payload, getEvents());
   }
@@ -198,66 +225,83 @@ export function DebugIncidentScenario({
       progressLabel={progressLabel}
       elapsedFormatted={formatted}
     >
-      <div className="flex flex-col gap-6">
-        <p className="card text-sm text-ink">{DEBUG_INCIDENT_BRIEFING.summary}</p>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_280px]">
+        <div className="flex flex-col gap-6">
+          <p className="card text-sm text-ink">{DEBUG_INCIDENT_BRIEFING.summary}</p>
 
-        <EvidencePane tabs={evidenceTabs} />
+          <EvidencePane tabs={evidenceTabs} />
 
-        <ChatThread
-          messages={DEBUG_INCIDENT_UPDATES}
-          revealedCount={revealedCount}
-          hasMore={hasMoreUpdates}
-          onRequestNext={handleRequestNextUpdate}
-        />
+          <PersonaChatThread
+            personas={DEBUG_INCIDENT_PERSONAS}
+            messages={DEBUG_INCIDENT_UPDATES}
+            revealedCount={revealedCount}
+            hasMore={hasMoreUpdates}
+            onRequestNext={handleRequestNextUpdate}
+          />
 
-        <div className="card flex flex-col gap-3">
-          <h2 className="text-sm font-semibold text-ink">Interim action — first call</h2>
-          <ActionPicker value={checkpoint1} onChange={handleCheckpoint1Change} />
+          <div className="card flex flex-col gap-3">
+            <h2 className="text-sm font-semibold text-ink">Interim action — first call</h2>
+            <ActionPicker value={checkpoint1} onChange={handleCheckpoint1Change} />
+          </div>
+
+          {checkpoint1 && (
+            <div className="card flex flex-col gap-3">
+              <h2 className="text-sm font-semibold text-ink">
+                Final action — revise if the later updates change your read
+              </h2>
+              <ActionPicker value={checkpoint2} onChange={handleCheckpoint2Change} />
+            </div>
+          )}
+
+          {checkpoint1 && checkpoint2 && (
+            <div className="card flex flex-col gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h2 className="text-sm font-semibold text-ink">Write-up</h2>
+                <DeliverablesChecklist
+                  items={[
+                    { label: "Root cause", done: rootCause.trim().length >= MIN_ANSWER_LENGTH },
+                    { label: "Fix", done: fix.trim().length >= MIN_ANSWER_LENGTH },
+                    {
+                      label: "Validation",
+                      done: validationPlan.trim().length >= MIN_ANSWER_LENGTH,
+                    },
+                  ]}
+                />
+              </div>
+              <FreeTextField
+                label="Root cause"
+                placeholder="What actually caused Meridian's failures?"
+                value={rootCause}
+                onChange={setRootCause}
+                {...getFieldHandlers("rootCause")}
+              />
+              <FreeTextField
+                label="Fix"
+                placeholder="What would you change to resolve this?"
+                value={fix}
+                onChange={setFix}
+                {...getFieldHandlers("fix")}
+              />
+              <FreeTextField
+                label="Validation plan"
+                placeholder="How would you confirm the fix worked and watch for regressions?"
+                value={validationPlan}
+                onChange={setValidationPlan}
+                {...getFieldHandlers("validationPlan")}
+              />
+              <button
+                type="button"
+                className="btn-primary self-start"
+                disabled={!canSubmit}
+                onClick={handleSubmit}
+              >
+                {submitting ? "Submitting…" : "Submit scenario"}
+              </button>
+            </div>
+          )}
         </div>
 
-        {checkpoint1 && (
-          <div className="card flex flex-col gap-3">
-            <h2 className="text-sm font-semibold text-ink">
-              Final action — revise if the later updates change your read
-            </h2>
-            <ActionPicker value={checkpoint2} onChange={handleCheckpoint2Change} />
-          </div>
-        )}
-
-        {checkpoint1 && checkpoint2 && (
-          <div className="card flex flex-col gap-4">
-            <h2 className="text-sm font-semibold text-ink">Write-up</h2>
-            <FreeTextField
-              label="Root cause"
-              placeholder="What actually caused Meridian's failures?"
-              value={rootCause}
-              onChange={setRootCause}
-              {...getFieldHandlers("rootCause")}
-            />
-            <FreeTextField
-              label="Fix"
-              placeholder="What would you change to resolve this?"
-              value={fix}
-              onChange={setFix}
-              {...getFieldHandlers("fix")}
-            />
-            <FreeTextField
-              label="Validation plan"
-              placeholder="How would you confirm the fix worked and watch for regressions?"
-              value={validationPlan}
-              onChange={setValidationPlan}
-              {...getFieldHandlers("validationPlan")}
-            />
-            <button
-              type="button"
-              className="btn-primary self-start"
-              disabled={!canSubmit}
-              onClick={handleSubmit}
-            >
-              {submitting ? "Submitting…" : "Submit scenario"}
-            </button>
-          </div>
-        )}
+        <SessionRail progressLabel={progressLabel} personas={DEBUG_INCIDENT_PERSONAS} />
       </div>
     </ScenarioShell>
   );

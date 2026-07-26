@@ -34,11 +34,29 @@ const IS_EVIDENCE_TOKENS: RegExp[] = [
 
 const SA_RISK_KEYWORDS = /monitor|rollback|alert|watch|canary|gradual|risk/i;
 
+// Restoring toward the pre-regression value (50) is full credit; a partial
+// bump (still above the broken 12, short of a generous floor) is partial
+// credit. This is a structural regex check on the final edited source —
+// never an execution/compilation check — consistent with every other
+// score.ts in this codebase: no NLP/ML, no running untrusted code.
+const POOL_SIZE_TARGET_MIN = 40;
+
+export function scoreCodeEdit(payload: DebugIncidentPayload): number {
+  const match = payload.codeEdit.finalSource.match(/pool_size\s*=\s*(\d+)/);
+  if (!match) return 0;
+  const value = Number(match[1]);
+  if (value >= POOL_SIZE_TARGET_MIN) return 100;
+  if (value > 12) return 50;
+  return 0;
+}
+
 function scoreTAI(payload: DebugIncidentPayload): number {
   const text = `${payload.rootCause} ${payload.fix}`;
   if (!isLongEnough(payload.rootCause) || !isLongEnough(payload.fix)) return 0;
   const matched = TAI_CONCEPT_GROUPS.filter((re) => re.test(text)).length;
-  return clamp(Math.round((matched / TAI_CONCEPT_GROUPS.length) * 100));
+  const conceptScore = (matched / TAI_CONCEPT_GROUPS.length) * 100;
+  const codeEditScore = scoreCodeEdit(payload);
+  return clamp(Math.round(conceptScore * 0.6 + codeEditScore * 0.4));
 }
 
 function scoreIS(payload: DebugIncidentPayload): number {
