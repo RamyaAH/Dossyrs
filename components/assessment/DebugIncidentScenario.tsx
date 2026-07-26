@@ -120,7 +120,7 @@ export function DebugIncidentScenario({
     () => [
       {
         id: "log",
-        label: "Error log",
+        label: "📄 Error log",
         content: (
           <div className="flex flex-col gap-1 font-mono text-xs">
             {DEBUG_INCIDENT_LOG_LINES.map((line, i) => (
@@ -144,7 +144,7 @@ export function DebugIncidentScenario({
       },
       {
         id: "diff",
-        label: "Recent change",
+        label: "🔀 Recent changes",
         content: (
           <div className="font-mono text-xs">
             <div className="mb-2 text-muted">{DEBUG_INCIDENT_DIFF.file}</div>
@@ -167,25 +167,25 @@ export function DebugIncidentScenario({
         ),
       },
       {
-        id: "architecture",
-        label: "Architecture notes",
-        content: (
-          <ul className="list-disc space-y-2 pl-4 text-sm text-ink">
-            {DEBUG_INCIDENT_ARCHITECTURE_NOTES.map((note, i) => (
-              <li key={i}>{note}</li>
-            ))}
-          </ul>
-        ),
-      },
-      {
         id: "editor",
-        label: "Fix it",
+        label: "‹/› db_pool_config.py",
         content: (
           <CodeEditorPane
             value={DEBUG_INCIDENT_EDITOR_STARTING_SOURCE}
             onChange={setCodeEditSource}
             recordEvent={recordEvent}
           />
+        ),
+      },
+      {
+        id: "architecture",
+        label: "🗺️ Architecture",
+        content: (
+          <ul className="list-disc space-y-2 pl-4 text-sm text-ink">
+            {DEBUG_INCIDENT_ARCHITECTURE_NOTES.map((note, i) => (
+              <li key={i}>{note}</li>
+            ))}
+          </ul>
         ),
       },
     ],
@@ -225,82 +225,90 @@ export function DebugIncidentScenario({
       progressLabel={progressLabel}
       elapsedFormatted={formatted}
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_280px]">
-        <div className="flex flex-col gap-6">
-          <p className="card text-sm text-ink">{DEBUG_INCIDENT_BRIEFING.summary}</p>
+      <p className="card mb-6 text-sm text-ink">{DEBUG_INCIDENT_BRIEFING.summary}</p>
 
+      {/* Three-column workspace: work panel (evidence + write-up) | persona
+          feed (chips, updates, checkpoints) | session rail. Matches the
+          prototype's actual sim-shell proportions - this is a persistent
+          workspace with a supporting conversation alongside it, not a
+          chat screen with some tabs bolted on. */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr_260px]">
+        {/* LEFT: workspace */}
+        <div className="flex flex-col gap-6">
           <EvidencePane tabs={evidenceTabs} />
 
-          <PersonaChatThread
-            personas={DEBUG_INCIDENT_PERSONAS}
-            messages={DEBUG_INCIDENT_UPDATES}
-            revealedCount={revealedCount}
-            hasMore={hasMoreUpdates}
-            onRequestNext={handleRequestNextUpdate}
-          />
+          <div className="card flex flex-col gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 className="text-sm font-semibold text-ink">Your diagnosis &amp; plan</h2>
+              <DeliverablesChecklist
+                items={[
+                  { label: "Root cause", done: rootCause.trim().length >= MIN_ANSWER_LENGTH },
+                  { label: "Fix", done: fix.trim().length >= MIN_ANSWER_LENGTH },
+                  {
+                    label: "Validation",
+                    done: validationPlan.trim().length >= MIN_ANSWER_LENGTH,
+                  },
+                ]}
+              />
+            </div>
+            <FreeTextField
+              label="Root cause"
+              placeholder="What actually caused Meridian's failures?"
+              value={rootCause}
+              onChange={setRootCause}
+              {...getFieldHandlers("rootCause")}
+            />
+            <FreeTextField
+              label="Fix"
+              placeholder="What would you change to resolve this?"
+              value={fix}
+              onChange={setFix}
+              {...getFieldHandlers("fix")}
+            />
+            <FreeTextField
+              label="Validation plan"
+              placeholder="How would you confirm the fix worked and watch for regressions?"
+              value={validationPlan}
+              onChange={setValidationPlan}
+              {...getFieldHandlers("validationPlan")}
+            />
+            <button
+              type="button"
+              className="btn-primary self-start"
+              disabled={!canSubmit}
+              onClick={handleSubmit}
+            >
+              {submitting ? "Submitting…" : "Submit scenario"}
+            </button>
+          </div>
+        </div>
 
-          <div className="card flex flex-col gap-3">
-            <h2 className="text-sm font-semibold text-ink">Interim action — first call</h2>
+        {/* MIDDLE: persona feed + inline checkpoints */}
+        <PersonaChatThread
+          personas={DEBUG_INCIDENT_PERSONAS}
+          messages={DEBUG_INCIDENT_UPDATES}
+          revealedCount={revealedCount}
+          hasMore={hasMoreUpdates}
+          onRequestNext={handleRequestNextUpdate}
+        >
+          <div className="flex flex-col gap-3 border-t border-border pt-4">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">
+              Interim action — first call
+            </h3>
             <ActionPicker value={checkpoint1} onChange={handleCheckpoint1Change} />
           </div>
 
           {checkpoint1 && (
-            <div className="card flex flex-col gap-3">
-              <h2 className="text-sm font-semibold text-ink">
-                Final action — revise if the later updates change your read
-              </h2>
+            <div className="flex flex-col gap-3 border-t border-border pt-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">
+                Final action — revise if later updates change your read
+              </h3>
               <ActionPicker value={checkpoint2} onChange={handleCheckpoint2Change} />
             </div>
           )}
+        </PersonaChatThread>
 
-          {checkpoint1 && checkpoint2 && (
-            <div className="card flex flex-col gap-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h2 className="text-sm font-semibold text-ink">Write-up</h2>
-                <DeliverablesChecklist
-                  items={[
-                    { label: "Root cause", done: rootCause.trim().length >= MIN_ANSWER_LENGTH },
-                    { label: "Fix", done: fix.trim().length >= MIN_ANSWER_LENGTH },
-                    {
-                      label: "Validation",
-                      done: validationPlan.trim().length >= MIN_ANSWER_LENGTH,
-                    },
-                  ]}
-                />
-              </div>
-              <FreeTextField
-                label="Root cause"
-                placeholder="What actually caused Meridian's failures?"
-                value={rootCause}
-                onChange={setRootCause}
-                {...getFieldHandlers("rootCause")}
-              />
-              <FreeTextField
-                label="Fix"
-                placeholder="What would you change to resolve this?"
-                value={fix}
-                onChange={setFix}
-                {...getFieldHandlers("fix")}
-              />
-              <FreeTextField
-                label="Validation plan"
-                placeholder="How would you confirm the fix worked and watch for regressions?"
-                value={validationPlan}
-                onChange={setValidationPlan}
-                {...getFieldHandlers("validationPlan")}
-              />
-              <button
-                type="button"
-                className="btn-primary self-start"
-                disabled={!canSubmit}
-                onClick={handleSubmit}
-              >
-                {submitting ? "Submitting…" : "Submit scenario"}
-              </button>
-            </div>
-          )}
-        </div>
-
+        {/* RIGHT: session rail */}
         <SessionRail progressLabel={progressLabel} personas={DEBUG_INCIDENT_PERSONAS} />
       </div>
     </ScenarioShell>
