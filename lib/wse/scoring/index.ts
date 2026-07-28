@@ -7,6 +7,7 @@ export interface ScenarioResponseRow {
   scenario_version: string;
   response_payload: unknown;
   input_events: unknown;
+  duration_seconds?: number | null;
 }
 
 export interface DmcsScoreRow {
@@ -43,7 +44,9 @@ export function computeDmcsScores(responses: ScenarioResponseRow[]): DmcsScoreRo
     const events = Array.isArray(response.input_events)
       ? (response.input_events as InputEvent[])
       : [];
-    const scores = definition.score(response.response_payload, events);
+    const scores = definition.score(response.response_payload, events, {
+      durationSeconds: response.duration_seconds ?? null,
+    });
 
     for (const dim of ALL_DIMENSIONS) {
       const weight = definition.dimensionWeights[dim];

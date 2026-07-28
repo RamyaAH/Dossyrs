@@ -35,7 +35,25 @@ export type InputEvent =
   | { type: "action_choice"; field: string; value: string; t: number }
   | { type: "next_update_requested"; updateIndex: number; t: number }
   | { type: "rank_change"; field: string; order: string[]; t: number }
-  | { type: "select_change"; field: string; values: string[]; t: number };
+  | { type: "select_change"; field: string; values: string[]; t: number }
+  | {
+      type: "persona_reply_chosen";
+      beatId: string;
+      choice: string;
+      role: "interim" | "final";
+      t: number;
+    }
+  | { type: "ambient_escalation_shown"; beatId: string; t: number }
+  | { type: "file_switched"; fileId: string; t: number }
+  | {
+      type: "vcs_action";
+      action: "branch_created" | "commit" | "push" | "merge";
+      branchName?: string;
+      message?: string;
+      changedFiles?: string[];
+      t: number;
+    }
+  | { type: "query_run"; sql: string; rowCount: number; errored: boolean; t: number };
 
 export type DimensionWeights = Partial<Record<Dimension, number>>;
 
@@ -52,7 +70,11 @@ export interface ScenarioDefinition<TPayload = unknown> {
   // a single ScenarioDefinition[] registry array via TS's bivariant method
   // parameter checking. Callers still get full type safety within each
   // scenario's own score.ts.
-  score(payload: TPayload, events: InputEvent[]): DimensionScores;
+  score(
+    payload: TPayload,
+    events: InputEvent[],
+    meta?: { durationSeconds: number | null }
+  ): DimensionScores;
 }
 
 export const SCENARIO_FAMILY_LABELS: Record<ScenarioFamily, string> = {

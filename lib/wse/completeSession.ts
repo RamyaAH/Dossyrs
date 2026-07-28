@@ -115,6 +115,7 @@ export async function completeSession(
       scenario_version: r.scenario_version,
       response_payload: r.response_payload,
       input_events: r.input_events,
+      duration_seconds: r.duration_seconds,
     }));
 
     const dmcsRows = computeDmcsScores(scoreInput);

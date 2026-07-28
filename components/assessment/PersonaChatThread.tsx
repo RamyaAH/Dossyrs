@@ -1,10 +1,10 @@
 "use client";
 
-import type { Persona } from "@/lib/wse/scenarios/debug-incident/content";
+import type { Persona, DebugIncidentUpdate } from "@/lib/wse/scenarios/debug-incident/content";
 
 const AVATAR_PALETTE = [
-  "bg-brand-bg text-brand-dark",
-  "bg-accent-bg text-accent-dark",
+  "bg-brand-bg text-brand",
+  "bg-accent-bg text-accent",
   "bg-warn-bg text-warn",
 ];
 
@@ -28,22 +28,23 @@ function initials(name: string): string {
 // untouched. Styled as a plain feed (persona chip row + stacked rows), not
 // a messaging-app bubble thread - matching the prototype's actual "team
 // chips + step-through feed" pattern rather than a chatbot look.
+//
+// Renders whatever `messages` it's given, in order - the parent scenario
+// owns growing that array as branch responses come back from the server.
+// There's no "reveal next" control here anymore: messages arrive because
+// the candidate acted (or, for the ambient escalation, because time
+// passed), not because they clicked to page through a static script.
 export function PersonaChatThread({
   personas,
   messages,
-  revealedCount,
-  hasMore,
-  onRequestNext,
+  loading,
   children,
 }: {
   personas: Persona[];
-  messages: { personaId: string; text: string }[];
-  revealedCount: number;
-  hasMore: boolean;
-  onRequestNext: () => void;
+  messages: DebugIncidentUpdate[];
+  loading?: boolean;
   children?: React.ReactNode;
 }) {
-  const visible = messages.slice(0, revealedCount);
   const byId = new Map(personas.map((p) => [p.id, p]));
 
   return (
@@ -61,7 +62,7 @@ export function PersonaChatThread({
       </div>
 
       <div className="flex flex-col">
-        {visible.map((m, i) => {
+        {messages.map((m, i) => {
           const persona = byId.get(m.personaId);
           return (
             <div
@@ -84,18 +85,10 @@ export function PersonaChatThread({
             </div>
           );
         })}
+        {loading && <p className="label-mono py-2">Waiting on the room…</p>}
       </div>
 
       {children}
-
-      {hasMore && (
-        <button type="button" onClick={onRequestNext} className="btn-secondary self-start">
-          Continue →
-        </button>
-      )}
-      {!hasMore && (
-        <p className="label-mono">All updates reviewed</p>
-      )}
     </div>
   );
 }

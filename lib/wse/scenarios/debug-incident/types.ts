@@ -6,7 +6,7 @@ export type DebugActionChoice =
 
 export interface DebugCheckpointAnswer {
   choice: DebugActionChoice;
-  updatesViewedBefore: number; // how many "next update" clicks happened before this choice was locked in
+  msElapsedWhenChosen: number; // server-computed ms since scenario start when this choice was locked in
 }
 
 export interface DebugIncidentPayload {
@@ -15,5 +15,5 @@ export interface DebugIncidentPayload {
   rootCause: string;
   fix: string;
   validationPlan: string;
-  codeEdit: { finalSource: string };
+  codeEdit: { files: Record<string, string> };
 }

@@ -1,22 +1,7 @@
 import { NextResponse } from "next/server";
-import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { getScenarioDefinition } from "@/lib/wse/scenarios/registry";
-
-async function getOwnedInProgressSession(
-  supabase: SupabaseClient,
-  sessionId: string,
-  candidateId: string
-) {
-  const { data } = await supabase
-    .from("wse_sessions")
-    .select("id, candidate_id, status")
-    .eq("id", sessionId)
-    .single();
-
-  if (!data || data.candidate_id !== candidateId) return null;
-  return data;
-}
+import { getOwnedInProgressSession } from "@/lib/wse/sessionGuards";
 
 export async function POST(
   _request: Request,

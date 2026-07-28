@@ -8,7 +8,12 @@ export const DEBUG_INCIDENT_REPLAY_MAPPINGS: ReplayEventMapping[] = [
   {
     label: "Final action locked in",
     dimensions: ["PR", "LAM", "SA"],
-    matches: (e) => e.type === "action_choice" && e.field === "checkpoint2",
+    matches: (e) => e.type === "persona_reply_chosen" && e.role === "final",
+  },
+  {
+    label: "Escalation appeared unprompted",
+    dimensions: ["SA"],
+    matches: (e) => e.type === "ambient_escalation_shown",
   },
   {
     label: "Wrote root cause",
@@ -21,9 +26,19 @@ export const DEBUG_INCIDENT_REPLAY_MAPPINGS: ReplayEventMapping[] = [
     matches: (e) => e.type === "field_blur" && e.field === "fix",
   },
   {
-    label: "Edited config/db_pool_config.py",
+    label: "Edited code",
     dimensions: ["TAI"],
-    matches: (e) => e.type === "field_blur" && e.field === "codeEditor",
+    matches: (e) => e.type === "field_blur" && e.field.startsWith("codeEditor"),
+  },
+  {
+    label: "Committed changes",
+    dimensions: ["IS", "LAM"],
+    matches: (e) => e.type === "vcs_action" && e.action === "commit",
+  },
+  {
+    label: "Queried the orders table",
+    dimensions: ["IS"],
+    matches: (e) => e.type === "query_run" && !e.errored,
   },
   {
     label: "Wrote validation plan",

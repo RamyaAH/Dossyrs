@@ -46,18 +46,60 @@ export const DEBUG_INCIDENT_DIFF = {
   ],
 };
 
-// Full post-regression file content, for the editable code tab. The
-// candidate edits forward from this broken state rather than a blank file.
-export const DEBUG_INCIDENT_EDITOR_STARTING_SOURCE = `class OrderDbPoolConfig:
+// Multi-file workspace, for the editable code tab - a real dev fixing this
+// wouldn't touch just one config file, so the candidate can inspect and
+// edit both the pool config and the calling code that actually submits
+// Meridian's oversized batches. Each file's starting source doubles as its
+// "seed" for the commit flow's structural diff (CommitPanel compares
+// current content against this array, not against any semantic model).
+export interface DebugIncidentFile {
+  id: string;
+  path: string;
+  source: string;
+}
+
+export const DEBUG_INCIDENT_FILES: DebugIncidentFile[] = [
+  {
+    id: "db_pool_config",
+    path: "config/db_pool_config.py",
+    source: `class OrderDbPoolConfig:
     pool_size = 12  # reduce DB compute cost per infra review
     timeout_seconds = 30
-`;
+`,
+  },
+  {
+    id: "order_service",
+    path: "services/order_service.py",
+    source: `class OrderService:
+    def submit_batch(self, client_id, orders):
+        # Meridian Retail submits 50-200 orders per call and holds a
+        # DB connection for the full batch duration. No retry/backoff
+        # on pool exhaustion today - a timeout here just fails the batch.
+        with self.db_pool.acquire() as conn:
+            for order in orders:
+                conn.insert(order)
+`,
+  },
+];
 
 export const DEBUG_INCIDENT_ARCHITECTURE_NOTES = [
   "OrderSync API accepts order submissions from all clients through a shared DB connection pool (order-db).",
   "Most clients (acme-goods, nova-supply, ...) submit one order per call and release the connection almost immediately.",
   "Meridian Retail's integration submits orders in batches of 50-200 per call, holding a connection for the full batch duration.",
   "This morning's deploy reduced the shared pool size from 50 to 12 connections as a cost optimization.",
+];
+
+// Read-only infra reference, styled as a generic infra dashboard rather
+// than a pixel-accurate cloud-console skin (avoids a trademark-lookalike
+// question for no real benefit - candidates get the same information
+// either way). Not part of DEBUG_INCIDENT_FILES since it's reference-only,
+// never edited or diffed.
+export const DEBUG_INCIDENT_INFRA_RESOURCES = [
+  { label: "Instance", value: "order-db (managed relational DB, prod)" },
+  { label: "Max connections (instance ceiling)", value: "100" },
+  { label: "Reserved for other services sharing this instance", value: "~35" },
+  { label: "OrderSync app pool size (current)", value: "12 (reduced from 50 this morning)" },
+  { label: "Region", value: "us-east-1" },
 ];
 
 export interface Persona {
@@ -96,24 +138,14 @@ export interface DebugIncidentUpdate {
   text: string;
 }
 
-export const DEBUG_INCIDENT_UPDATES: DebugIncidentUpdate[] = [
-  {
-    personaId: "oncall-bot",
-    text: "SEV-2 declared. Meridian Retail reporting failed order submissions since ~09:14. Other clients green.",
-  },
-  {
-    personaId: "support",
-    text: "Meridian's integration submits orders in batches of 50-200 per call, unlike our other clients who submit one at a time.",
-  },
-  {
-    personaId: "platform",
-    text: "Heads up — this morning's deploy reduced the order-db connection pool size from 50 to 12 (config/db_pool_config.py), as a cost optimization.",
-  },
-  {
-    personaId: "oncall-bot",
-    text: "Meridian's failure rate is climbing — now affecting roughly 40% of their batch submissions.",
-  },
-];
+// Scene-setting only - safe to ship client-side since it's identical
+// regardless of what the candidate does next. Everything that actually
+// reacts to a candidate's choice lives server-only in ./branch.ts so the
+// decision tree itself never reaches the browser bundle.
+export const DEBUG_INCIDENT_OPENING_MESSAGE: DebugIncidentUpdate = {
+  personaId: "oncall-bot",
+  text: "SEV-2 declared. Meridian Retail reporting failed order submissions since ~09:14. Other clients green.",
+};
 
 export const DEBUG_INCIDENT_ACTION_OPTIONS: { value: DebugActionChoice; label: string }[] = [
   { value: "rollback", label: "Roll back this morning's deploy" },

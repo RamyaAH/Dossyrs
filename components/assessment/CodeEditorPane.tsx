@@ -61,8 +61,28 @@ export function CodeEditorPane({
         python(),
         updateListener,
         EditorView.theme({
-          "&": { fontSize: "12px" },
-          ".cm-content": { fontFamily: "ui-monospace, monospace", minHeight: "16rem" },
+          "&": {
+            fontSize: "12px",
+            height: "100%",
+            backgroundColor: "var(--color-surface)",
+            color: "var(--color-ink)",
+          },
+          ".cm-content": {
+            fontFamily: "ui-monospace, monospace",
+            minHeight: "100%",
+            caretColor: "var(--color-brand)",
+          },
+          ".cm-gutters": {
+            backgroundColor: "var(--color-surface)",
+            color: "var(--color-muted)",
+            border: "none",
+          },
+          ".cm-activeLine": { backgroundColor: "var(--color-surface-raised)" },
+          ".cm-activeLineGutter": { backgroundColor: "var(--color-surface-raised)" },
+          ".cm-selectionBackground, &.cm-focused .cm-selectionBackground": {
+            backgroundColor: "var(--color-brand-bg)",
+          },
+          "&.cm-focused .cm-cursor": { borderLeftColor: "var(--color-brand)" },
           ".cm-scroller": { overflow: "auto" },
         }),
       ],
@@ -89,5 +109,10 @@ export function CodeEditorPane({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div ref={containerRef} className="overflow-hidden rounded-md border border-border" />;
+  return (
+    <div
+      ref={containerRef}
+      className="h-full min-h-[20rem] overflow-hidden rounded-md border border-border"
+    />
+  );
 }

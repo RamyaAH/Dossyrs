@@ -11,16 +11,16 @@ export function EvidencePane({
   const active = tabs.find((t) => t.id === activeId) ?? tabs[0];
 
   return (
-    <div className="card overflow-hidden p-0">
-      <div className="flex border-b border-border bg-surface-raised">
+    <div className="card flex min-h-[28rem] flex-1 flex-col overflow-hidden p-0">
+      <div className="flex overflow-x-auto border-b border-border bg-surface-raised">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setActiveId(tab.id)}
-            className={`px-4 py-2.5 text-sm font-medium transition-colors ${
+            className={`whitespace-nowrap px-4 py-2.5 font-mono text-xs uppercase tracking-wide transition-colors ${
               tab.id === active?.id
-                ? "border-b-2 border-brand text-brand-dark"
+                ? "border-b-2 border-brand text-brand"
                 : "text-muted hover:text-ink"
             }`}
           >
@@ -28,7 +28,7 @@ export function EvidencePane({
           </button>
         ))}
       </div>
-      <div className="max-h-80 overflow-auto p-4">{active?.content}</div>
+      <div className="flex-1 overflow-auto p-4">{active?.content}</div>
     </div>
   );
 }

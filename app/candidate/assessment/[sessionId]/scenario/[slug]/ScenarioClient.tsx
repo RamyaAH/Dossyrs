@@ -52,7 +52,13 @@ export function ScenarioClient({
   }
 
   if (slug === "debug-incident") {
-    return <DebugIncidentScenario progressLabel={progressLabel} onSubmit={submitScenario} />;
+    return (
+      <DebugIncidentScenario
+        sessionId={sessionId}
+        progressLabel={progressLabel}
+        onSubmit={submitScenario}
+      />
+    );
   }
 
   if (slug === "sprint-triage") {

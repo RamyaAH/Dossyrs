@@ -37,6 +37,44 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Distinct dark, monospace-forward treatment for the live assessment/
+   simulation screens - deliberately different from the light marketing
+   pages, same way the original prototype gives its sim screen its own
+   dark "cockpit" look. Every component under this scope keeps using its
+   normal bg-surface/text-ink/etc classes; only the underlying variables
+   change, so nothing here needed to be re-themed component by component. */
+.workspace-theme {
+  --color-ink: #eef0f2;
+  --color-surface: #13151a;
+  --color-surface-raised: #1a1d24;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-muted: rgba(255, 255, 255, 0.45);
+
+  --color-brand: #1d9e75;
+  --color-brand-dark: #15805e;
+  --color-brand-bg: rgba(29, 158, 117, 0.16);
+
+  --color-accent: #e8785a;
+  --color-accent-dark: #c1502e;
+  --color-accent-bg: rgba(240, 112, 96, 0.16);
+
+  --color-success: #3ecfa0;
+  --color-success-bg: rgba(29, 158, 117, 0.14);
+
+  --color-warn: #e0b060;
+  --color-warn-bg: rgba(224, 176, 96, 0.14);
+
+  --color-danger: #f07060;
+  --color-danger-bg: rgba(220, 60, 40, 0.16);
+
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.workspace-theme .card {
+  box-shadow: none;
+}
+
 @layer base {
   /* Applies everywhere, including pages still using inline styles for
      other properties - font-family isn't set inline there, so this still

@@ -15,7 +15,7 @@ export function DeliverablesChecklist({
           key={item.label}
           className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${
             item.done
-              ? "border-brand-bg bg-brand-bg text-brand-dark"
+              ? "border-brand-bg bg-brand-bg text-brand"
               : "border-border text-muted"
           }`}
         >
