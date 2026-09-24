@@ -2,10 +2,11 @@ import type { ScenarioDefinition } from "@/lib/wse/types";
 import { scoreDebugIncident } from "./debug-incident/score";
 import { scoreSprintTriage } from "./sprint-triage/score";
 import { scoreAmbiguousRequest } from "./ambiguous-request/score";
+import { scoreStakeholderInterview } from "./stakeholder-interview/score";
 
 // Ordered list of fixed scenarios a candidate completes, in order. Populated
 // as each scenario is built: debug-incident first, then sprint-triage, then
-// ambiguous-request.
+// ambiguous-request, then stakeholder-interview.
 export const SCENARIO_REGISTRY: ScenarioDefinition[] = [
   {
     slug: "debug-incident",
@@ -30,6 +31,14 @@ export const SCENARIO_REGISTRY: ScenarioDefinition[] = [
     families: ["ambiguity_handling", "planning_decomposition"],
     dimensionWeights: { TAI: 1, PR: 1, IS: 1, SA: 1, LAM: 1 },
     score: scoreAmbiguousRequest,
+  },
+  {
+    slug: "stakeholder-interview",
+    title: "Stakeholder interview",
+    version: "stakeholder-interview-1.0",
+    families: ["ambiguity_handling", "collaboration_alignment"],
+    dimensionWeights: { TAI: 1, PR: 1, IS: 1, SA: 1, LAM: 1 },
+    score: scoreStakeholderInterview,
   },
 ];
 

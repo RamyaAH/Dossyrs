@@ -17,12 +17,17 @@ export type ScenarioFamily =
   | "quality_risk_judgment"
   | "pressure_time_constraints";
 
-export type ScenarioSlug = "debug-incident" | "sprint-triage" | "ambiguous-request";
+export type ScenarioSlug =
+  | "debug-incident"
+  | "sprint-triage"
+  | "ambiguous-request"
+  | "stakeholder-interview";
 
 export const SCENARIO_SLUGS: ScenarioSlug[] = [
   "debug-incident",
   "sprint-triage",
   "ambiguous-request",
+  "stakeholder-interview",
 ];
 
 // Client-captured event log, flushed into wse_scenario_responses.input_events

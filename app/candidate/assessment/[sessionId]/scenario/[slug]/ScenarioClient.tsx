@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { DebugIncidentScenario } from "@/components/assessment/DebugIncidentScenario";
 import { SprintTriageScenario } from "@/components/assessment/SprintTriageScenario";
 import { AmbiguousRequestScenario } from "@/components/assessment/AmbiguousRequestScenario";
+import { StakeholderInterviewScenario } from "@/components/assessment/StakeholderInterviewScenario";
 import type { InputEvent } from "@/lib/wse/types";
 
 export function ScenarioClient({
@@ -67,6 +68,16 @@ export function ScenarioClient({
 
   if (slug === "ambiguous-request") {
     return <AmbiguousRequestScenario progressLabel={progressLabel} onSubmit={submitScenario} />;
+  }
+
+  if (slug === "stakeholder-interview") {
+    return (
+      <StakeholderInterviewScenario
+        sessionId={sessionId}
+        progressLabel={progressLabel}
+        onSubmit={submitScenario}
+      />
+    );
   }
 
   return <p className="p-8 text-sm text-muted">This scenario isn&apos;t available yet.</p>;
