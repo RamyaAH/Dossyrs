@@ -136,8 +136,8 @@ export default function SqlSandboxPane({
   return (
     <div className="flex flex-col gap-3">
       <p className="text-xs text-muted">
-        Query the live orders table directly — seeded from this incident&apos;s actual submission
-        log.
+        Query the live database directly — clients, orders, and pool config history, seeded from
+        this incident.
       </p>
       <textarea
         className="rounded-md border border-border bg-surface p-3 font-mono text-xs text-ink outline-none focus:border-brand"

@@ -87,6 +87,22 @@ function scoreIS(payload: SprintTriagePayload): number {
   return clamp(Math.round((matched / TOP_JUSTIFICATION_EVIDENCE_TOKENS.length) * 100));
 }
 
+// Small additive bonus, same philosophy as debug-incident's SA_TIME/IS_QUERY
+// bonuses: capped, and deliberately NOT a second keyword rubric on the same
+// justification text (that would just duplicate PUSHBACK_REASONING_KEYWORDS).
+// This only rewards genuinely pausing at the confirm/revise checkpoint
+// rather than reflexively re-clicking - engagement, not "did they say the
+// right words." Held vs. changed has no objectively-better answer here
+// (unlike debug-incident's GOOD_CHOICES), so this can't be a choice-based
+// checkpoint-comparison score like debug-incident's scoreLAM.
+const LAM_ENGAGEMENT_MIN_MS = 3_000;
+const LAM_ENGAGEMENT_BONUS = 10;
+
+function scoreEngagementBonus(payload: SprintTriagePayload): number {
+  const pause = payload.pushback.msElapsedWhenFinal - payload.pushback.msElapsedWhenInitial;
+  return pause >= LAM_ENGAGEMENT_MIN_MS ? LAM_ENGAGEMENT_BONUS : 0;
+}
+
 function scoreLAM(payload: SprintTriagePayload): number {
   if (!isLongEnough(payload.pushback.justification)) return 15; // engaged with the prompt but gave nothing real
   const matched = PUSHBACK_REASONING_KEYWORDS.filter((re) =>
@@ -94,7 +110,8 @@ function scoreLAM(payload: SprintTriagePayload): number {
   ).length;
   // Either holding firm or changing course is fine - what matters is
   // whether the reasoning actually engages with the capacity tradeoff.
-  return clamp(Math.round((matched / PUSHBACK_REASONING_KEYWORDS.length) * 100));
+  const base = Math.round((matched / PUSHBACK_REASONING_KEYWORDS.length) * 100);
+  return clamp(base + scoreEngagementBonus(payload));
 }
 
 function scoreTAI(payload: SprintTriagePayload): number {

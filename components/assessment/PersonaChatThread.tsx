@@ -1,6 +1,6 @@
 "use client";
 
-import type { Persona, DebugIncidentUpdate } from "@/lib/wse/scenarios/debug-incident/content";
+import type { Persona, PersonaMessage } from "@/lib/wse/scenarios/shared/persona";
 
 const AVATAR_PALETTE = [
   "bg-brand-bg text-brand",
@@ -23,11 +23,13 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
-// Sibling to ChatThread, not a replacement - swapped in only for
-// debug-incident so the shared ChatThread contract (used elsewhere) stays
-// untouched. Styled as a plain feed (persona chip row + stacked rows), not
-// a messaging-app bubble thread - matching the prototype's actual "team
-// chips + step-through feed" pattern rather than a chatbot look.
+// Sibling to ChatThread, not a replacement - the shared ChatThread contract
+// (used elsewhere) stays untouched. Styled as a plain feed (persona chip
+// row + stacked rows), not a messaging-app bubble thread - matching the
+// prototype's actual "team chips + step-through feed" pattern rather than
+// a chatbot look. Fully generic - shared by every scenario with a persona
+// feed (debug-incident, sprint-triage, ambiguous-request), not debug-
+// incident-specific.
 //
 // Renders whatever `messages` it's given, in order - the parent scenario
 // owns growing that array as branch responses come back from the server.
@@ -41,7 +43,7 @@ export function PersonaChatThread({
   children,
 }: {
   personas: Persona[];
-  messages: DebugIncidentUpdate[];
+  messages: PersonaMessage[];
   loading?: boolean;
   children?: React.ReactNode;
 }) {

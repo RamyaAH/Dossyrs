@@ -62,11 +62,23 @@ export function ScenarioClient({
   }
 
   if (slug === "sprint-triage") {
-    return <SprintTriageScenario progressLabel={progressLabel} onSubmit={submitScenario} />;
+    return (
+      <SprintTriageScenario
+        sessionId={sessionId}
+        progressLabel={progressLabel}
+        onSubmit={submitScenario}
+      />
+    );
   }
 
   if (slug === "ambiguous-request") {
-    return <AmbiguousRequestScenario progressLabel={progressLabel} onSubmit={submitScenario} />;
+    return (
+      <AmbiguousRequestScenario
+        sessionId={sessionId}
+        progressLabel={progressLabel}
+        onSubmit={submitScenario}
+      />
+    );
   }
 
   return <p className="p-8 text-sm text-muted">This scenario isn&apos;t available yet.</p>;

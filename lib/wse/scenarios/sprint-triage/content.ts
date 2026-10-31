@@ -1,3 +1,5 @@
+import type { Persona, PersonaMessage } from "../shared/persona";
+
 export interface SprintTriageTicket {
   id: string;
   title: string;
@@ -78,8 +80,26 @@ export const SPRINT_TRIAGE_TICKETS: SprintTriageTicket[] = [
   },
 ];
 
-export const SPRINT_TRIAGE_PUSHBACK_MESSAGE = {
-  from: "Sales",
+export const SPRINT_TRIAGE_PERSONAS: Persona[] = [
+  {
+    id: "sales",
+    name: "Sales",
+    role: "Account Executive",
+    personality: "Deal-driven, pushes on customer urgency.",
+  },
+  {
+    id: "em",
+    name: "Engineering Manager",
+    role: "Team Lead",
+    personality: "Protects capacity discipline, checks tradeoffs are accounted for.",
+  },
+];
+
+// Scene-setting only, same rule as debug-incident: identical regardless of
+// what the candidate does next. The actual reactions live server-only in
+// ./branch.ts.
+export const SPRINT_TRIAGE_OPENING_MESSAGE: PersonaMessage = {
+  personaId: "sales",
   text: "Can we bump the CSV export ticket (102)? A prospect said they need it to close a deal this week.",
 };
 

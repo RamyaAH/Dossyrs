@@ -41,6 +41,11 @@ export const DEBUG_INCIDENT_REPLAY_MAPPINGS: ReplayEventMapping[] = [
     matches: (e) => e.type === "query_run" && !e.errored,
   },
   {
+    label: "Searched the raw log",
+    dimensions: ["IS"],
+    matches: (e) => e.type === "log_query",
+  },
+  {
     label: "Wrote validation plan",
     dimensions: ["SA"],
     matches: (e) => e.type === "field_blur" && e.field === "validationPlan",

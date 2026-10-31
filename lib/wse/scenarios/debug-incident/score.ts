@@ -89,11 +89,29 @@ function scoreQueryEvidence(events: InputEvent[]): number {
   return matched ? IS_QUERY_BONUS : 0;
 }
 
+// Same additive-bonus philosophy: credit for having actually searched the
+// log toward the real signal (Meridian's errors, not just any error) -
+// not a semantic judgement of whether the candidate understood what they
+// found, same as every other bonus in this file.
+const IS_LOG_QUERY_BONUS = 10;
+
+function scoreLogEvidence(events: InputEvent[]): number {
+  const queries = events.filter(
+    (e): e is Extract<InputEvent, { type: "log_query" }> => e.type === "log_query"
+  );
+  const matched = queries.some(
+    (q) =>
+      q.client === "meridian-retail" &&
+      (q.level === "ERROR" || /pool|exhaust|batch/i.test(q.text ?? ""))
+  );
+  return matched ? IS_LOG_QUERY_BONUS : 0;
+}
+
 function scoreIS(payload: DebugIncidentPayload, events: InputEvent[]): number {
   if (!isLongEnough(payload.rootCause)) return 0;
   const matched = IS_EVIDENCE_TOKENS.filter((re) => re.test(payload.rootCause)).length;
   const base = Math.round((matched / 3) * 100); // 3+ specific tokens = full credit
-  return clamp(base + scoreQueryEvidence(events));
+  return clamp(base + scoreQueryEvidence(events) + scoreLogEvidence(events));
 }
 
 // With real branching, reaching the final call always means the candidate

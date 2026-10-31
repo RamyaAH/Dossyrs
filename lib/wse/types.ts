@@ -53,7 +53,15 @@ export type InputEvent =
       changedFiles?: string[];
       t: number;
     }
-  | { type: "query_run"; sql: string; rowCount: number; errored: boolean; t: number };
+  | { type: "query_run"; sql: string; rowCount: number; errored: boolean; t: number }
+  | {
+      type: "log_query";
+      level: string | null;
+      client: string | null;
+      text: string | null;
+      resultCount: number;
+      t: number;
+    };
 
 export type DimensionWeights = Partial<Record<Dimension, number>>;
 

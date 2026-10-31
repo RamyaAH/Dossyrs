@@ -8,6 +8,9 @@ import { PersonaChatThread } from "./PersonaChatThread";
 import { FreeTextField } from "./FreeTextField";
 import { CodeWorkspace } from "./CodeWorkspace";
 import { CommitPanel } from "./CommitPanel";
+import { ArchitectureDiagram } from "./ArchitectureDiagram";
+import { LogSearchPane } from "./LogSearchPane";
+import { CloudConsolePane } from "./CloudConsolePane";
 import { DeliverablesChecklist } from "./DeliverablesChecklist";
 import { SessionRail } from "./SessionRail";
 import { useAssessmentTimer } from "@/hooks/useAssessmentTimer";
@@ -18,17 +21,16 @@ import {
   DEBUG_INCIDENT_BRIEFING,
   DEBUG_INCIDENT_DIFF,
   DEBUG_INCIDENT_FILES,
-  DEBUG_INCIDENT_INFRA_RESOURCES,
   DEBUG_INCIDENT_LOG_LINES,
   DEBUG_INCIDENT_OPENING_MESSAGE,
   DEBUG_INCIDENT_PERSONAS,
-  type DebugIncidentUpdate,
 } from "@/lib/wse/scenarios/debug-incident/content";
 import type {
   DebugActionChoice,
   DebugCheckpointAnswer,
   DebugIncidentPayload,
 } from "@/lib/wse/scenarios/debug-incident/types";
+import type { PersonaMessage } from "@/lib/wse/scenarios/shared/persona";
 import type { InputEvent } from "@/lib/wse/types";
 
 // Loaded only when the SQL sandbox tab is actually rendered (EvidencePane
@@ -42,7 +44,7 @@ type BeatId = "start" | "final" | "resolved";
 
 interface BranchResponse {
   nextBeatId: BeatId;
-  personaMessages: DebugIncidentUpdate[];
+  personaMessages: PersonaMessage[];
   ambientEscalationTriggered: boolean;
 }
 
@@ -97,7 +99,7 @@ export function DebugIncidentScenario({
   const { formatted } = useAssessmentTimer(startedAtMs);
   const { getFieldHandlers, recordEvent, getEvents } = useFieldInputTracking();
 
-  const [messages, setMessages] = useState<DebugIncidentUpdate[]>([DEBUG_INCIDENT_OPENING_MESSAGE]);
+  const [messages, setMessages] = useState<PersonaMessage[]>([DEBUG_INCIDENT_OPENING_MESSAGE]);
   const [beatId, setBeatId] = useState<BeatId>("start");
   const [branchLoading, setBranchLoading] = useState(false);
   const [branchError, setBranchError] = useState<string | null>(null);
@@ -165,46 +167,31 @@ export function DebugIncidentScenario({
       {
         id: "log",
         label: "📄 Error log",
-        content: (
-          <div className="flex flex-col gap-1 font-mono text-xs">
-            {DEBUG_INCIDENT_LOG_LINES.map((line, i) => (
-              <div
-                key={i}
-                className={`rounded px-2 py-1 ${
-                  "flagged" in line && line.flagged ? "bg-warn-bg" : ""
-                }`}
-              >
-                <span className="text-muted">{line.time}</span>{" "}
-                <span
-                  className={line.level === "ERROR" ? "font-semibold text-danger" : "text-muted"}
-                >
-                  {line.level}
-                </span>{" "}
-                <span className="text-ink">{line.msg}</span>
-              </div>
-            ))}
-          </div>
-        ),
+        content: <LogSearchPane lines={DEBUG_INCIDENT_LOG_LINES} recordEvent={recordEvent} />,
       },
       {
         id: "diff",
         label: "🔀 Recent changes",
         content: (
-          <div className="font-mono text-xs">
-            <div className="mb-2 text-muted">{DEBUG_INCIDENT_DIFF.file}</div>
-            {DEBUG_INCIDENT_DIFF.hunk.map((line, i) => (
-              <div
-                key={i}
-                className={
-                  line.type === "add"
-                    ? "bg-success-bg text-success"
-                    : line.type === "remove"
-                      ? "bg-danger-bg text-danger"
-                      : "text-ink"
-                }
-              >
-                {line.type === "add" ? "+ " : line.type === "remove" ? "- " : "  "}
-                {line.text}
+          <div className="flex flex-col gap-4 font-mono text-xs">
+            {DEBUG_INCIDENT_DIFF.map((fileDiff) => (
+              <div key={fileDiff.file}>
+                <div className="mb-2 text-muted">{fileDiff.file}</div>
+                {fileDiff.hunk.map((line, i) => (
+                  <div
+                    key={i}
+                    className={
+                      line.type === "add"
+                        ? "bg-success-bg text-success"
+                        : line.type === "remove"
+                          ? "bg-danger-bg text-danger"
+                          : "text-ink"
+                    }
+                  >
+                    {line.type === "add" ? "+ " : line.type === "remove" ? "- " : "  "}
+                    {line.text}
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -226,11 +213,14 @@ export function DebugIncidentScenario({
         id: "architecture",
         label: "🗺️ Architecture",
         content: (
-          <ul className="list-disc space-y-2 pl-4 text-sm text-ink">
-            {DEBUG_INCIDENT_ARCHITECTURE_NOTES.map((note, i) => (
-              <li key={i}>{note}</li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-4">
+            <ArchitectureDiagram />
+            <ul className="list-disc space-y-2 pl-4 text-sm text-ink">
+              {DEBUG_INCIDENT_ARCHITECTURE_NOTES.map((note, i) => (
+                <li key={i}>{note}</li>
+              ))}
+            </ul>
+          </div>
         ),
       },
       {
@@ -240,17 +230,8 @@ export function DebugIncidentScenario({
       },
       {
         id: "infra",
-        label: "☁️ Infra resources",
-        content: (
-          <dl className="flex flex-col gap-2 text-sm">
-            {DEBUG_INCIDENT_INFRA_RESOURCES.map((row, i) => (
-              <div key={i} className="flex justify-between gap-4 border-b border-border pb-2 last:border-0">
-                <dt className="text-muted">{row.label}</dt>
-                <dd className="text-right font-mono text-ink">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        ),
+        label: "☁️ Cloud resources",
+        content: <CloudConsolePane />,
       },
     ],
     [recordEvent, codeEditValues]
@@ -269,6 +250,7 @@ export function DebugIncidentScenario({
     setSubmitting(true);
     const files: Record<string, string> = {};
     for (const f of DEBUG_INCIDENT_FILES) {
+      if (!f.editable) continue;
       files[f.id] = codeEditValues[f.id] ?? f.source;
     }
     const payload: DebugIncidentPayload = {

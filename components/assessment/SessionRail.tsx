@@ -1,6 +1,6 @@
 "use client";
 
-import type { Persona } from "@/lib/wse/scenarios/debug-incident/content";
+import type { Persona } from "@/lib/wse/scenarios/shared/persona";
 
 export function SessionRail({
   progressLabel,

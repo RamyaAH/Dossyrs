@@ -1,4 +1,4 @@
-import type { DebugIncidentUpdate } from "./content";
+import type { PersonaMessage } from "../shared/persona";
 import type { DebugActionChoice } from "./types";
 
 // SERVER-ONLY. Never import this file from a "use client" component or
@@ -13,7 +13,7 @@ export type BeatId = "start" | "final" | "resolved";
 export interface BeatOption {
   choice: DebugActionChoice;
   nextBeatId: BeatId;
-  reactionMessages: DebugIncidentUpdate[];
+  reactionMessages: PersonaMessage[];
 }
 
 export interface Beat {
@@ -38,7 +38,7 @@ export const BRANCH_TABLE: Record<BeatId, Beat> = {
         reactionMessages: [
           {
             personaId: "platform",
-            text: "Hold on — a full rollback reverts everything from this morning's deploy, not just the pool change. Before we do that: Meridian submits orders in batches of 50-200 per call, and this morning we dropped the shared connection pool from 50 to 12 as a cost cut. That's almost certainly the trigger.",
+            text: "A full rollback reverts everything from this morning's deploy, not just whatever's actually causing this — including changes nobody's flagged as suspect. And it's only Meridian that's affected; every other client is green. Are we sure a blanket rollback is the right blast radius before we've isolated what's actually different about their traffic?",
           },
           {
             personaId: "oncall-bot",
@@ -52,11 +52,11 @@ export const BRANCH_TABLE: Record<BeatId, Beat> = {
         reactionMessages: [
           {
             personaId: "support",
-            text: "Disabling batch submissions buys us time, but Meridian can't process any orders until we re-enable it — that's a full outage for one client instead of a partial one. Worth knowing: they submit in batches of 50-200, unlike everyone else.",
+            text: "Disabling batch submissions buys us time, but Meridian can't process any orders at all until we re-enable it — that trades a partial degradation for a full outage on their side. Their integration behaves differently from every other client's traffic pattern, for what it's worth.",
           },
           {
             personaId: "platform",
-            text: "Also worth flagging — this morning's deploy dropped the shared connection pool from 50 to 12. That's likely the actual trigger.",
+            text: "If we're just buying time, I'd rather spend the next few minutes actually looking at what changed this morning instead of parking this.",
           },
         ],
       },
@@ -66,7 +66,7 @@ export const BRANCH_TABLE: Record<BeatId, Beat> = {
         reactionMessages: [
           {
             personaId: "platform",
-            text: "That's the right instinct — we dropped the pool from 50 to 12 this morning as a cost cut, and Meridian's batches of 50-200 hold connections far longer than everyone else's single-order calls. Raising it back should relieve this quickly.",
+            text: "Could help, but let's not guess at a number — pull the current setting and today's deploy diff before you touch anything, so we know what we're actually adjusting and by how much.",
           },
           {
             personaId: "oncall-bot",
@@ -84,11 +84,11 @@ export const BRANCH_TABLE: Record<BeatId, Beat> = {
           },
           {
             personaId: "support",
-            text: "Meridian's integration submits orders in batches of 50-200 per call, unlike our other clients who submit one at a time.",
+            text: "Their integration behaves differently from every other client's — that's probably worth looking at first.",
           },
           {
             personaId: "platform",
-            text: "Heads up — this morning's deploy dropped the order-db connection pool from 50 to 12 connections, as a cost optimization.",
+            text: "Something changed in this morning's deploy. I'd start there before spending time elsewhere.",
           },
         ],
       },
@@ -148,14 +148,14 @@ export const BRANCH_TABLE: Record<BeatId, Beat> = {
 // click. Fires at most once per session, checked against server time (never
 // a client-supplied elapsed value) so it can't be dodged or faked.
 export const AMBIENT_ESCALATION_THRESHOLD_MS = 90_000;
-export const AMBIENT_ESCALATION_MESSAGE: DebugIncidentUpdate = {
+export const AMBIENT_ESCALATION_MESSAGE: PersonaMessage = {
   personaId: "support",
   text: "Following up — still waiting on a call here. Meridian's failure rate keeps climbing.",
 };
 
 export interface ResolveBranchResult {
   nextBeatId: BeatId;
-  personaMessages: DebugIncidentUpdate[];
+  personaMessages: PersonaMessage[];
   ambientEscalationTriggered: boolean;
 }
 

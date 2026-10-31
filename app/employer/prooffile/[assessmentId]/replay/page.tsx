@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import { requireEmployerSeat, requireEmployerAccessToSession } from "@/lib/auth/guards";
 import { buildReplaySequence } from "@/lib/wse/scoring/replay";
-import { DEBUG_INCIDENT_REPLAY_MAPPINGS } from "@/lib/wse/scenarios/debug-incident/replay";
+import { REPLAY_MAPPINGS_BY_SLUG } from "@/lib/wse/scoring/replayRegistry";
+import { getScenarioDefinition } from "@/lib/wse/scenarios/registry";
 import { ScoringReplay } from "@/components/employer/ScoringReplay";
-import type { InputEvent } from "@/lib/wse/types";
+import type { InputEvent, ScenarioSlug } from "@/lib/wse/types";
 
 export default async function EmployerScoringReplayPage({
   params,
@@ -39,13 +40,20 @@ export default async function EmployerScoringReplayPage({
       .eq("session_id", session.id),
   ]);
 
-  const debugIncidentResponse = responses?.find((r) => r.scenario_slug === "debug-incident");
-  const events = Array.isArray(debugIncidentResponse?.input_events)
-    ? (debugIncidentResponse.input_events as InputEvent[])
-    : [];
-
-  const reveals = buildReplaySequence(events, DEBUG_INCIDENT_REPLAY_MAPPINGS);
+  // Session-level aggregate (weighted across every contributing scenario),
+  // not per-scenario - reused unchanged across every section below.
   const bandByDimension = new Map((dmcsScores ?? []).map((s) => [s.dimension, s.band]));
+
+  const sections = (responses ?? [])
+    .map((r) => {
+      const mappings = REPLAY_MAPPINGS_BY_SLUG[r.scenario_slug as ScenarioSlug];
+      if (!mappings) return null; // scenario has no replay mappings yet - skip, don't error
+      const events = Array.isArray(r.input_events) ? (r.input_events as InputEvent[]) : [];
+      const reveals = buildReplaySequence(events, mappings);
+      const title = getScenarioDefinition(r.scenario_slug)?.title ?? r.scenario_slug;
+      return { slug: r.scenario_slug, title, reveals };
+    })
+    .filter((s): s is { slug: string; title: string; reveals: ReturnType<typeof buildReplaySequence> } => s !== null);
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-10">
@@ -53,8 +61,13 @@ export default async function EmployerScoringReplayPage({
       <p className="mt-1 text-sm text-muted">
         {candidate?.display_name ?? "Candidate"} · {session.assessment_id}
       </p>
-      <div className="mt-6">
-        <ScoringReplay reveals={reveals} bandByDimension={bandByDimension} />
+      <div className="mt-6 flex flex-col gap-8">
+        {sections.map((section) => (
+          <div key={section.slug} className="flex flex-col gap-2">
+            <h2 className="label-mono">{section.title}</h2>
+            <ScoringReplay reveals={section.reveals} bandByDimension={bandByDimension} />
+          </div>
+        ))}
       </div>
     </main>
   );
