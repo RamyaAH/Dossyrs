@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { requireCandidate } from "@/lib/auth/guards";
-import { CopyPublicLink } from "@/app/candidate/prooffile/CopyPublicLink";
+import { CopyPublicLink } from "../prooffile/CopyPublicLink";
 
 export default async function CandidateDashboard() {
   const { supabase, candidate } = await requireCandidate();
