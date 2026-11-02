@@ -32,7 +32,7 @@ export default function HowItWorksPage() {
           dimensions — Technical Ability, Problem Resolution, Information Synthesis,
           Situational Awareness, and Learning &amp; Adaptation Mindset. Scoring is rule-based
           (keyword matches, structural checks, rank correlation), not a machine-learning model,
-          and never edited by hand after it's generated.
+          and never edited by hand after it&apos;s generated.
         </p>
       </section>
 

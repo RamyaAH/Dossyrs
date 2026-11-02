@@ -364,7 +364,7 @@ export function DebugIncidentScenario({
             <div className="flex flex-col gap-3 border-t border-border pt-4">
               <p className="label-mono">Your first call: {choiceLabel(checkpoint1.choice)}</p>
               <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">
-                Final action — revise if the room's response changes your read
+                Final action — revise if the room&apos;s response changes your read
               </h3>
               <ActionPicker value={null} onChange={handleChoice} disabled={branchLoading} />
             </div>
